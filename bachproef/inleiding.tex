@@ -5,7 +5,7 @@
 \chapter{\IfLanguageName{dutch}{Inleiding}{Introduction}}%
 \label{ch:inleiding}
 
-De inleiding moet de lezer net genoeg informatie verschaffen om het onderwerp te begrijpen en in te zien waarom de onderzoeksvraag de moeite waard is om te onderzoeken. In de inleiding ga je literatuurverwijzingen beperken, zodat de tekst vlot leesbaar blijft. Je kan de inleiding verder onderverdelen in secties als dit de tekst verduidelijkt. Zaken die aan bod kunnen komen in de inleiding~\autocite{Pollefliet2011}:
+%De inleiding moet de lezer net genoeg informatie verschaffen om het onderwerp te begrijpen en in te zien waarom de onderzoeksvraag de moeite waard is om te onderzoeken. In de inleiding ga je literatuurverwijzingen beperken, zodat de tekst vlot leesbaar blijft. Je kan de inleiding verder onderverdelen in secties als dit de tekst verduidelijkt. Zaken die aan bod kunnen komen in de inleiding~\autocite{Pollefliet2011}:
 
 \begin{itemize}
   \item context, achtergrond
@@ -19,18 +19,50 @@ De inleiding moet de lezer net genoeg informatie verschaffen om het onderwerp te
 
 \section{\IfLanguageName{dutch}{Probleemstelling}{Problem Statement}}%
 \label{sec:probleemstelling}
+Volgens de bevindingen uit het onderzoek zitten de Accident and Emergency (A\&E) afdelingen van de National Health Service (NHS) in een “vreselijke staat”. De studie toont namelijk aan dat meer dan 100.000 kinderen vorig jaar boven de 6 uur moesten wachten en dat bijna 10 procent van alle patiënten nu 12 uur of langer moet wachten om behandeld te worden \autocite{LordDarzi2024}. Deze langdurige wachttijden hebben serieuze consequenties voor patiënten. Volgens een toespraak over het onderzoek door de Britse Premier, Sir Keir Starmer, zijn de lange A\&E wachttijden niet alleen een bron van angst en bezorgdheid, maar leiden ook tot duizenden vermijdbare sterfgevallen. Volgens de Royal College of Emergency Medicine gaat het om 14.000 extra sterfgevallen per jaar \autocite{Starmer2024}.
 
-Uit je probleemstelling moet duidelijk zijn dat je onderzoek een meerwaarde heeft voor een concrete doelgroep. De doelgroep moet goed gedefinieerd en afgelijnd zijn. Doelgroepen als ``bedrijven,'' ``KMO's'', systeembeheerders, enz.~zijn nog te vaag. Als je een lijstje kan maken van de personen/organisaties die een meerwaarde zullen vinden in deze bachelorproef (dit is eigenlijk je steekproefkader), dan is dat een indicatie dat de doelgroep goed gedefinieerd is. Dit kan een enkel bedrijf zijn of zelfs één persoon (je co-promotor/opdrachtgever).
+
+%Uit je probleemstelling moet duidelijk zijn dat je onderzoek een meerwaarde heeft voor een concrete doelgroep. De doelgroep moet goed gedefinieerd en afgelijnd zijn. Doelgroepen als ``bedrijven,'' ``KMO's'', systeembeheerders, enz.~zijn nog te vaag. Als je een lijstje kan maken van de personen/organisaties die een meerwaarde zullen vinden in deze bachelorproef (dit is eigenlijk je steekproefkader), dan is dat een indicatie dat de doelgroep goed gedefinieerd is. Dit kan een enkel bedrijf zijn of zelfs één persoon (je co-promotor/opdrachtgever).
+
+\section{Doel van het onderzoek}
+Om een oplossing te vinden voor dit langdurige probleem richt dit onderzoek zich op het uitzoeken of Internet of Things (IoT) een daadwerkelijke oplossing kan zijn om de lange wachttijden op de spoedafdelingen wereldwijd te verkorten. Deze studie zal verkennen wat de oorzaak is van de lange wachttijden door een oorzakenanalyse uit te voeren en gegevens te verzamelen van een ziekenhuis in Vlaanderen. De inzichten uit dit onderzoek kunnen niet alleen bijdragen aan verbeteringen binnen Vlaanderen, maar ook waardevolle lessen bieden voor ziekenhuizen in andere landen.
 
 \section{\IfLanguageName{dutch}{Onderzoeksvraag}{Research question}}%
 \label{sec:onderzoeksvraag}
+De centrale onderzoeksvraag in dit onderzoek luidt: "Kunnen Internet of Things (IoT)-\-technologieën worden toegepast om wachttijden op de A\&E-afdelingen te verminderen?" Om deze vraag te beantwoorden, is het belangrijk om een antwoord te geven op een aantal deelvragen in het probleem- en oplossingsdomein. 
 
-Wees zo concreet mogelijk bij het formuleren van je onderzoeksvraag. Een onderzoeksvraag is trouwens iets waar nog niemand op dit moment een antwoord heeft (voor zover je kan nagaan). Het opzoeken van bestaande informatie (bv. ``welke tools bestaan er voor deze toepassing?'') is dus geen onderzoeksvraag. Je kan de onderzoeksvraag verder specifiëren in deelvragen. Bv.~als je onderzoek gaat over performantiemetingen, dan 
+Probleem domein:
+\begin{itemize}
+    \item Wat zijn de belangrijkste oorzaken van lange wachttijden op A\&E-afdelingen?
+    \item Hoe kan de "5 Whys"-methode helpen om de onderliggende oorzaak van wachttijden te identificeren?
+    \item Welke aanpassingen in de wachtruimte kunnen de wachttijden verkorten?
+    \item Hoe kan worden aangetoond dat IoT de wachttijd kan verkorten?
+\end{itemize}
+
+
+Oplossing domein:
+\begin{itemize}
+    \item Welke IoT-apparaten kunnen bijdragen aan het verminderen van wachttijden?
+    \item Hoe kunnen bestaande casestudies gebruikt worden om IoT-technologieën te identificeren voor wachttijd vermindering in A\&E-afdelingen?
+    \item Welke criteria worden gebruikt in de vergelijkende analyse van IoT-apparaten om het meest geschikte apparaat te selecteren voor de PoC?
+    \item Hoe kunnen verschillende sensoren (zoals bewegingssensoren, aanwezigheidssensoren, lichtsluis- en infraroodsensoren, druksensoren en thermische camera’s) anoniem real-time data verzamelen om wachttijden in A\&E-afdelingen te verkorten, zonder persoonlijke gegevens te verwerken?
+    \item Welke plaatsingsstrategieën zijn het meest effectief voor het verzamelen van deze data?
+    % \item Hoe kan een dashboard real-time wachttijden en patiëntenvolgorde visualiseren om efficiëntie te verbeteren?
+    \item Hoe wordt de PoC uitgevoerd met behulp van een centrale eenheid, sensor controller en sensoren om een Real-Time Smart Queue Management systeem \autocite{Ghazal2015} te implementeren zoals? 
+    \item Hoe kan het scherm in de wachtruimte worden geïntegreerd met het cloudgebaseerde platform om de patiënten in real-time te informeren over hun wachttijd en positie in de wachtrij? \TODO
+\end{itemize}
+
+%Wees zo concreet mogelijk bij het formuleren van je onderzoeksvraag. Een onderzoeksvraag is trouwens iets waar nog niemand op dit moment een antwoord heeft (voor zover je kan nagaan). Het opzoeken van bestaande informatie (bv. ``welke tools bestaan er voor deze toepassing?'') is dus geen onderzoeksvraag. Je kan de onderzoeksvraag verder specifiëren in deelvragen. Bv.~als je onderzoek gaat over performantiemetingen, dan 
 
 \section{\IfLanguageName{dutch}{Onderzoeksdoelstelling}{Research objective}}%
 \label{sec:onderzoeksdoelstelling}
+Het is van cruciaal belang om dit onderwerp te onderzoeken vanwege de potentiële impact op de gezondheidszorg en het welzijn van A\&E patiënten. De onderzoeksdoelstelling is om te bepalen of IoT een werkelijke oplossing kan bieden voor de lange A\&E wachttijden.
 
-Wat is het beoogde resultaat van je bachelorproef? Wat zijn de criteria voor succes? Beschrijf die zo concreet mogelijk. Gaat het bv.\ om een proof-of-concept, een prototype, een verslag met aanbevelingen, een vergelijkende studie, enz.
+
+\section{Verwachte eindresultaat} 
+Het verwachte eindresultaat van dit onderzoek is dat de verschillende deelvragen beantwoord zijn, verder wordt er verwacht dat de proof-of-concept een duidelijk antwoord biedt op de onderzoeksvraag. De resultaten zullen vervolgens gebruikt worden om aanbevelingen te formuleren voor de implementatie van IoT-oplossingen binnen de A\&E afdelingen, met als doel de wachttijden te verminderen.
+
+%Wat is het beoogde resultaat van je bachelorproef? Wat zijn de criteria voor succes? Beschrijf die zo concreet mogelijk. Gaat het bv.\ om een proof-of-concept, een prototype, een verslag met aanbevelingen, een vergelijkende studie, enz.
 
 \section{\IfLanguageName{dutch}{Opzet van deze bachelorproef}{Structure of this bachelor thesis}}%
 \label{sec:opzet-bachelorproef}
