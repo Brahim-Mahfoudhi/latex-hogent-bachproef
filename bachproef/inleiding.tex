@@ -17,52 +17,49 @@
   \item \ldots
 \end{itemize}
 
+\section{\IfLanguageName{dutch}{Context}{Context}}%
+In veel publieke en private dienstverlenende omgevingen zoals ziekenhuizen en overheidskantoren is er onvoldoende inzicht in de bezettingsgraad en wachttijden. Volgens een onderzoek uitgevoerd door \autocite{Jobe2018} liggen de bezettingsgraden in Belgische spoedgevallendiensten tussen 68\% en 100\%, dit wijst op langdurige capaciteitsproblemen tijdens piekuren. Ook \autocite{Lefevre2019} toont aan dat in bepaalde zorgdiensten zoals materniteiten de gemiddelde bezettingsgraad onder de 50\% ligt, met duidelijke verschillen tussen de regio's. Deze cijfers illustreren dat er in de Belgische publieke dienstverlening geen algemene strategie bestaat voor bezettingsbeheer, wat leidt tot een inefficiënt gebruik van de ruimte en moeilijk voorspelbare bezoekersdrukte. Dit toont een duidelijke nood aan real-time monitoring om piekmomenten te detecteren en wachttijden onder controle te houden. De huidige meetmethoden zijn vaak onnauwkeurig, niet real-time, of onvoldoende afgestemd op veranderende bezoekersstromen. Dit kan resulteren in frustraties bij bezoekers en inefficiënt gebruik van middelen. Daarom is er een duidelijke behoefte aan een geautomatiseerd en betrouwbaar meetsysteem dat zowel de huidige situatie als toekomstige drukte in kaart kan brengen. Hoewel IoT-technologie veelbelovend is, blijft het in de praktijk onduidelijk hoe effectief deze oplossingen werkelijk zijn in wachtruimteomgevingen. \DONE
+
+
 \section{\IfLanguageName{dutch}{Probleemstelling}{Problem Statement}}%
-\label{sec:probleemstelling}
-Volgens de bevindingen uit het onderzoek zitten de Accident and Emergency (A\&E) afdelingen van de National Health Service (NHS) in een “vreselijke staat”. De studie toont namelijk aan dat meer dan 100.000 kinderen vorig jaar boven de 6 uur moesten wachten en dat bijna 10 procent van alle patiënten nu 12 uur of langer moet wachten om behandeld te worden \autocite{LordDarzi2024}. Deze langdurige wachttijden hebben serieuze consequenties voor patiënten. Volgens een toespraak over het onderzoek door de Britse Premier, Sir Keir Starmer, zijn de lange A\&E wachttijden niet alleen een bron van angst en bezorgdheid, maar leiden ook tot duizenden vermijdbare sterfgevallen. Volgens de Royal College of Emergency Medicine gaat het om 14.000 extra sterfgevallen per jaar \autocite{Starmer2024}.
+\label{sec:probleemstelling} \DONE
+In veel publieke en private dienstverlenende omgevingen, zoals ziekenhuizen, overheidskantoren, zijn wachtruimtes vaak drukbezet zonder inzicht in de bezettingsgraad of wachttijden. Dit maakt het efficiënt beheer van de bezoekersstromen en personeelsinzet moeilijker. \\  
 
+Traditionele meetmethodes zijn vaak handmatig, onnauwkeurig of niet in real-time, dit kan leiden tot frustratie bij bezoekers en inefficiënt gebruik van middelen. Er is dus een duidelijke nood aan geautomatiseerde systemen die real-time inzicht kunnen bieden in deze situatie en toekomstige drukte voorspellen. Hoewel IoT-sensoren beschikbaar zijn, is het niet duidelijk hoe praktisch toepasbaar en betrouwbaar ze zijn in wachtruimtes. Tijdens een gesprek met een medewerker in een dienstverlenende omgeving bleek dat een gebrek aan inzicht in bezettingsgraad en wachttijden een reëel probleem vormt, wat de relevantie van dit onderzoek benadrukt.
 
-%Uit je probleemstelling moet duidelijk zijn dat je onderzoek een meerwaarde heeft voor een concrete doelgroep. De doelgroep moet goed gedefinieerd en afgelijnd zijn. Doelgroepen als ``bedrijven,'' ``KMO's'', systeembeheerders, enz.~zijn nog te vaag. Als je een lijstje kan maken van de personen/organisaties die een meerwaarde zullen vinden in deze bachelorproef (dit is eigenlijk je steekproefkader), dan is dat een indicatie dat de doelgroep goed gedefinieerd is. Dit kan een enkel bedrijf zijn of zelfs één persoon (je co-promotor/opdrachtgever).
-
-\section{Doel van het onderzoek}
-Om een oplossing te vinden voor dit langdurige probleem richt dit onderzoek zich op het uitzoeken of Internet of Things (IoT) een daadwerkelijke oplossing kan zijn om de lange wachttijden op de spoedafdelingen wereldwijd te verkorten. Deze studie zal verkennen wat de oorzaak is van de lange wachttijden door een oorzakenanalyse uit te voeren en gegevens te verzamelen van een ziekenhuis in Vlaanderen. De inzichten uit dit onderzoek kunnen niet alleen bijdragen aan verbeteringen binnen Vlaanderen, maar ook waardevolle lessen bieden voor ziekenhuizen in andere landen.
+\section{Doel van het onderzoek} \DONE
+Het doel van dit onderzoek is het bepalen of IoT-technologieën een daadwerkelijke oplossing kan zijn om wachtruimtebezetting in real-time in kaart te brengen, transparant te maken en beter te voorspellen om de bezoekersstromen efficiënter te maken. De uiteindelijke focus ligt op het valideren van de werking van het meetsysteem en het verzamelen van basisdata voor voorspellende analyses, niet op het onmiddellijk verkorten van wachttijden.
 
 \section{\IfLanguageName{dutch}{Onderzoeksvraag}{Research question}}%
-\label{sec:onderzoeksvraag}
-De centrale onderzoeksvraag in dit onderzoek luidt: "Kunnen Internet of Things (IoT)-\-technologieën worden toegepast om wachttijden op de A\&E-afdelingen te verminderen?" Om deze vraag te beantwoorden, is het belangrijk om een antwoord te geven op een aantal deelvragen in het probleem- en oplossingsdomein. 
+\label{sec:onderzoeksvraag} \WORDENDEVRAGENBEANTWOORD?
+De centrale onderzoeksvraag in dit onderzoek luidt: "Hoe kan IoT-technologie worden ingezet om de bezettingsgraad van wachtruimtes in real-time te meten en voorspellende analyses toe te passen, met als doel het inzicht in bezettingsgraden te verbeteren en zo een basis te bieden voor efficiënter bezoekersbeheer." Om deze vraag te beantwoorden, is het belangrijk om een antwoord te geven op een aantal deelvragen in het probleem- en oplossingsdomein.  \\ 
 
-Probleem domein:
+\textbf{Probleem domein:}
 \begin{itemize}
-    \item Wat zijn de belangrijkste oorzaken van lange wachttijden op A\&E-afdelingen?
-    \item Hoe kan de "5 Whys"-methode helpen om de onderliggende oorzaak van wachttijden te identificeren?
-    \item Welke aanpassingen in de wachtruimte kunnen de wachttijden verkorten?
-    \item Hoe kan worden aangetoond dat IoT de wachttijd kan verkorten?
+    \item Welke beperkingen ondervinden dienstverlening instellingen momenteel bij het meten van bezettingsgraden in wachtruimtes?
+    \item Waarom is het verkrijgen van accurate en real-time bezettingsdata essentieel voor het optimaliseren van bezoekersstromen?
+    \item Welke uitdagingen zijn er bij het handmatig meten en analyseren van wachttijden?
+    \item Wat zijn de eisen waaraan een meetsysteem moet voldoen om als betrouwbaar alternatief te dienen?
 \end{itemize}
 
-
-Oplossing domein:
+\textbf{Oplossing domein:}
 \begin{itemize}
-    \item Welke IoT-apparaten kunnen bijdragen aan het verminderen van wachttijden?
-    \item Hoe kunnen bestaande casestudies gebruikt worden om IoT-technologieën te identificeren voor wachttijd vermindering in A\&E-afdelingen?
-    \item Welke criteria worden gebruikt in de vergelijkende analyse van IoT-apparaten om het meest geschikte apparaat te selecteren voor de PoC?
-    \item Hoe kunnen verschillende sensoren (zoals bewegingssensoren, aanwezigheidssensoren, lichtsluis- en infraroodsensoren, druksensoren en thermische camera’s) anoniem real-time data verzamelen om wachttijden in A\&E-afdelingen te verkorten, zonder persoonlijke gegevens te verwerken?
-    \item Welke plaatsingsstrategieën zijn het meest effectief voor het verzamelen van deze data?
-    % \item Hoe kan een dashboard real-time wachttijden en patiëntenvolgorde visualiseren om efficiëntie te verbeteren?
-    \item Hoe wordt de PoC uitgevoerd met behulp van een centrale eenheid, sensor controller en sensoren om een Real-Time Smart Queue Management systeem \autocite{Ghazal2015} te implementeren zoals? 
-    \item Hoe kan het scherm in de wachtruimte worden geïntegreerd met het cloudgebaseerde platform om de patiënten in real-time te informeren over hun wachttijd en positie in de wachtrij? \TODO
+    \item Welke criteria worden gebruikt om sensoren met elkaar te vergelijken in een Proof-of-Concept en hoe worden deze criteria gebruikt om IoT-oplossingen te evalueren ten opzichte van bestaande systemen zoals Google Vertex AI Occupancy Analytics?
+    \item Hoe verhoudt de IoT-oplossing zich tot bestaande oplossingen zoals Google Vertex AI Occupancy Analytics?
+    %\item Hoe kan Little’s Law toegepast worden op de verzamelde IoT-gegevens om inzicht te krijgen in wachttijden?
+    \item Op welke manier draagt voorspellende data-analyse bij aan het optimaliseren van bezoekers- en personeelsbeheer?
+    \item Hoe kan de integratie van sensoren met bestaande infrastructuren efficiënt worden gerealiseerd?
 \end{itemize}
 
-%Wees zo concreet mogelijk bij het formuleren van je onderzoeksvraag. Een onderzoeksvraag is trouwens iets waar nog niemand op dit moment een antwoord heeft (voor zover je kan nagaan). Het opzoeken van bestaande informatie (bv. ``welke tools bestaan er voor deze toepassing?'') is dus geen onderzoeksvraag. Je kan de onderzoeksvraag verder specifiëren in deelvragen. Bv.~als je onderzoek gaat over performantiemetingen, dan 
 
 \section{\IfLanguageName{dutch}{Onderzoeksdoelstelling}{Research objective}}%
 \label{sec:onderzoeksdoelstelling}
-Het is van cruciaal belang om dit onderwerp te onderzoeken vanwege de potentiële impact op de gezondheidszorg en het welzijn van A\&E patiënten. De onderzoeksdoelstelling is om te bepalen of IoT een werkelijke oplossing kan bieden voor de lange A\&E wachttijden.
+Dit onderzoek heeft als doel te bepalen hoe IoT-technologie kan worden ingezet om de bezettingsgraad van wachtruimtes real-time te meten en wachttijden te voorspellen. Via de Proof-of-Concept (PoC) wordt nagegaan hoe IoT-sensoren en data-analyse de bezettingsgraad en bezoekersstromen accuraat en privacyvriendelijk in kaart kunnen brengen.
 
 
 \section{Verwachte eindresultaat} 
-Het verwachte eindresultaat van dit onderzoek is dat de verschillende deelvragen beantwoord zijn, verder wordt er verwacht dat de proof-of-concept een duidelijk antwoord biedt op de onderzoeksvraag. De resultaten zullen vervolgens gebruikt worden om aanbevelingen te formuleren voor de implementatie van IoT-oplossingen binnen de A\&E afdelingen, met als doel de wachttijden te verminderen.
+Het verwachte eindresultaat is een proof-of-concept die aantoont hoe IoT-oplossingen de bezettingsgraad en wachttijden kunnen meten en inzichtelijk maken. Ook indien het systeem technisch niet volledig operationeel blijkt, levert de PoC waardevolle inzichten op in haalbaarheid, beperkingen en vervolgstappen.
 
-%Wat is het beoogde resultaat van je bachelorproef? Wat zijn de criteria voor succes? Beschrijf die zo concreet mogelijk. Gaat het bv.\ om een proof-of-concept, een prototype, een verslag met aanbevelingen, een vergelijkende studie, enz.
 
 \section{\IfLanguageName{dutch}{Opzet van deze bachelorproef}{Structure of this bachelor thesis}}%
 \label{sec:opzet-bachelorproef}

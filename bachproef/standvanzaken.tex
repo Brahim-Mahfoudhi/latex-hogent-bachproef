@@ -1,9 +1,3 @@
-\usepackage{graphicx}
-\usepackage{array}
-\usepackage{longtable}
-\usepackage{booktabs}
-\usepackage{tabularx}
-\usepackage[a4paper,margin=1in]{geometry}
 
 %Engeland,
 %Australië, Stockholm, Schotland en Noord-Ierland
@@ -12,20 +6,24 @@
 \label{ch:stand-van-zaken}
 
 \section{Inleiding}
-Internet of Things is over de laatste twintig jaar enorm geëvolueerd, en het gebruik hiervan is wijdverspreid, van boeren in de agrarische sector tot artsen in de gezondheidszorg maken direct en indirect gebruik van IoT. Tegenwoordig worden miljarden van deze apparaten gebruikt door mensen om een verschil te maken in hun respectieve vakgebied. Ook in de gezondheidszorg biedt IoT veel mogelijkheden bij het aanpakken van grote problemen zoals de lange wachttijden in A\&E afdelingen.Diverse landen worden met dit probleem geconfronteerd, zoals Engeland, Australië, Zweden, Schotland en Noord-Ierland \autocite{Friebel2020}. Ook België krijgt hiermee te maken,  volgens een onderzoek uitgevoerd door \TODO Testaankoop wordt geconcludeerd dat Belgische ziekenhuizen wachttijdsproblemen ondervinden, maar dat deze variëren tussen ziekenhuizen. Deze langdurige wachttijden zorgen ervoor dat patiënten in sommige gevallen buitensporige wachttijden ervaren, in enkele gevallen moeten patiënten zelf over de twaalf-uur wachten voor behandelingen. Deze overmatige wachttijden hebben serieuze implicaties en kan in sommige gevallen leiden tot het overlijden van patiënten. Het gebruik van IoT devices biedt hiervoor een mogelijke oplossing om de langdurige wachttijden te verkorten door gebruik te maken van gegevensverzameling en automatisering. Dit hoofdstuk verkent de literatuur om een beter begrip te krijgen over IoT, de werking ervan en hoe het kan gebruikt worden om wachttijden te verminderen. Het hoofdstuk begint met een overzicht over IoT, het ontstaan en de betekenis ervan besproken worden. Verder worden de verschillende componenten van IoT behandeld en in detail wordt uitgewerkt. Vervolgens wordt IoT in de gezondheidszorg besproken waarbij de huidige implementaties hiervan volgens de literatuur worden opgesomd. Hierna komen de voor- en nadelen van IoT in de gezondheidszorg aan bod, gevolgd door een analyse van de beveiligings- en ethische kwesties. Hierop volgt een sectie over de wachttijden in A\&E-afdelingen en de impact hiervan op de zorgkwaliteit. Tot slot wordt besproken hoe IoT kan bijdragen aan het verminderen van de wachttijden met enkele voorbeelden van implementaties uit de literatuur.
+Internet of Things heeft over de laatste twintig jaar enorm veel geëvolueerd, en het gebruik hiervan is wijdverspreid, van boeren in de agrarische sector tot artsen in de gezondheidszorg maken direct en indirect gebruik van IoT. Wereldwijd worden miljarden van deze apparaten gebruikt door mensen om een verschil te maken in hun vakgebied. \\
+
+Toch zijn er in veel dienstverlenende omgevingen, zoals ziekenhuizen en overheidskantoren weinig inzicht in de bezettingsgraad en wachttijden. Methoden om dit te meten zijn vaak onnauwkeurig of niet real-time wat kan leiden tot frustraties en inefficiënt gebruik van middelen. \\
+
+Voor dit probleem is er een duidelijke behoefte aan een geautomatiseerd real-time systeem die zowel de huidige situatie als toekomstige drukte kan voorspellen. Hoewel IoT-technologie veelbelovend is, is het nog niet duidelijk hoe effectief deze oplossing is in de praktijk.
 
 \section{Overzicht Internet of Things}
-De term \textit{Internet of Things} is ontstaan in 1999, toen Kevin Ashton, een Britse technologiepionier, verschillende objecten probeerde te verbinden met het internet door gebruik te maken van RFID-tags \autocite{Bassi2013, Rejeb2023}. Het concept Internet of Things verwijst naar een netwerk waarin fysieke objecten ('things') via het internet met elkaar communiceren. Deze objecten zijn uitgerust met sensoren en actuatoren om gegevens te kunnen verzamelen, verwerken en delen, waardoor ze slim en interactief worden \autocite{Elksasy2023}. Het concept wordt uiteindelijk beschouwd als een manier waarop verschillende objecten hun aanwezigheid behouden om een samenhangend geheel te vormen voor iedereen, overal, op ieder moment, met ieder medium en ieder netwerk, zoals geïllustreerd in Figuur \ref{fig:Figuur9}. 
+De term Internet of Things (IoT) werd in 1999 geïntroduceerd door de Britse technologiepionier Kevin Ashton die objecten via RFID-tags met het internet wilde verbinden \autocite{Bassi2013, Rejeb2023}. IoT verwijst naar een netwerk van fysieke objecten die uitgerust zijn met sensoren en actuatoren, gegevens kunnen verzamelen, verwerken en uitwisselen. Zo worden deze objecten slim en interactief \autocite{Elksasy2023}. Het concept wordt gezien als een manier waarop objecten continu met elkaar verbonden zijn, ongeacht van plaats, tijd, medium of netwerk (zie Figuur \ref{fig:Figuur8}).
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{img/bp/iot-concept.jpg}
     \caption{Internet of Things Networking}
-    \label{fig:Figuur9}
+    \label{fig:Figuur8}
     \textit{Source: \autocite{Dauwed2018}}
 \end{figure}
 
-Dankzij de voortdurende innovaties in de technologie hebben de laatste twee decennia een grote invloed gehad op de snelle vooruitgang van IoT. \autocite{Almutairi2024}. Hierdoor is het aantal aangesloten IoT devices sterk gestegen, met 7.74 miljard in 2019, 10.7 miljard in 2021 \autocite{Dawod2022} en tot 75 miljard in 2025 \autocite{Khan2019}. Sensoren, camera's en gelijkaardige apparaten worden al “geïntegreerd” in “woningen” en “voertuigen” \autocite{Dawod2022} en geïmplementeerd over verschillende sectoren zoals de “gezondheidszorg, landbouw, productie transport, milieu en nutsbedrijven \autocite{Naresh2020, Almutairi2024}. De implementatie van miljarden \autocite{Dawod2022} IoT devices over verschillende sectoren geeft een duidelijke representatie van de veranderingen die IoT zal brengen in de manier waarop men leeft, werkt en omgaat met de omgeving \autocite{Almutairi2024}. Dit deel heeft verschillende aspecten van IoT behandeld zoals de oorsprong, het concept en het gebruik. Het volgende deel zal dieper ingaan op de hardwarecomponenten om een beter begrip te verkrijgen in de werking van IoT.
+%Dankzij de voortdurende innovaties in de technologie hebben de laatste twee decennia een grote invloed gehad op de snelle vooruitgang van IoT. \autocite{Almutairi2024}. Hierdoor is het aantal aangesloten IoT devices sterk gestegen, met 7.74 miljard in 2019, 10.7 miljard in 2021 \autocite{Dawod2022} en tot 75 miljard in 2025 \autocite{Khan2019}. Sensoren, camera's en gelijkaardige apparaten worden al “geïntegreerd” in “woningen” en “voertuigen” \autocite{Dawod2022} en geïmplementeerd over verschillende sectoren zoals de “gezondheidszorg, landbouw, productie transport, milieu en nutsbedrijven \autocite{Naresh2020, Almutairi2024}. De implementatie van miljarden \autocite{Dawod2022} IoT devices over verschillende sectoren geeft een duidelijke representatie van de veranderingen die IoT zal brengen in de manier waarop men leeft, werkt en omgaat met de omgeving \autocite{Almutairi2024}. Dit deel heeft verschillende aspecten van IoT behandeld zoals de oorsprong, het concept en het gebruik. Het volgende deel zal dieper ingaan op de hardwarecomponenten om een beter begrip te verkrijgen in de werking van IoT.
 
 %Deze technologie maakt het mogelijk om IoT in te zetten in verschillende sectoren, zoals transport, slimme steden, nutsbedrijven, milieu, gezondheidszorg en veiligheid. Volgens \autocite{Naresh2020} zal dit leiden tot 75 miljard verbonden IoT-devices in 2025 \autocite{Khan2019}. Dit benadrukt het belang van IoT als een technologie en het gebruik hiervan in diverse sectoren. Dit deel heeft verschillende aspecten van IoT behandeld zoals de oorsprong, het concept en het gebruik. Het volgende deel zal dieper ingaan op de hardwarecomponenten om een beter begrip te verkrijgen in de werking van IoT.
 
@@ -34,139 +32,148 @@ Dankzij de voortdurende innovaties in de technologie hebben de laatste twee dece
 
 %Zoals eerder aangetoond beschikt IoT over verschillende componenten die ervoor zorgen dat deze gegevens kan detecteren en verwerken. In het volgende deel worden deze componenten zorgvuldig geanalyseerd. 
 
-\subsection{IoT hardware componenten} 
-De IoT-omgeving bevat verschillende belangrijke componenten zoals sensoren, actuatoren, microprocessors, en communicatie protocollen. Deze componenten zorgen ervoor dat objecten slim worden en in staat zijn om met elkaar te communiceren \autocite{Abraham2023, Gharde2024}. In de volgende secties zullen de componenten in detail worden behandeld om een volledig begrip in de werking van IoT te krijgen. De eerste component dat geanalyseerd zal worden zijn de sensoren.
+\section{IoT hardware componenten} 
+Een IoT-omgeving bestaat uit verschillende kerncomponenten zoals sensoren, actuatoren, microprocessors, en communicatie protocollen. Deze maken het mogelijk dat apparaten slim worden en met elkaar kunnen communiceren \autocite{Abraham2023, Gharde2024}. In de volgende secties worden deze componenten verder behandeld om inzicht te geven in de werking van IoT. De eerste component dat geanalyseerd zal worden zijn de sensoren.
 
-\subsubsection{Sensors}
-Sensoren zijn een van de belangrijkste componenten in een IoT-structuur. De functie hiervan is het verzamelen van gegevens in een bepaalde omgeving \autocite{Abraham2023, Moyer2019}. Meer specifiek detecteren de sensoren elke “fysieke of chemische” verandering. Deze gegevens worden vervolgens verwerkt door de applicatie of device om slimme beslissingen te nemen en acties te automatiseren \autocite{Sehrawat2019}. Om een IoT-systeem compleet te maken, worden sensoren gebruikt in samenwerking met actuatoren. Deze worden in de volgende sectie besproken. Zie tabel \ref{tab:sensors} voor een weergave van een aantal IoT sensoren. Deze sensoren worden verder onderverdeeld in verschillende sub types zoals aangetoond door tabel \ref{tab:sensor_subtypes}.
+\subsection{Sensors}
+Sensoren vormen een essentieel onderdeel van een IoT-systeem en worden gebruikt om chemische veranderingen en anomalieën te detecteren \autocite{Abraham2023, Moyer2019, Sehrawat2019}. Het IoT-systeem wordt compleet wanneer deze gegevens gecombineerd worden met actuatoren, die in het volgende sectie worden besproken. 
 
-\begin{table}[h]
-    \raggedright
-    \renewcommand{\arraystretch}{1.3}
+\subsection{Actuatoren}
+Actuatoren zijn componenten elektrische signalen converteren naar fysieke acties \autocite{Zhang2022} en zo de “fysieke wereld” te beïnvloeden op basis van de verzamelde gegevens \autocite{Moyer2019}. Actuatoren werken in samenwerking met sensoren om een compleet IoT-systeem te creëren. In de volgende sectie wordt het IoT-systeem verder toegelicht door de rol van de microprocessoren te introduceren.
+
+\subsection{Microprocessors}
+Microprocessoren spelen een essentiële rol in IoT-systemen. Deze fungeren als de centrale eenheid in een IoT-device en zijn verantwoordelijk voor het verwerken van sensorgegevens, uitvoeren van berekeningen en het besturen van actuatoren \autocite{Abraham2023, James2021}. In de volgende sectie worden de communicatieprotocollen besproken, die een belangrijke onderdeel vormen van IoT-systemen.
+
+\subsection{Communicatie protocollen}
+Communicatieprotocollen faciliteren de communicatie tussen twee slimme apparaten. Wat betreft IoT werden er diverse communicatieprotocollen ontwikkeld zoals HTTP, MQTT en XMPP. De keuze hangt af van factoren zoals energie-efficiëntie, veiligheid en kwaliteit van de dienstverlening \autocite{Anitha2022, Jeddou2020}. 
+
+
+\section{IoT-sensoren: types en beschrijving} \autocite{Moyer2019, Sehrawat2019, Kumar2024, Balogun2017, Meenakshi2020, Tresanchez2018, Shanmugavalli2023, Gala2020, Gade2013, Chidurala2021, Karunarathne2018, Srinivasan2022}
+
+\begin{enumerate}
+    \item \textbf{Motion sensor:} Een bewegingsdetector is een IoT-apparaat dat fysieke beweging detecteert en ingezet kan worden voor het detecteren van een inbraak. Zo gebruiken \autocite{Tiong2019} motion sensing in een IoT-gebaseerd beveiligingssysteem.
+    
+    \item \textbf{Pressure sensor:} Een druksensor in IoT-systemen meet en detecteert kracht en drukte en wordt gebruikt om de bezetting van stoelen en bedden real-time te monitoren.
+    
+    \item \textbf{Optical proximity sensor:} Wordt gebruikt voor het detecteren van objecten door gebruik te maken van licht zonder fysiek contact.
+    
+    \item \textbf{Wireless Communication:} Is een belangrijk aspect van IoT. Deze zorgt ervoor dat devices met elkaar kunnen communiceren door data te delen en verzenden.
+    
+    \item \textbf{Thermal camera:} Thermische camera's detecteren infrarode radiatie van objecten met een temperatuur hoger dan nul graden en kunnen worden ingezet voor het monitoren van niet-intrusieve bezetting.
+    
+    \item \textbf{Proximity sensors:} Proximity sensoren, meestal gebruikt in de industrie en landbouw, detecteren nabijheid van objecten via elektromagnetische velden.
+    
+    \item \textbf{Image sensors:} Beeldsensoren gebruiken fotodiodes om licht in een bepaald gebied te detecteren. Deze worden toegepast in medische beeldvorming, digitale camera's, nachtzichtapparatuur  en klantmonitoring in winkels
+\end{enumerate}
+
+
+\section{IoT-sensoren: subtypes en beschrijving}\\
+
+\begin{enumerate}
+    \item \textbf{Motion sensor}
+    \begin{enumerate}
+        \item \textbf{Passive Infrared (PIR) sensors:} Detecteert beweging door veranderingen te waarnemen in infraroodstraling.
+        \item \textbf{Microwave:} Deze sensor zendt microgolven uit, de reflectie van deze golven wordt geanalyseerd om beweging te detecteren.
+        \item \textbf{Ultrasonic:} Zendt en ontvangt geluidsgolven boven de 20 kHz om beweging te detecteren, samen met de afstand tussen objecten.
+    \end{enumerate}
+    
+    % \item \textbf{Pressure sensor}
+    % \begin{enumerate}
+        %     \item \textbf{Force-Sensitive Resistors:} Is een low-cost pressure sensor waarbij de weerstand verandert wanneer kracht gedetecteerd wordt.
+        %     \item \textbf{Strain Gauge Pressure Sensors:} Meet drukte door de deformatie van een materiaal te detecteren.
+        % \end{enumerate}
+    
+    \item \textbf{Optical proximity sensors}
+    \begin{enumerate}
+        \item \textbf{Infrared break beam sensor:} Een infrarood emitter en een receiver worden tegenover elkaar geplaatst waardoor er een infrarood licht ontstaat. Wanneer een persoon door het licht gaat, wordt deze onderbroken waardoor er een detectie geactiveerd wordt.
+        \item \textbf{Diffuse Reflective Optical Sensor:} \\ Wordt gebruikt voor object -en nabijdetectie. Deze sensoren zenden licht uit en meten het gereflecteerde licht van objecten waardoor ze deze kunnen detecteren.
+    \end{enumerate}
+    
+    \item \textbf{Wireless communication protocol}
+    \begin{enumerate}
+        \item \textbf{BLE (Bluetooth Low Energy) beacon:} Zijn wireless zenders die unieke identifiers uitzenden.
+        \item \textbf{Radio Frequency Identification (RFID):} Bestaat uit een tag, reader en middleware software. Maakt gebruik van radiogolven om data draadloos te verzenden.
+    \end{enumerate}
+    
+    % \item \textbf{Thermal camera}
+    %  \begin{enumerate}
+        %      \item \textbf{Uncooled thermal camera:} Een device voor het detecteren van infraroodradiatie zonder de nood voor een koelsysteem.
+        %      \item \textbf{Cooled thermal camera:} Detecteert infrarode radiatie met hoge snelheid en gevoeligheid door de sensoren naar cryogenische temperaturen te laten dalen.
+        %  \end{enumerate}
+    
+    \item \textbf{Proximity sensors}
+    \begin{enumerate}
+        \item \textbf{Inductief:} Detecteert geleidende en niet-geleidende materialen door middel van een elektromagnetisch veld.
+        \item \textbf{Capacitief:} Maakt gebruik van zwakke elektrische velden om geleidende en niet-geleidende materialen te detecteren.
+        \item \textbf{Ultrasoon:} Wordt gebruikt om nabijheid en afstand te meten door middel van een hoogfrequente geluidsgolf.
+    \end{enumerate}
+    
+    \item \textbf{Image sensors}
+    \begin{enumerate}
+        \item \textbf{Linear image sensor:} Legt lijn voor lijn afbeeldingen vast waardoor real-time tracking van stoelbezetting mogelijk is. Kan in de gezondheidszorg gebruikt worden om de bezetting van wachtruimtes en patiëntenflow te monitoren.
+        \item \textbf{Infrared Image Sensors:} Detecteert infraroodradiatie en converteert het naar een beeld.
+    \end{enumerate}
+\end{enumerate}
+
+
+\section{Sensoren geschikt voor bezettingsdetectie in wachtruimte}
+Op basis van de literatuur zijn er vijf sensortypes geïdentificeerd die relevant zijn voor het meten van bezettingsgraden in wachtruimtes en hun frequente toepassing in de literatuur. De selectie is gebaseerd op hun toepasbaarheid in kleine tot middelgrote ruimtes, real-time mogelijkheden, kost, installatiegemak en privacyvriendelijkheid. In Tabel~\ref{tab:sensorvergelijking} worden deze technologieën vergeleken.
+
+\begin{table}[h!]
     \small
-    \caption{Sensor types en het gebruik ervan \autocite{Moyer2019, Sehrawat2019, Kumar2024, Balogun2017, Meenakshi2020, Tresanchez2018, Shanmugavalli2023, Gala2020, Gade2013, Chidurala2021, Karunarathne2018, Srinivasan2022}}
-    \begin{tabular}{|c|m{4cm}|m{10cm}|}
-        \hline
-        \textbf{S/N} & \textbf{Sensor devices} & \textbf{Description} \\
-        \hline
-        1. & Motion sensor & Een bewegingsdetector is een IoT-device dat gebruikt wordt voor het detecteren van fysieke en dynamische bewegingen. Motion sensing kan ingezet worden om bijvoorbeeld een eigendom te beschermen door potentiële indringers te detecteren. In een onderzoek uitgevoerd door \autocite{Tiong2019} wordt motion sensing gebruikt als IoT-based Home Security System voor het detecteren van indringers. \\
-        \hline
-        2. & Pressure sensor & Een druksensor worden in IoT-systemen gebruikt om kracht en drukte te meten en detecteren. Deze sensor kan worden gebruikt om de aanwezigheid van gebruikers te monitoren op stoelen en bedden wat real-time informatie biedt\\
-        \hline
-        3. & Optical proximity sensor & Wordt gebruikt voor het detecteren van objecten door gebruik te maken van licht zonder fysieke contact. \\
-        \hline
-        4. & Wireless Communication & Is een belangrijk aspect van IoT, deze zorgt ervoor dat devices met elkaar kunnen communiceren door data te delen en verzenden. \\
-        \hline
-        5. & Thermal camera & Thermische camera's zijn sensoren die gebruikt worden om infrarode radiatie te detecteren van objecten met een temperatuur hoger dan nul graden. Deze sensoren kunnen gebruikt worden voor het monitoren van niet-intusieve bezetting \\
-        \hline
-        %4. & Magnetometers & Een magnetometer wordt gebruikt om magnetische velden te detecteren. In een studie uitgevoerd door \autocite{Hutagalung2021} worden magnetometers gebruikt in smart parkings. Auto's worden in de parkeerruimte gedetecteerd om te bepalen of een parkeerplaats vrij is of niet. \\
-        6. & Proximity sensors & Proximity sensoren worden meestal gebruikt in de industriële en agrarische sector. Deze sensoren maakt gebruik van elektromagnetische velden om te detecteren of een object dichtstbij is. \\
-        \hline
-        7. & Image sensors & Beeldsensoren geven de omgeving weer door gebruik te maken van fotodiodes. Deze diodes worden gebruikt om licht in een bepaald gebied te detecteren. Beeldsensoren worden toegepast in verschillende systemen en sectoren, ze worden gebruikt in medische beeldsystemen, in digitale camera's, in nachtzichtapparatuur en nog veel meer. Verder worden deze sensoren ook gebruikt in winkels, bijvoorbeeld om de klanten te monitoren. \\
-        \hline
-    \end{tabular}
-    \label{tab:sensors}
-\end{table}
-
-
-\begin{table}[h]
-    \raggedright
-    \renewcommand{\arraystretch}{1.3}
-    \tiny
-    \caption{Sensor types en hun subtypes met uitleg \autocite{Yadav2020, Sasi2021, Chawuthai2018, Wei2024, Kleeman2018, Doubek2016, Palanisamy2021, Halvorsen2009, Ghemari2023, Lattanzi2023, Hutagalung2021, Wu2023, Hoberg2011, Lo2013, Braun2015, Vukonic2022, Sarkar2013, BlancoFilgueira2016, RadhaKrishna2021, Mehta2015, Sundar2015, Wu2005, Bieszczad2011, Chen1994, Pop2009, Ajmera2018, Javed2017, Jacobs2009, Preradovic2009, Mockler2010, Spachos2020}}
-    \begin{tabular}{|c|m{3cm}|m{3.5cm}|m{7.5cm}|}
-        \hline
-        \textbf{S/N} & \textbf{Sensor Type} & \textbf{Sub Type} & \textbf{Description} \\
-        \hline
-        1. & Motion sensor & Passive Infrared (PIR) sensors & Detecteert beweging door veranderingen te waarnemen in infraroodstraling \\
-        & & Microwave & Deze sensor zendt microgolven uit, de reflectie van deze golven wordt geanalyseerd om beweging te detecteren. \\
-        & & Ultrasonic & Zend en ontvangt geluidsgolven boven de 20 kHz om beweging te detecteren, samen met de afstand tussen objecten. \\
-        \hline
-        2. & Pressure sensor & Force-Sensitive Resistors & Is een low-cost pressure sensor waarbij de weerstand verandert wanneer kracht gedetecteerd word.\\ & & Strain Gauge Pressure Sensors & Meet drukte door de deformatie van een materiaal te detecteren. \\
-        \hline
-        3. & Optical proximity sensors & Infrared break beam sensor & Een infrarood emitter en een receiver worden tegenover elkaar geplaatst waardoor er een infrarood licht onstaat. Wanneer een persoon door het licht gaat wordt deze onderbroken waardoor er een detectie geactiveerd wordt.  \\ & &  Diffuse Reflective Optical Sensor & Wordt gebruikt voor objectdetectie en nabijdetectie. Deze sensoren zenden licht uit en meten de gereflecteerde licht van objecten waardoor ze deze kunnen detecteren.\\
-        \hline
-        4. & Wireless communication protocol & BLE (Bluetooth Low Energy) beacon & Zijn wireless zenders die unieke identifiers uitzenden. \\
-        & & Radio Frequency Identification (RFID) & Bestaat uit een tag, reader en middleware software. Maakt gebruik van radio golven om data draadloos te verzenden. \\
-        \hline
-        5. & Thermal camera & Uncooled thermal camera & Een device voor het detecteren van infrarood radiatie zonder de nood voor een cooling systeem. \\ & & Cooled thermal camera & detecteren infrarode radiatie met hoge snelheid en gevoeligheid door de sensoren naar cryogenische temperaturen te laten dalen. \\
-       % 4. & Magnetometers & Fluxgate & Gebruikt voor het detecteren van magnetische velden. \\
-       % & & Hall-effect & Detecteren trillingen in gebouwen, worden ook in parkings gebruikt voor het detecteren van de aanwezigheid van voertuigen . \\
-       % & & SQUID (Superconducting Quantum Interference Device) & Zeer gevoelige sensor voor zeer zwakke magnetische velden.\\
-        \hline
-        6. & Proximity sensors & Inductief & Detecteert “geleidende en niet-geleidende materialen” door middel van een elektromagnetische veld  \\
-        & & Capacitief & Maakt gebruik van zwakke elektrische velden om “geleidende en niet-geleidende materialen” te detecteren. \\
-        & & Ultrasoon &  Wordt gebruik om proximity en afstand te meten door middel van een “hoog-frequentie geluidsgolf”.  \\
-        \hline
-        7. & Image sensors & Linear image sensor & legt lijn voor lijn afbeeldingen vast door waardoor real-time tracking van stoelbezetting mogelijk is. Kan in de gezondheidszorg gebruikt worden om de bezetting van wachtruimtes en patiëntenflow te monitoren.    \\
-        & & Infrared Image Sensors & Detecteert infrarood radiatie en converteert het naar een beeld.\\
-        \hline
-    \end{tabular}
-    \label{tab:sensor_subtypes}
-\end{table}
-
-
-\subsubsection{Actuatoren}
-Actuatoren zijn componenten die in staat zijn om het “fysieke wereld” te beïnvloeden op basis van de verzamelde gegevens \autocite{Moyer2019}. Actuatoren werken in samenwerking met sensoren om een compleet IoT-systeem te creëren dat bewaking, controle, logistiek en voorspelling mogelijk maakt in verschillende gebieden zoals landbouw en milieubeheer \autocite{Talavera2017}. In de volgende sectie wordt het IoT-systeem verder toegelicht door de rol van de microprocessoren te introduceren.
-
-\subsubsection{Microprocessors}
-Microprocessoren spelen een essentiële rol in IoT-systemen. Deze fungeren als de centrale eenheid in een IoT-device en zijn verantwoordelijk voor het verwerken van sensorgegevens, uitvoeren van berekeningen en het besturen van actuatoren \autocite{Abraham2023, James2021}. In de volgende sectie worden de communicatieprotocollen besproken, die een essentiële onderdeel vormen van IoT-systemen.
-
-\subsubsection{Communicatie protocollen}
-Communicatieprotocollen zijn belangrijke onderdelen bij het faciliteren van communicatie tussen twee slimme apparaten. Wat betreft IoT werden er diverse communicatieprotocollen ontwikkeld zoals HTTP, MQTT en XMPP. Het kiezen van een protocol is echter uitdagend door het verschil in energie-efficiëntie, veiligheid en kwaliteit van de dienstverlening. Hierdoor wordt een protocol gekozen op basis van het IoT-systeem \autocite{Anitha2022, Jeddou2020}. Na het verkennen van componenten is het belangrijk om te begrijpen hoe deze technologieën toegepast worden in de gezondheidszorg. In het volgende hoofdstuk wordt specifiek gekeken naar IoT in de gezondheidszorg, samen met de huidige implementaties hiervan in ziekenhuizen. 
-
-
-\section{Internet of Things gezondheidszorg}
-De gezondheidszorg is een cruciaal onderdeel van ons leven en de geleidelijk ouder wordende bevolking samen met verschillende chronische ziektes plaatsen een significante druk hierop. IoT heeft in deze context enorm veel interesse gewekt dankzij de mogelijkheden om de druk op de gezondheidszorg te verlichten \autocite{Baker2017}. Volgens een onderzoek uitgevoerd door \autocite{Shiny2023} kunnen IoT-devices ingezet worden door gezondheidswerkers om gegevens te verzamelen over de fysieke en mentale condities van patiënten om deze beter te begrijpen en voorspellen. Verder vermeldt het onderzoek dat IoT devices kunnen helpen bij vroegtijdige opsporingen van ziektes en het bieden van meer accurate diagnose en behandeling. Volgens een onderzoek uitgevoerd door \autocite{Li2024} is de gezondheidszorg de sector die het meest zal profiteren van de groei van IoT. Verder vermeldt \autocite{Tavakoli2017} het gebruik van IoT als één van de belangrijkste “technologische methoden” om de prestaties van de gezondheidszorg te verhogen. IoT kan op verschillende manieren geïmplementeerd worden om aan specifieke noden te voldoen zoals aangetoond door figuur \ref{fig:Figuur10}. Om een betere inzicht te geven aan deze toepassingen biedt de volgende sectie een overzicht van diverse implementaties van IoT in de gezondheidszorg.
-
-\begin{figure}[h]
     \centering
-    \includegraphics[width=0.75\textwidth]{img/bp/iot-healthcare (1).png}
-    \caption{Indeling van IoT-toepassingen in de gezondheidszorg}
-    \label{fig:Figuur10}
-    \textit{Source: \autocite{Naresh2020}}
-\end{figure}
-
-Volgens een recente studie uitgevoerd door \autocite{Singh2023} is het perfect mogelijk om IoT te implementeren in de gezondheidszorg. Echter concludeert het onderzoek dat IoT een gunstige invloed heeft en dit ondanks de beperkingen in “energie, processing en opslag”. Verder benadrukt de studie dat IoT een “veelbelovende technologie” is bij het besparen van tijd en moeite voor het medische personeel. 
-
-\subsection{Huidige implementaties van IoT in de gezondheidszorg}
-Een overzicht van implementaties van IoT in het gezondheidszorg: zie figuur \ref{tab:IoT_healthcare}
-
-\begin{table}[h]
-    \centering
-    \tiny
-    \caption{IoT-implementaties in gezondheidszorgstudies \autocite{Mieronkoski2017, Uddin2019, ElZouka2021, Patan2020}}
-    \begin{tabularx}{\textwidth}{|p{2cm}|p{1.5cm}|p{3.5cm}|p{3.5cm}|X|}
+    \caption{Overzicht van de voor- en nadelen van sensortypes voor bezettingsdetectie}
+    \label{tab:sensorvergelijking}
+    \begin{tabular}{|p{2.5cm}|p{3cm}|p{2.8cm}|p{3.4cm}|p{1.9cm}|}
         \hline
-        \textbf{Author and Year} & \textbf{Country} & \textbf{Objectives} & \textbf{IoT Applications} & \textbf{Conclusion} \\
-        \hline
-        Riitta Mieronkoski  
-        & Finland  
-        & Voorstellen van IoT aan verpleegkundigen door de stand van zaken over IoT te onderzoeken die betrekking heeft op verpleegkundige zorg in ziekenhuizen.          
-        & IoT-innovaties zijn geïdentificeerd in vier verpleegactiviteiten: "comprehensive assessment, periodical clinical reassessment, activities of daily living en care management".  
-        & IoT biedt innovaties in verpleegkundige zorg, maar deze innovaties bevinden zich nog in de beginfase. \\  
-        \hline
-        Md. Zia Uddin  
-        & Norway  
-        & Ontwikkelen van een systeem dat menselijke activiteiten kan voorspellen door gebruik te maken van wearable healthcare sensors en een Recurrent Neural Network (RNN) op een edge-device.  
-        & Verschillende wearable sensoren (ECG, magnetometer, accelerometer en gyroscoop) worden gebruikt voor het monitoren van menselijke activiteiten.  
-        & Het gebruik van RNN samen met wearable sensoren op een edge-apparaat vormt een effectief systeem voor het voorspellen van menselijke activiteiten. \\  
-        \hline
-        Hesham A. El Zouka, Mustafa M. Hosni  
-        & Egypt  
-        & Het doel is om een slim healthcare-model te ontwikkelen dat automatisch de prioriteit van patiënten bepaalt op basis van gegevens uit sensoren.  
-        & IoT-apparaten, WMSN en RFID monitoren patiëntgegevens zoals temperatuur, hartslag en bloeddruk.  
-        & Het integreren van fuzzy, AI en IoT biedt real-time monitoring en veilige communicatie. Dit systeem zorgt voor betere patiëntenzorg. \\  
-        \hline
-        Rizwan Patan, G S Pradeep Ghantasala, Ramesh Sekaran, Deepak Gupta, Manikandan Ramachandran  
-        & India  
-        & GFB-CNN vermindert communicatie-overhead en responstijd en verhoogt de nauwkeurigheid van medische data-analyse.  
-        & IoT wordt toegepast in smart healthcare. IoT-sensoren verzamelen en verzenden medische data voor real-time analyse.  
-        & De GFB-CNN-methode verbetert de analyse van medische data door de analysetijd te verkorten. \\  
-        \hline
-    \end{tabularx}
-    \label{tab:IoT_healthcare}
+        \textbf{Sensor} & \textbf{Voordelen} & \textbf{Nadelen} & \textbf{Privacy\-vriendelijk} & \textbf{Real-time} \\ \hline
+        PIR (passieve infrarood) & Goedkoop, laag energieverbruik, vaak gebruikt in smart offices & Detecteert geen stilstand, beperkte nauwkeurigheid & Ja & Ja \\ \hline
+        ToF (Time-of-Flight) & Hoge nauwkeurigheid, werkt bij duisternis, geschikt voor afstandsmeting & Duurder, gevoelig voor reflecties & Ja & Ja \\ \hline
+        CO₂-sensor & Indirecte bezettingsmeting via luchtkwaliteit, geschikt voor trendanalyse & Trage respons, onnauwkeurig bij kleine groepen & Ja & Nee \\ \hline
+        Bluetooth/Wi-Fi tracking & Gedetailleerde gebruikersdata, geschikt voor grote ruimten & Vereist actieve toestellen, privacyrisico’s & Nee & Ja \\ \hline
+        Ultrasoon sensor & Simpel, betrouwbaar op korte afstand, ideaal voor doorgangen & Gevoelig voor omgevingsgeluid, beperkte reikwijdte & Ja & Ja \\ \hline
+    \end{tabular}
 \end{table}
+
+
+\subsection{Kritische evaluatie van sensoren voor wachtruimtebezetting}
+
+Hoewel verschillende sensoren in de literatuur als geschikt worden aangemerkt, blijkt uit praktijkstudies dat niet elke technologie even betrouwbaar is in een dynamische omgeving zoals een wachtruimte.
+
+\begin{enumerate}
+    \item{\textbf{PIR-sensoren:} hoewel goedkoop en energiezuinig, falen bij stilzittende personen of wanneer een persoon zich lange tijd niet beweegt. Hierdoor ontstaat het risico op onderschatting van de bezettingsgraad.}
+    \item{\textbf{Ultrasone sensoren:} zijn gevoeliger, maar gevoelig voor geluidsinterferentie (bv. akoestiek of nabijgelegen apparatuur). Bovendien hebben ze een beperkte detectiehoek, waardoor meerdere sensoren nodig zijn voor volledige dekking.}
+    \item{\textbf{CO₂-sensoren:} zijn goed voor trendanalyse maar traag en indirect; een plotselinge toename van personen wordt pas na minuten zichtbaar in de metingen.}
+    \item{\textbf{Bluetooth/Wi-Fi:} tracking vereist actieve toestellen (bv. smartphone met Bluetooth aan). Hierdoor worden minder digitale gebruikers – zoals oudere bezoekers of kinderen – niet meegenomen, wat leidt tot vertekening.}
+    \item{\textbf{ToF-sensoren (Time-of-Flight):} scoren sterk op nauwkeurigheid en zijn onafhankelijk van licht, maar zijn relatief duur en kunnen reflectieproblemen veroorzaken bij glanzende oppervlakken (bv. ramen).}
+\end{enumerate}
+
+
+\section{Implementaties van IoT in wachtruimtes}
+
+\begin{enumerate}
+    \item \textbf{Daniele Spoladore et al. (2024) – Italië}
+    \begin{itemize}
+        \item \textbf{Doelstelling:} Onderzoeken hoe IoT, AI en Virtual Reality een wachtruimte kunnen transformeren in een smart omgeving.
+        \item \textbf{Toepassing van IoT:} De Age-IT prototype maakt gebruik van IoT-sensoren, AI en Virtual Reality. Hoewel de autheurs verwijzen naar IoT-sensoren worden de specifieke types niet vermeld.
+        \item \textbf{Conclusie:} Dit systeem biedt een significante stap bij het transformeren van traditionele wachtruimtes in een smart omgeving en het omzetten van wachttijden in diagnostische en therapeutische activiteiten.
+    \end{itemize}
+    
+    \item \textbf{M. Ghazal et al. (2015) – Bahrein}
+    \begin{itemize}
+        \item \textbf{Doelstelling:} Verbeteren van queue management door de servicekwaliteit te verhogen en wachttijden te verminderen.
+        \item \textbf{Toepassing van IoT:} Het systeem maakt gebruik van een ESP32-module om live wachtrijgegevens te versturen.
+        \item \textbf{Conclusie:} Het systeem functioneert zoals beschreven in de studie.
+    \end{itemize}
+\end{enumerate} 
+
+\subsection{Vergelijking tussen IoT-oplossingen en Google Vertex AI Occupancy Analytics}
+Zowel sensorgebaseerde als vision-gebaseerde IoT-detectiesystemen, zoals Google Vertex AI Occupancy Analytics, bieden mogelijkheden om ruimtebezetting te monitoren. Sensorgebaseerde systemen, zoals PIR-, ultrasone of infraroodsensoren, zijn relatief goedkoop en privacyvriendelijk, omdat ze geen videobeelden gebruiken. Ze functioneren goed bij uiteenlopende lichtomstandigheden, maar zijn gevoelig voor plaatsing en hebben vaak een beperkt detectiebereik. \\
+
+Google Vertex AI Occupancy Analytics maakt gebruik van videobeelden die via een RTSP-stream naar de cloud worden gestuurd, waar AI de beeldverwerking uitvoert. Het systeem kan personen nauwkeurig tellen, zelfs in complexe situaties. Hoewel Google gebruikmaakt van technieken zoals gezichtsvervaging om anonimiteit te garanderen, blijven er privacyvragen bestaan vanwege het cameragebruik en de cloudgebaseerde verwerking. \\
+
+%Daartegenover staan recente systemen waarbij de AI-verwerking lokaal op het toestel gebeurt (edge computing). In zulke oplossingen worden camerabeelden niet doorgestuurd of opgeslagen; enkel het aantal gedetecteerde personen wordt verzonden. Deze benadering is volledig GDPR-compliant en combineert de nauwkeurigheid van beeldherkenning met maximale privacy. Dergelijke edge-AI-oplossingen werden niet toegepast in dit onderzoek, maar tonen wel het potentieel van privacyvriendelijke beeldanalyse zonder cloudverwerking.
+
 
 
 %\section{Voordelen en uitdagingen van IoT in de gezondheidszorg}
@@ -260,144 +267,140 @@ Een overzicht van implementaties van IoT in het gezondheidszorg: zie figuur \ref
 
 %Het combineren van deze strategieën kan ervoor zorgen dat alle aspecten van verschillende ethische risico's behandeld worden \autocite{Loke2019}. Na het bespreken van de beveiliging en ethische kwesties van IoT wordt de focus gelegd op de kern van het onderzoek. In de volgende secties zullen verschillende onderdelen besproken worden die hiermee verband houden. Eerst zullen de wachttijden op de A\&E-afdelingen behandeld worden. Vervolgens zal de impact hiervan op het zorgkwaliteit uitgebreid worden besproken. Tot slot worden de IoT-devices die deze probleem kunnen verhelpen opgesomd en besproken. 
 
-\section{Wachttijden in A\&E-afdelingen}
-De vraag naar spoedeisende hulp is in veel landen gestegen zoals in Engeland,
-Australië, Stockholm, Schotland en Noord-Ierland waardoor het steeds moeilijker is om doorlooptijden kort te houden. Verschillende factoren zijn de oorzaak van dit probleem zoals het veroudering van de populatie, complexere ziektes en de toenemende vraag van patiënten voor spoedeisende zorg. Volgens studies uitgevoerd door \autocite{Paling2020, Friebel2020} door is bedbezetting nauw verbonden met hoge wachttijden, zoals aangetoond in Figuur \ref{fig:Figuur11} is er een correlatie tussen de hoge wachttijden en bedbezetting.
+\section{Little’s Law en wachttijdanalyse}
+De wet van Little is een fundamentele principe in wachtrij theorie, dat de relatie toont tussen het gemiddelde aantal items of personen in een systeem \(L\), de gemiddelde aankomstsnelheid (\( \lambda \)) en de gemiddelde tijd doorbracht in het systeem \(W\). \autocite{Little2008, Wolff2011}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.80\textwidth]{img/bp/bed-occupancy.png}
-    \caption{Plot dat een niet-lineaire relatie toont tussen bedbezettingen intervallen en proportie van patiënten die meer dan vier uur spenderen in de A\&E-afdeling}
-    \label{fig:Figuur11}
-    \textit{Source: \autocite{Paling2020}}
-\end{figure}
+\[
+L = \lambda W
+\]
 
-Om dit probleem tegen te gaan hebben meerdere landen een wachttijdsstandaard geïmplementeerd om de wachttijden in kaart te brengen en deze gevolgen te verminderen \autocite{Paling2020}. In de Verenigd Koninkrijk bijvoorbeeld is “tijdigheid” een cruciaal aspect in het kwaliteit van spoedeisende hulp, en de wachttijddoelstellingen van de National Health Service zijn hierop gebaseerd voor A\&E afdelingen in het hele Verenigd Koninkrijk. Deze wachttijddoelstellingen eisen dat 98 percent van de A\&E patiënten binnen de vier uur van de aankomst worden ontslagen, overgeplaatst of opgenomen worden in een ziekenhuis \autocite{Mayhew2008, Izady2012}. 
+\subsection{Steady-State Aannames voor Little's Law}
+Little's Law gaat uit van een steady-state \autocite{Walsh2007} waarbij de aankomstsnelheid gelijk is aan de vertreksnelheid \autocite{Marks2019}. Dit kan problematisch zijn door fluctuaties in het systeem \autocite{Walsh2007} waardoor het moeilijk is om snelheden nauwkeurig te meten \autocite{Hayati2017}.
 
+\subsection{Toepassing van Little’s Law}
+Dankzij de eenvoud en brede toepasbaarheid leidt dit tot een wijdverspreid gebruik in verschillende gebieden zoals logistiek en dienstverlening \autocite{SimchiLevi2011}. De veelzijdigheid van de wet komt voort uit vier belangrijke factoren: toepasbaarheid, nut, eenvoud en zichtbaarheid. \autocite{Potter2020}
 
-Echter wordt er aan deze vier-uur standaard nauwelijks voldaan. Volgens een studie uitgevoerd door \autocite{Baker2024} is het percentage van patiënten die langer dan vier uur in de A\&E-afdelingen spenderen tussen 2015 en 2020 sterk toegenomen. Verder toont het onderzoek dat er een nieuw record bereikt is met 50,4\% van patiënten die langer dan vier uur wachten op behandeling in A\&E-afdelingen zoals aangetoond door figuur \ref{fig:Figuur12}. Dit vormt een duidelijke overtreding van de vier-uur norm van de NHS. Deze richtlijn houdt in dat tenminste 95\% van de patiënten binnen vier uur moeten worden opgenomen, overgebracht en ontslagen. \autocite{NationalStatisticsONS2024}.
+\subsection{Relevantie voor dit onderzoek}
+In dit project vormt Little’s Law het theoretisch kader om de bezettingsgraad te analyseren. Door gebruik te maken van IoT-technologieën kunnen zowel aankomstsnelheid (\( \lambda \)) en verblijftijd (\(W\)) gemeten worden. Daardoor wordt het mogelijk om objectieve berekening van de gemiddelde bezetting (\(L\)) te maakt. Deze inzichten ondersteunen de evaluatie van de impact van het systeem op de wachttijden.  \\ 
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.80\textwidth]{img/bp/patiënts_over_4_hours.png}
-    \caption{Percentage van patiënten die langer dan 4 uur wachten}
-    \label{fig:Figuur12}
-    \textit{Source: \autocite{Baker2024}}
-\end{figure}
+Ook in ziekenhuizen en medische praktijken wordt Little’s Law toegepast om het verband tussen patiënteninstroom, verblijfsduur en bezetting te verklaren \autocite{Aahlin2022}. Hierbij wordt het aantal aanwezige patiënten beschouwd als work-in-process binnen het zorgproces, dit geldt ook voor de wachtzaal in dit onderzoek.
 
-% Link volgende stuk
-Deze lange wachttijden hebben serieuze gevolgen op de patiëntentevredenheid en zorgkwaliteit zoals besproken in het volgende hoofdstuk.
+\section{Bezettingsdetectie in de praktijk: een overzicht van systemen en studies}
+Hieronder worden enkele bestaande systemen en onderzoeken besproken die bezettingsdetectie in de praktijk hebben onderzocht of geïmplementeerd.
 
-\subsection{Impact van wachttijden op de zorgkwaliteit}
-Volgens verschillende studies hebben langdurige wachttijden negatieve gevolgen voor zowel patiënten als de zorgkwaliteit. Studies uitgevoerd door \autocite{Vainieri2020, QuintonJ.Nottingham2018, Bleustein2014} benadrukken de negatieve impact van de wachttijden op de patiëntentevredenheid. Deze onderzoeken tonen aan dat lange wachttijden een ongunstige invloed op de tevredenheid van patiënten, vooral in het vertrouwen van de zorgverleners en kwaliteit van de zorg. Verder benadrukt een studie uitgevoerd door \autocite{Paling2020} nog ernstigere gevolgen voor patiënten, deze onderzoek heeft een verband gesteld tussen wachttijden in A\&E-afdelingen en een hogere mortaliteit en verergeren van resultaten voor patiënten. Echter, zijn patiënten niet de enige die door de lange wachttijden worden beïnvloed, volgens \autocite{Osborne2015} ervaren duizenden verpleegsters in Engeland moeilijkheden bij het omgaan met de lange A\&E-wachttijden, het artikel vermeldt verder een quote door de toenmalige RCN emergency care association chair, Janet Youd, die aangaf dat 'verpleegsters zijn uitgeput en velen worden ziek door stressgerelateerde aandoeningen'. Onderzoekers hebben onlangs de werkomstandigheden van NHS werknemers onderzocht. De studie toont dat 40\% van alle ziekten bij het personeel te wijten is aan stress. Verder wijst het onderzoek uit dat de “overheersende stressfactor” wordt veroorzaakt door de hoge werkdruk \autocite{Ravalier2020}. \autocite{Vainieri2020} onderlijnt overbevolking als oorzaak van de hoge werkbelasting, en dit in A\&E departementen in diverse westerse landen. Hierbij wordt er verder benadrukt van de ernst van het probleem voor zowel patiënten als zorgverleners. Deze probleem kan door diverse IoT devices verholpen worden. Dit wordt in het volgende sectie verder besproken. 
+\begin{enumerate}
+    \item Dit onderzoek stelt een bezettingssysteem voor dat gebruikmaakt van radiogebaseerde frequenties, zoals WiFi en Bluetooth, om de bezetting van een ruimte te detecteren \autocite{Shahbazian2023}.
+    
+    \item Deze studie onderzoekt en vergelijkt verschillende technologieën voor aanwezigheidsdetectie in gebouwen, met de nadruk op infraroodtechnologieën zoals PIR-sensoren, lichtbarrières en IR-imaging, maar bespreekt ook microgolf- en ultrasoon technologieën. \autocite{Maaspuro2018}
+    
+    \item Deze studie stelt een deep-learningmodel voor dat op basis van CCTV-beelden zowel het aantal aanwezige personen als hun locaties in gebouwen detecteert. \autocite{Hu2023}
+    
+    \item De paper onderzoekt hoe een sensornetwerk en machine learning-methodes, zoals Hidden Markov Models, ingezet kunnen worden om bezetting in een open kantoor te schatten op basis van CO₂ en geluid. \autocite{Lam2009}
+\end{enumerate}
+
+Op basis van bovenstaande voorbeelden blijkt de combinatie tussen PIR-, ultrasoon- en IR-sensoren een goede balans te bieden tussen nauwkeurigheid, energieverbruik, kostprijs en privacybescherming. Volgens een onderzoek van \autocite{Maaspuro2018} zijn PIR- en ultrasone sensoren zeer effectief in het detecteren van aanwezigheid in gebouwen omdat ze sterk en energiezuinig zijn. In tegenstelling tot methoden op basis van camerabeelden of WiFi/Bluetooth-signalen \autocite{Hu2023, Shahbazian2023}, biedt de IoT-gebaseerde implementatie een eenvoudiger, minder privacygevoelig alternatief dat geen complexe infrastructuur vereist.
+
+\section{Voorspellende modellen op basis van historische data}
+Voorspellende modellen worden steeds vaker in verschillende sectoren ingezet om trends in bezoekersaantallen en systeemgebruik te voorspellen \autocite{Ejstrud2006}. Op basis van historische data kunnen algoritmen zoals ARIMA, Random Forest en LSTM-modellen gebruikt worden voor het voorspellen van tijdreeksen, vooral om piekmomenten te identificeren \autocite{Park_2024}. 
+
+\subsection{Praktische toepassingen}
+In een aantal onderzoeken wordt de toepassing van ARIMA-, Random Forest- en LSTM-modellen voor tijdreeksvoorspellingen onderzocht, vooral in de context van landbouw en voorraadbeheer \autocite{Nagendra2023}. Deze domeinen tonen het potentieel van dergelijke modellen om processen efficiënter te maken door vooruit te kijken op basis van historische trends.
+
+\subsection{Belang van datakwaliteit en granulariteit}
+De effectiviteit van deze modellen wordt sterk beïnvloed door de kwaliteit en kwantiteit van de data \autocite{Mani2021}. IoT-technologieën bieden hierbij een voordeel doordat ze real-time en gedetailleerde gegevens kunnen leveren.
+
+\subsection{Voordeel van voorspellende modellen}
+Recent onderzoek toont aan dat het voorspellen van wachttijden en doorlooptijden het middelenbeheer en de klanttevredenheid in verschillende dienstverlenende sectoren aanzienlijk kan verbeteren \autocite{Benevento2021}.
+
+\section{Besluit}
+Uit de literatuur blijkt dat IoT-sensoren zoals PIR en ultrasone technologieën zich goed lenen voor bezettingsdetectie in wachtruimtes, vooral wegens hun lage kost, realtime-mogelijkheden en privacyvriendelijkheid. Hoewel systemen zoals Google Vertex AI Occupancy Analytics sterke AI-integratie bieden, brengen ze ook hogere kosten en privacy-uitdagingen met zich mee. Daarom is een eigen Proof-of-Concept met IoT-technologie terecht als praktisch en ethisch alternatief. De toepassing van Little’s Law en voorspellende modellen biedt bijkomende waarde voor capaciteitsbeheer.
+
 
 
 % \autocite{Vainieri2020} onderlijnt overbevolking als oorzaak van de hoge werkbelasting, en dit in A\&E departementen in diverse westerse landen. Om beter te begrijpen hoe IoT dit probleem kan oplossen, is het noodzakelijk om dieper in te gaan op wat IoT precies inhoudt. Over het algemeen verwijst Internet of things (IoT) naar een model dat verschillende technologieën omvat. Anders gezegd, is het een netwerk van elektronische apparaten die met elkaar of met de cloud communiceren via het internet. De afgelopen twee decennia hebben een grote invloed gehad op de snelle vooruitgang van IoT \autocite{Almutairi2024}, hierdoor is het aantal aangesloten IoT devices sterk gestegen, met 7.74 miljard in 2019, 10.7 miljard in 2021 \autocite{Dawod2022} en 25.44 miljard tegen 2030 \autocite{Dawod2022}. Sensoren, camera's en gelijkaardige apparaten worden al “geïntegreerd” in “woningen” en “voertuigen” \autocite{Dawod2022} en geïmplementeerd over verschillende sectoren zoals de “gezondheidszorg, landbouw, productie” en slimme steden \autocite{Almutairi2024}.
 
-\section{Internet of Things bij het verkorten van wachttijden in het gezondheidszorg}
-IoT heeft zich veelbelovend getoond bij het verminderen van wachttijden in de gezondheidszorg en het verbeteren van de patiëntenzorg \autocite{Bhatt2017}. Diverse studies tonen verschillende implementaties van IoT in de gezondheidszorg en in wachtruimtes \ref{wachtruimte} met als doel om wachttijden te verminderen, zoals aangetoond in tabel \ref{tab:IoT_waiting_time_reduction_healthcare} 
-
-\begin{table}[h]
-    \centering
-    \tiny
-    \caption{Studies: IoT implementaties om wachttijden te verminderen in gezondheidszorg \autocite{Sierra2017, McNabb2018, Alabduljabbar2022, Bhatt2017, Fischer2020, Chandy2019}}
-    \begin{tabularx}{\textwidth}{|p{1.7cm}|p{0.9cm}|p{3.5cm}|p{3.5cm}|X|}
-        \hline
-        \textbf{Author and Year} & \textbf{Country} & \textbf{Objectives} & \textbf{IoT Applications} & \textbf{Conclusion} \\
-        \hline
-        Pedro Santiago Sierra, Jeyson Bolivar Siculaba, Giovanny Mauricio Tarazona   
-        & Colombia 
-        & Ontwikkelen van een mobile applicatie waarmee gebruikers instaat zijn om de verschillende wachttijden van diverse zorgpunten te raadplegen. 
-        & IoT-gebaseerde sensoren worden op de zorgpunten geïmplementeerd om real-time data te verzamelen 
-        & De ontwikkeling en simulatie tonen aan dat de applicatie de gebruiker in staat stelt om zorgpunten te selecteren met de kortste wachttijden. \\
-        \hline
-        Tim McNabb, Trina Myers*, Kristin Wicking, Lei Lei en Wei Xiang 
-        & Australia 
-        & Optimaliseren van high-value clinical spaces in de gezondheidszorg door gebruik te maken van IoT. 
-        & Drie types werden gebruikt in de eindfase: “infra-red break-beam”, “photovoltaic infra-red (PIR)” en  “photovoltaic array” 
-        & De conclusie toont aan dat PIR-sensoren niet voldoende zijn om bezettingen te detecteren.  \\
-        \hline
-        Reham Alabduljabbar* 
-        & Saudi Arabia 
-        & Het doel is om een location-aware mobile-based solution (UrNext) te introduceren en te evalueren om wachttijden te verminderen. 
-        & Bluetooth Low-Energy (BLE) technology wordt gebruikt om locatie te bieden in ziekenhuizen 
-        & UrNext biedt de mogelijkheid om wachttijden te verminderen door gebruik te maken van BLE-technologieën. \\
-        \hline
-        Yesha Bhatt, Chintan Bhatt 
-        & India 
-        & Wachttijden elimineren en ziekenhuis bezoeken verminderen door het implementeren van remote healthcare via IoT.
-        & Deze implementatie maakt gebruik van Medical devices met IoT features, Biomedical sensors, Smart devices voor patient-nurse connectivity, 24/7 patient monitoring systems.
-        & IoT in de gezondheidszorg is steeds in de ontwikkeling phase, verschillende uitdagingen moeten nog geadresseerd worden maar het heeft de potentieel om de industrie te revolutioneren.   \\
-        \hline
-        Abraham Chandy
-        & India 
-        & Wachttijden verminderen en medische beeldvorming verbeteren door automatisatie en optimalisatie.
-        & IoT wordt gebruikt in medische beeldvorming en medische apparatuur.
-        & IoT-enabled medische beeldvorming kan de efficiëntie van de gezondheidszorg verbeteren, kosten verminderen en diagnoses verbeteren.    \\
-        \hline
-        Gabriel Souto Fischer,
-        Rodrigo da Rosa Righ,
-        Gabriel de Oliveira Ramos,
-        Cristiano André da Costa,
-        Joel J.P.C. Rodrigues
-        & Brazil 
-        & ElHealth heeft als doel om de toewijzing van de gezondheidszorgprofessional te optimaliseren door gebruik te maken van IoT om wachttijden te verminderen.
-        & Occupancy sensors, patiënt monitoring systemen en omgeving sensoren worden gebruikt om ruimte gebruik en behoeften van patiënten bij te houden.
-        & De ElHealth maakt gebruik van voorspellingen en dynamische personeel toewijzing om wachttijden te verminderen processen te optimaliseren.    \\
-        \hline
-    \end{tabularx}
-    \label{tab:IoT_waiting_time_reduction_healthcare}
-\end{table}
-
-\subsection{Implementaties van IoT in wachtruimtes} \label{wachtruimte}
-
-\begin{table}[h]
-    \centering
-    \tiny
-    \caption{Studies: IoT implementaties om wachttijden te verminderen in gezondheidszorg \autocite{Spoladore2024, Ghazal2015}}
-    \begin{tabularx}{\textwidth}{|p{2.5cm}|p{1cm}|p{4cm}|p{4.5cm}|p{3cm}|}
-        \hline
-        \textbf{Author and Year} & \textbf{Country} & \textbf{Objectives} & \textbf{IoT Applications} & \textbf{Conclusion} \\
-        \hline
-        Daniele Spoladore, Marta Mondellini, Atieh Mahroo, Irene Alice Margherita Chicchi Giglioli, Stefano De Gaspari, Daniele Di Lernia, Giuseppe Riva, Elena Bellini, Nicoletta Setola, Marco Sacco   
-        & Italy 
-        & Onderzoeken hoe IoT, AI en Virtual reality een wachtruimte kan transformeren in een smart omgeving. 
-        & De Age-IT prototype maakt gebruik van IoT sensoren, AI en virtual reality.
-        & Dit systeem biedt een significante stap bij het transformeren van traditionele wachtruimtes in een smart omgeving en het omzetten van wachttijden in diagnostische en therapeutische activiteiten. \\
-        \hline
-        M. Ghazal, Rania Hamouda, Samr Ali
-        & Bahrain 
-        & Het doel is om de queue management te verbeteren door de service kwaliteit te verhogen en wachttijden te verminderen
-        & Het systeem maakt gebruik van ESP32 om live queue data te versturen.
-        & Het systeem werkt zoals weergegeven in de studie.  \\
-        \hline
-    \end{tabularx}
-    \label{tab:IoT_waiting_time_reduction_waitingroom}
-\end{table}
 
 
-\section{Plaatsing strategieën van IoT}
-De plaatsing van een IoT device wordt gecategoriseerd worden in twee diverse plaatsing strategieën, de fysieke plaatsing en netwerk plaatsen. In de netwerkplaatsing wordt de focus gelegd op de plaatsing van de IoT-gateways. Aangezien deze buiten de scope van het onderzoek vallen, zijn alleen de fysieke plaatsing en relevante aspecten van belang. Deze worden in de volgende sectie verder toegelicht.
+%\subsection{Implementaties van IoT in wachtruimtes}
 
-\subsection{Physical placement}
-Fysieke plaatsing is de manier waarop een device “strategisch geplaatst” wordt voor een betere netwerk performantie en dekking \autocite{Xia2018}. Zie tabel \ref{tab:placement_strategies} voor een overzicht van diverse fysieke plaatsing strategieën.
+%\begin{table}[h]
+%    \centering
+%    \tiny
+%    \caption{Studies: IoT implementaties om wachttijden te verminderen in gezondheidszorg \autocite{Spoladore2024, Ghazal2015}}
+%    \begin{tabularx}{\textwidth}{|p{2.5cm}|p{1cm}|p{4cm}|p{4.5cm}|p{3cm}|}
+%        \hline
+%        \textbf{Author and Year} & \textbf{Country} & \textbf{Objectives} & \textbf{IoT Applications} & \textbf{Conclusion} \\
+%        \hline
+%        Daniele Spoladore, Marta Mondellini, Atieh Mahroo, Irene Alice Margherita Chicchi Giglioli, Stefano De Gaspari, Daniele Di Lernia, Giuseppe Riva, Elena Bellini, Nicoletta Setola, Marco Sacco   
+%        & Italy 
+%        & Onderzoeken hoe IoT, AI en Virtual reality een wachtruimte kan transformeren in een smart omgeving. 
+%        & De Age-IT prototype maakt gebruik van IoT sensoren, AI en virtual reality.
+%        & Dit systeem biedt een significante stap bij het transformeren van traditionele wachtruimtes in een smart omgeving en het omzetten van wachttijden in diagnostische en therapeutische activiteiten. \\
+%        \hline
+%        M. Ghazal, Rania Hamouda, Samr Ali
+%        & Bahrain 
+%        & Het doel is om de queue management te verbeteren door de service kwaliteit te verhogen en wachttijden te verminderen
+%        & Het systeem maakt gebruik van ESP32 om live queue data te versturen.
+%        & Het systeem werkt zoals weergegeven in de studie.  \\
+%        \hline
+%    \end{tabularx}
+%    \label{tab:IoT_waiting_time_reduction_waitingroom}
+%\end{table}
 
-\begin{table}[h]
-    \centering
-    \tiny
-    \caption{Physical Placement Strategies for IoT Devices, \autocite{Tinglib2012, Alablani2019, Badiger2022, Chen2023, Krishnachalitha2020, Patil2021, Paul2020}}
-    \begin{tabular}{|l|p{4cm}|p{5cm}|p{4cm}|} % Adjusted last column width
-        \hline
-        \textbf{Strategy} & \textbf{Goal} & \textbf{Approach/Method} & \textbf{Benefits} \\ \hline
-        Uniform Random Deployment & Devices worden random verspreid om dekking te hebben over een gebied. Uniform deployment is een gemeenschappelijke strategie voor het uitrollen van IoT devices en sensoren in een wireless netwerk  & Devices worden op een uniforme wijze verspreid over een bepaald gebied. & Makkelijk te implementeren, maar heeft weinig dekking en is minder veerkrachtig tegen aanvallen. \\ \hline
-        Grid-Based Deployment & biedt predictive en gestructureerde dekking voor wireless netwerken  & Devices worden uitgerold in een geometrische pattern zoals square grids, triangular grids, or hexagonal grids om voor een uniforme dekking te zorgen. De square grid heeft een hogere performantie in de dekking van gebieden terwijl de andere beter in end-to-end delay zijn. & voorspelbaar en makkelijk te analyseren dekking gebied. \\ \hline
-        Cluster-Based Deployment & Heeft als doel om data aggregation te optimaliseren en het verminderen van energie consumptie. & Devices worden gegroepeerd in clusters, een centrale nood worden vervolgens gebruikt voor data aggregation en energy efficiënte solutions. & Verminderd data redundancy en communicatie overhead. \\ \hline
-        Mobility-Aware Deployment & De IoT devices worden geplaatst op basis van de beweging pattern van devices of users & Devices worden dynamisch geplaatst volgens voorspelde beweging patterns. & Verminderd de energie consumptie en verbetert de plaatsing efficiëntie \\ \hline
-        Fixed Placement & Zorgt ervoor dat de data verzameling consistent en betrouwbaar is. & Devices worden op permanente locaties geïnstalleerd, dit zorgt voor een sterke netwerk performantie en verbruik van middelen. & Betrouwbaar en makkelijk te onderhouden \\ \hline
-    \end{tabular}
-    \label{tab:placement_strategies}
-\end{table}
 
+%\section{Plaatsing strategieën van IoT}
+%De plaatsing van een IoT device wordt gecategoriseerd worden in twee diverse plaatsing strategieën, de fysieke plaatsing en netwerk plaatsen. In de netwerkplaatsing wordt de focus gelegd op de plaatsing van de IoT-gateways. Aangezien deze buiten de scope van het onderzoek vallen, zijn alleen de fysieke plaatsing en relevante aspecten van belang. Deze worden in de volgende sectie verder toegelicht.
+
+%\subsection{Physical placement}
+%Fysieke plaatsing is de manier waarop een device “strategisch geplaatst” wordt voor een betere netwerk performantie en dekking \autocite{Xia2018}. Zie tabel \ref{tab:placement_strategies} voor een overzicht van diverse fysieke plaatsing strategieën.
+
+%\begin{enumerate}
+
+%    \item \textbf{Uniform Random Deployment} \\
+
+%    \textit{Doel:} Devices worden random verspreid om dekking te hebben over een gebied. Uniform deployment is een gemeenschappelijke strategie voor het uitrollen van IoT devices en sensoren in een wireless netwerk. \\
+
+%    \textit{Methode:} Devices worden op een uniforme wijze verspreid over een bepaald gebied. \\
+    
+    %\textit{Voordelen:} Makkelijk te implementeren, maar heeft weinig dekking en is minder veerkrachtig tegen aanvallen.
+    
+  
+  %  \item \textbf{Grid-Based Deployment} \\
+   
+   % \textit{Doel:} Biedt voorspelbare en gestructureerde dekking voor wireless netwerken. \\
+    
+    %\textit{Methode:} Devices worden uitgerold in een geometrisch patroon zoals square grids, triangular grids of hexagonal grids om uniforme dekking te realiseren. Square grids bieden betere dekking, terwijl andere vormen voordelen hebben qua end-to-end delay. \\
+    
+    %\textit{Voordelen:} Voorspelbare en makkelijk te analyseren dekkingsgebieden.
+    
+    
+    %\item \textbf{Cluster-Based Deployment} \\
+    
+    %\textit{Doel:} Optimalisatie van data-aggregatie en vermindering van energieverbruik. \\
+    
+    %\textit{Methode:} Devices worden gegroepeerd in clusters, waarbij een centrale node wordt gebruikt voor data-aggregatie en energie-efficiënte communicatie. \\
+    
+    %\textit{Voordelen:} Vermindert dataredundantie en communicatie-overhead.
+    
+    
+    %\item \textbf{Mobility-Aware Deployment} \\
+    
+    %\textit{Doel:} Plaatsing gebaseerd op bewegingspatronen van devices of gebruikers. \\
+    
+    %\textit{Methode:} Devices worden dynamisch geplaatst op basis van voorspelde bewegingspatronen. \\
+    
+    %\textit{Voordelen:} Vermindert energieverbruik en verbetert plaatsingsefficiëntie.
+    
+    
+    %\item \textbf{Fixed Placement} \\
+    
+    %\textit{Doel:} Consistente en betrouwbare dataverzameling. \\
+    
+    %\textit{Methode:} Devices worden permanent geïnstalleerd op vaste locaties, wat zorgt voor een stabiel netwerk en efficiënte middeleninzet. \\
+    
+    %\textit{Voordelen:} Betrouwbaar en makkelijk te onderhouden.
+
+%\end{enumerate}
 
 %\subsection{Network placement}
 %In Netwerk plaatsing wordt de focus gelegd op de plaatsing van de IoT gateways, om kosten te verminderen en performantie te verhogen \autocite{Patil2021, Patil2021a}. Zie tabel \ref{tab:network_placement_strategies} voor enkele praktische voor beelden van Netwerk strategieën.

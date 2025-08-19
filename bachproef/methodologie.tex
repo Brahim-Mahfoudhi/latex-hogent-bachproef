@@ -1,15 +1,6 @@
 %%=============================================================================
 %% Methodologie
 %%=============================================================================
-\usepackage{multirow} % Add this in the preamble
-\usepackage{longtable}
-\usepackage[most]{tcolorbox}
-\usepackage{array}
-\usepackage{tikz}
-\usepackage[margin=1in]{geometry}
-\usepackage{pgfplots}
-\usepackage{xcolor}
-
 
 \chapter{\IfLanguageName{dutch}{Methodologie}{Methodology}}%
 \label{ch:methodologie}
@@ -64,8 +55,8 @@
 
 %Het onderzoek begint met het uitvoeren van een uitgebreide oorzakenanalyse. Dit is een fundamentele stap bij het identificeren van de oorzaak van de langdurige wachttijden binnen de A\&E afdelingen van ziekenhuizen. De analyse begint met het definiëren van het probleem. Om die reden wordt de “5 Whys”-methode toegepast samen met een brain\-storming-sessie. De “5 Whys”-methode wordt gebruikt om de kern van het probleem te achterhalen door telkens de vraag waar\-om te stellen, \ref{fig:Figuur5} en de oorzaak proberen te identificeren via de brain\-storming-sessie. Zodra diverse oorzaken geïdentificeerd zijn, begint er een analyse door middel van het Fishbone-model. De reden achter het gebruik van dit model is het voorkomen dat mogelijke onderliggende oorzaken over het hoofd worden gezien. Verder biedt het model simpliciteit bij het trekken van conclusies dankzij een visuele representatie tussen de categorisch weergegeven oorzaken en het probleem. Vervolgens is elke oorzaak zorgvuldig bestudeerd, degene die de grootste impact heeft op langdurige wachttijden is geselecteerd als de hoofdoorzaak. Een overweging is vervolgens gemaakt, om te achterhalen of IoT in het algemeen een oplossing kan zijn voor deze oorzaak. Verder in het onderzoek wordt er dieper bekeken naar welke IoT devices gebruikt kunnen worden in de gezondheidszorg, zodra de devices geselecteerd zijn, wordt er op een meer diepgaande wijze bekeken hoe de apparaten een oplossing kunnen zijn voor de hoofdoorzaak.
 
-\section{Literatuurstudie over bestaande oplossingen}
-Zie hoofdstuk \ref{ch:stand-van-zaken} voor een gedetailleerde literatuurstudie over bestaande IoT implementaties in de gezondheidszorg. \textit{Onder Internet of Things bij het verkorten van wachttijden in het gezondheidszorg}.
+\section{Literatuurstudie van IoT-oplossingen, sensortypes en analysemethoden}
+In hoofdstuk \ref{ch:stand-van-zaken} werden verschillende IoT-oplossingen, sensortypes en analysemethoden geanalyseerd. In dit hoofdstuk worden de gekozen onderzoeksmethoden toegelicht.
 
 %\section{Geoptimaliseerde servicezones} %
 
@@ -88,15 +79,24 @@ Zie hoofdstuk \ref{ch:stand-van-zaken} voor een gedetailleerde literatuurstudie 
 %\end{table}
 
 
-\section{Selectie van locatie}
-Om de Proof-of-Concept uit te voeren is de coöperatie van een medische instelling of andere sectoren noodzakelijk. Naast ziekenhuizen kunnen ook andere zorginstellingen in overweging worden genomen, zoals huisartspraktijken en Woonzorgcentra en Rusthuizen. % voor die reden wordt er naar een ziekenhuis gezocht die met voorkeur in Vlaanderen gelegen is. Het criteria bij het selecteren van een ziekenhuis is de geneigdheid van deze om samen te werken en de beschikbaarheid van de spoedafdeling om de Proof-of-Concept te kunnen uitvoeren. Tot slot moet de spoedafdeling beschikken over een wachtzaal met voldoende capaciteit voor patiënten en benodigde sensoren. 
+% \section{Selectie van locatie}
+% Om de Proof-of-Concept uit te voeren is de coöperatie van een medische instelling of andere sectoren noodzakelijk. Naast ziekenhuizen kunnen ook andere zorginstellingen in overweging worden genomen, zoals huisartspraktijken en Woonzorgcentra en Rusthuizen. % voor die reden wordt er naar een ziekenhuis gezocht die met voorkeur in Vlaanderen gelegen is. Het criteria bij het selecteren van een ziekenhuis is de geneigdheid van deze om samen te werken en de beschikbaarheid van de spoedafdeling om de Proof-of-Concept te kunnen uitvoeren. Tot slot moet de spoedafdeling beschikken over een wachtzaal met voldoende capaciteit voor patiënten en benodigde sensoren. 
 
 %Voordat de Proof-of-Concept wordt uitgevoerd, wordt er een ziekenhuis gezocht, bij voorkeur in Vlaanderen. Een ziekenhuis wordt geselecteerd op basis van de bereidheid om samen te werken en de beschikbaarheid van een geschikte spoedafdeling voor het testen van het systeem. De spoedafdeling moet beschikken over een wachtzaal met voldoende capaciteit voor patiënten en benodigde sensoren. Om de samenwerking te vergemakkelijken, kan de Proof-of-Concept worden aangepast zodat deze volledig voldoet aan de geldende GDPR-richtlijnen van het ziekenhuis.
 %\section{Locatieanalyse} \label{Locatieanalyse}
 %Een grondige locatieanalyse zal uitgevoerd worden om een beter begrip te krijgen over de indeling van de spoedafdeling en wachtruimte. Deze controle wordt verricht om mogelijke obstakels te identificeren, zoals muren en andere structuren. Tijdens de inspectie zal de signaalsterkte gemeten worden door middel van een WiFi site survey software en zullen de toegangspunten voor stroom en netwerken gecontroleerd worden om de beste locatie voor de sensoren te identificeren. Hierbij zal er ook rekening gehouden worden met de locatie van de centrale eenheid en sensorcontroller. Een gedetailleerde kaart zal aangemaakt worden met de optimale locatie van de verschillende componenten. Het uiteindelijke doel van deze sectie is het identificeren van een locatie die de communicatie tussen de verschillende componenten efficiënt laat verlopen. 
 
-\section{Sensoridentificatie en Analyse} \label{sensoridentificatie}
-De nodige sensor- en subtypen worden geïdentificeerd door de reeds uitgevoerde literatuurstudie \ref{ch:stand-van-zaken}, die inzicht geeft in welke sensoren kunnen bijdragen bij het realiseren van de proof-of-concept. Deze sensortypes worden geanalyseerd en waar nodig aangevuld met aanvullende bronnen of nieuwe inzichten. De uiteindelijke selectie van sensoren worden geanalyseerd en vergeleken in de vergelijkende studie \ref{vergelijkendeanalyse}, waar de voor- en nadelen van elk type sensor geëvalueerd wordt.
+\subsubsection{Devices}
+De devices die in dit onderdeel worden besproken, zijn geselecteerd op basis van de literatuurstudie en worden beschouwd als potentiële componenten voor het proof-of-concept. De uiteindelijke selectie van sensoren wordt beïnvloed door de specifieke topologie van de wachtruimte, zoals doorgang(en) en de afmetingen van de ruimte. 
+
+\begin{itemize}
+    \item Centrale eenheid
+    \item Sensor controller
+    \item Lichtsluis/IR-sensor
+    \item PIR-bewegingssensoren
+    \item Ultrasoon/infraroodsensoren
+\end{itemize}
+\clearpage
 
 %De reeds geïdentificeerde sensor- en subtypen in de literatuurstudie \ref{ch:stand-van-zaken} worden geanalyseerd en waar nodig aangevuld met aanvullende bronnen of nieuwe inzichten.
 
@@ -158,35 +158,6 @@ De nodige sensor- en subtypen worden geïdentificeerd door de reeds uitgevoerde 
 
 %Het identificeren van IoT apparaten is van het uiterste belang, daarom is er aanzienlijk veel tijd besteed aan het opstellen van de casestudie om een assortiment van IoT apparaten te bepalen. Dit houdt in dat elk device grondig bestudeerd zal worden om een beter begrip te krijgen in de werking hiervan in de gezondheidszorg. Om het meest gepaste IoT device te selecteren worden verschillende IoT categorieën bekeken, deze categorieën vertegenwoordigen IoT apparaten die de werking van de A\&E afdelingen kunnen verbeteren en efficiënter maken, deze categorieën zijn: Locatie- en traceerapparaten, Communicatieapparaten, Integratie van het gegevensbeheer en Integratie en coördinatie van IoT devices. De categorieën worden geselecteerd op basis van de nodige IoT devices in de proof-of-concept. Het Real-time Smart Queue Management System maakt gebruik van bewegings- en aanwezigheidssensoren, die worden ingezet om de locatie van patiënten in de wachtrij in real-time te volgen.
 
-\section{Vergelijkende analyse} \label{vergelijkendeanalyse}
-In deze sectie wordt een vergelijkende studies uitgevoerd over de IoT devices. Het doel van deze studies is om de meest geschikte devices te identificeren voor de proof-of-concept.
-
-\subsection{Vergelijkende studie: IoT-devices}
-Om de meest gepaste IoT device(s) te selecteren voor het uitvoeren van de proof-of-concept is het noodzakelijk om de verschillende apparaten met elkaar te vergelijken. om voor de hand liggende redenen worden de apparaten eerst vergeleken op de voor- en nadelen die deze brengen. Verder door dat het budget gelimiteerd is wordt er rekening gehouden met de aanschafkosten van de apparaten.
-
-%\subsubsection{Inhoud vergelijkende studie: IoT devices}
-%De vergelijkende studie bevat de volgende criteriums:
-%\begin{itemize}
-%    \item \textbf{Voor- en nadelen:} Een overzicht van de voordelen en nadelen van elk apparaat.
-%    \item \textbf{Kosten:} De kostenanalyse omvat enkel de aanschafkosten.    
-    %\item \textbf{Betrouwbaarheid:} Hier wordt gekeken naar de stabiliteit van het apparaat, de kwaliteit van de hardware.    
-    %\item \textbf{Gebruiksvriendelijkheid:} Dit criterium omvat de eenvoud van installatie, configuratie, bediening.    
-    %\item \textbf{Integratie capaciteit:} De mogelijkheid om het IoT apparaat te integreren met andere systemen of apparaten (Raspberry Pi, Arduino) wordt onderzocht. 
-%\end{itemize}
-
-\subsubsection{Devices}
-In deze vergelijkende studie worden verschillende types devices met elkaar vergeleken die nodig zijn bij de implementatie van de proof-of-concept. Het identificeren van de devices gebeurt door het raadplegen van de uitgevoerde literatuurstudie en bijkomende onderzoeken. devices worden geïdentificeerd voor de volgende componenten.
-
-\begin{itemize}
-    \item Centrale eenheid
-    \item Sensor controller
-    \item Lichtsluis/IR-sensor
-    \item PIR-bewegingssensoren
-    \item Ultrasoon/infraroodsensoren
-    %\item CO₂ Sensor (Detectie van  CO₂ levels)
-\end{itemize}
-
-
 \subsubsection{Methodologie van vergelijking}
 
 De vergelijkende studie bevat de volgende criteriums:
@@ -194,67 +165,60 @@ De vergelijkende studie bevat de volgende criteriums:
     \item \textbf{Centrale eenheid en sensor controller}
     \begin{itemize}
         \item Voor- en nadelen: Een overzicht van de voordelen en nadelen van deze twee componenten.
-        \item Kosten: De kostenanalyse omvat enkel de aanschafkosten van deze onderdelen.  
+        \item Kosten: omvat enkel de aanschafkosten van deze onderdelen.  
     \end{itemize}
     
-    \item \textbf{Lichtsluis/infraroodsensoren}
+    \item \textbf{Vergelijking van sensoren}
+    Een selectie van sensoren per type wordt met elkaar vergeleken:
+    \begin{itemize}
+        \item Lichtsluis-/Infraroodsensoren
+        \item PIR-bewegingssensoren
+        \item Ultrasoon sensoren
+    \end{itemize}
+    
+    De vergelijking gebeurt op basis van de volgende criteria:
     \begin{itemize}
         \item Nauwkeurigheid
-        \item Connectiviteit
-        \item Kost (€)
-    \end{itemize}
-
-    \item \textbf{PIR-bewegingssensoren}
-    \begin{itemize}
         \item Gevoeligheid
-        \item Nauwkeurigheid
-        \item Kost (€)
-    \end{itemize}
-    
-    \item \textbf{Ultrasoon/infraroodsensoren}
-    \begin{itemize}
         \item Bereik
-        \item Nauwkeurigheid
-        \item Kost (€)
+        \item Connectiviteit
+        \item Kostprijs (€)
     \end{itemize}
-
-        
-    %\item \textbf{Betrouwbaarheid:} Hier wordt gekeken naar de stabiliteit van het apparaat, de kwaliteit van de hardware.    
-    %\item \textbf{Gebruiksvriendelijkheid:} Dit criterium omvat de eenvoud van installatie, configuratie, bediening.    
-    %\item \textbf{Integratie capaciteit:} De mogelijkheid om het IoT apparaat te integreren met andere systemen of apparaten (Raspberry Pi, Arduino) wordt onderzocht. 
 \end{itemize}
+
 
 \subsubsection{Vergelijking van devices}
 
 \begin{table}[h!]
-    \tiny
+    \small
     \caption{Vergelijking van Centrale Eenheden voor IoT \autocite{Calvo2016, Hosny2023, SainzRaso2019, 王丁2014, Pham2024, Chatterjee2022}}
     \label{tab:vergelijking-centrale-eenheid}
-    \begin{tabular}{|p{1.5cm}|p{3.5cm}|p{3.5cm}|p{3.5cm}|}
+    \begin{tabular}{|p{2cm}|p{3.8cm}|p{4cm}|p{4cm}|}
         \hline
-        \textbf{Criteria} & \textbf{Raspberry Pi} & \textbf{HP EliteDesk 800 G3 USFF} & \textbf{NVIDIA Jetson Nano} \\
+        \textbf{Criteria} & \textbf{Raspberry Pi 4 8GB} & \textbf{HP EliteDesk 800 G3 USFF} & \textbf{NVIDIA Jetson Nano} \\
         \hline
-        \textbf{Voordelen} & Betaalbaar, gemeenschapsbreed gesteund, ideaal voor kleinere IoT-projecten & Compact en energie-efficiënt design, geschikt voor kleine werkruimtes & Krachtig voor real-time verwerking, energiezuinig, ideaal voor mobiele toepassingen \\
+        \textbf{Voordelen} & Betaalbaar, algemeen ondersteund, ideaal voor kleinere IoT-projecten & Compact en energie-efficiënt design, geschikt voor kleine ruimtes & Krachtig voor real-time verwerking, energiezuinig, ideaal voor mobiele toepassingen \\
         \hline
         \textbf{Nadelen} & Beperkingen in CPU, RAM, kwetsbaar door afhankelijkheid van software en OS & Beperkingen in rekenkracht, problemen met koeling en connectiviteit & Beperkingen in geheugen en rekenkracht voor grotere AI-modellen, niet geschikt voor zware GPU-taken  \\
         \hline
-        \textbf{Kost (€)} & IN BEZIT & €99,00 & €200-300 \\
+        \textbf{Kost (€)} & €75 (reeds in bezit) & €99,00 & €200-300 \\
         \hline
     \end{tabular}
 \end{table}
+\clearpage
 
 %---------------------------------------------------------------------------------------------
 
-\begin{table}[h]
-    \tiny
+\begin{table}[h!]
+    \small
     \caption{Vergelijking van Sensor Controllers \autocite{Hussain2024, Viriyavisuthisakul2017, Spohn2020, Maier2017, Wang2020, Wu2020, Kovacshazy2024}}
     \label{tab:vergelijking-sensorcontroller}
-    \begin{tabular}{|p{1.5cm}|p{3.5cm}|p{3.5cm}|p{3.5cm}|}
+    \begin{tabular}{|p{2cm}|p{4cm}|p{4cm}|p{4cm}|}
         \hline
         \textbf{Criteria} & \textbf{Arduino Nano 33 IoT} & \textbf{ESP32-WROOM} & \textbf{STM32} \\
         \hline
         \textbf{Voordelen} 
-        & Kosteneffectief. In retail detecteert het wachtrijlengtes en waarschuwt personeel. 
+        & Kosteneffectief en kan ingezet worden om wachtrijlengtes te detecteren en personeel te waarschuwen. 
         & Efficiënt voor IoT met laag verbruik, dual-core en WiFi/Bluetooth. 
         & Hoge performantie en energie-efficiëntie in uiteenlopende IoT-toepassingen. \\
         \hline
@@ -271,89 +235,94 @@ De vergelijkende studie bevat de volgende criteriums:
     \end{tabular}
 \end{table}
 
+%----------------------------------------------------------------------------------------------
+\begin{table}[h!]
+    \small
+    \caption{Vergelijking van lichtsluis-infraroodsensoren \autocite{Industries2024, Omron2024, KEYENCE}}
+    \begin{tabular}{|p{3cm}|p{4cm}|p{3.5cm}|p{3.5cm}|} % <-- extra | tussen kolom 2 en 3
+        \hline
+        \textbf{Criteria} & \textbf{Adafruit Infrared Break Beam (5mm)} & \textbf{Omron E3Z-T61} & \textbf{Keyence PZ-G51N} \\
+        \hline
+        Meetmethode & Lichtsluis met onderbrekingsdetectie via infrarood & Lichtsluis met infrarood onderbrekingsdetectie & Reflecterende fotocel met objectdetectie via infrarood \\
+        \hline
+        Bereik & 50 cm & 15 m & 20 m \\
+        \hline
+        Kost (€) & €2,52 & €36,29 & €73,95 \\
+        \hline
+    \end{tabular}
+\end{table}
 
 %----------------------------------------------------------------------------------------------
 \begin{table}[h!]
-    \tiny
-    \caption{Vergelijking van Lichtsluis-infraroodsensoren \autocite{}}
-    \begin{tabular}{|p{3.5cm}|p{3cm}|p{3cm}|p{3cm}|}
-        \hline
-        \textbf{Feature} & \textbf{Sharp GP2Y0A21YK0F} & \textbf{TCS3200 TCS230} & \textbf{Adafruit TSL2561} \\
-        \hline
-        \text{Meetmethode} & Infrarood afstand & Optisch (RGB-kleur detectie) & Lichtsensor (Lux meeteenheid) \\
-        \hline
-        \text{Bereik} & 10 - 80 cm & 0 - 2 meter & 0 - 100,000 Lux \\
-        \hline
-        \text{Kost (€)} & €36.19 & €36.29 & €73.95 \\
-        \hline
-    \end{tabular}
-\end{table}
-
-
-
-
-%----------------------------------------------------------------------------------------------
-\begin{table}[h]
-    \tiny
-    \caption{Vergelijking van PIR-bewegingssensoren \autocite{Wellue2025, Zacurate2025, Jumper2025}}
+    \small
+    \caption{Vergelijking van PIR-bewegingssensoren \autocite{LastMinuteEngineersa, HobbyComponents, LastMinuteEngineers}}
     \label{tab:vergelijking-thermische-camera}
-    \begin{tabular}{|p{3cm}|p{3.5cm}|p{4.5cm}|p{3.5cm}|}
+    \begin{tabular}{|p{4cm}|p{3.5cm}|p{3.5cm}|p{3cm}|}
         \hline
         \textbf{Criterium} & \textbf{HC-SR501} & \textbf{AM312} & \textbf{RCWL-0516} \\
         \hline
-        Bereik & 7 meter & 3 meter & 5-8 meter \\
+        Bereik & 7 meter & 3 meter & 5-7 meter \\
         \hline
-        Detectiehoek & 120° & 70° & 360° \\
+        Detectiehoek & 120° & <100° & 360° \\
         \hline
-        Kost (€) & €5,95 & €2,25 & €1.80 \\
+        Kost (€) & €5,95 & €1,49 & €1.80 \\
         \hline
     \end{tabular}
 \end{table}
-
+\clearpage
 
 %----------------------------------------------------------------------------------------------
-\begin{table}[h]
-    \tiny
-    \caption{Vergelijking van Ultrasoon/Infraroodsensoren \autocite{Acconeer2023, Acconeer2023a, Infineon2024}}
-    \label{tab:vergelijking-pressure-sensor}
-    \begin{tabular}{|p{2.5cm}|p{2.5cm}|p{4.7cm}|p{5.5cm}|}
+\begin{table}[h!]
+    \small
+    \caption{Vergelijking van ultrasone sensoren \autocite{HCSR04datasheet, ParallaxPING, MB1240datasheet}}
+    \label{tab:vergelijking-ultrasoonsensoren}
+    \begin{tabular}{|p{3.5cm}|p{3cm}|p{3.5cm}|p{4cm}|}
         \hline
-        \textbf{Criterium} & \textbf{HC-SR04} & \textbf{Parallax Inc PING} & \textbf{MB1240 XL-MaxSonar-EZ4} \\
-        \hline
-        Bereik & 2cm - 4m & 2 cm - 3 m & 20cm - 7m \\
-        \hline
-        Nauwkeurigheid & ±0.3 cm & ±1 cm & ±1 cm \\
-        \hline
-        Kosten (€) & €2,10 & €33,11 & €29,95 \\
-        \hline
-    \end{tabular}
+        \textbf{Criterium} & \textbf{HC-SR04} & \textbf{Parallax Inc PING}} & \textbf{MB1240 XL-MaxSonar-EZ4} \\
+    \hline
+    Bereik & 2 cm – 4 m & 2 cm – 3 m & 20 cm – 7 m \\
+    \hline
+    Nauwkeurigheid & ±0.3 cm & ±1 cm & ±1 cm (typisch) \\
+    \hline
+    Voedingsspanning & 5 V & 5 V & 3.3–5 V \\
+    \hline
+    Kosten (€)* & €2,10 & €33,11 & €29,95 \\
+    \hline
+\end{tabular}
 \end{table}
-
 
 
 \subsubsection{Conclusie vergelijkende studie}
-Volgens de bevindingen  uit de vergelijkende studie worden de volgende devices geselecteerd voor implementatie in de proof-of-concept.
+Volgens de bevindingen uit de vergelijkende studie worden de volgende devices geselecteerd voor implementatie in de proof-of-concept.
 
-\begin{table}[h]
-    \tiny
+\begin{table}[h!]
+    \small
     \renewcommand{\arraystretch}{1.2}
     \caption{Geselecteerde IoT Devices}
-    \begin{tabular}{|l|c|p{9cm}|}
+    \begin{tabular}{|l|c|p{8cm}|}
         \hline
         \textbf{IoT Device} & \textbf{Price (EUR)} & \textbf{Reason of Choice} \\
         \hline
         Raspberry Pi & IN BEZIT & Reeds in bezit, veelzijdig voor prototyping. De beveiligingsnadelen zijn voor de PoC minder van belang.\\
+        \hline
         ESP32-WROOM & €19,95  & Kost, Laag energieverbruikt, dual-core en Wi-Fi Bluetooth support. \\
-        MLX90614  & €17,99 & Nauwkeurig, snel, goedkoop \\
-        Zacurate Pro Series 500DL & €35,65  & Betrouwbaar, goedkoop \\
-        Infineon XENSIV BGT60TR13C & €9,59  & Compact, accuraat, kostenefficiënt \\
         \hline
-        \textbf{Total} & \textbf{€83,18} & \\
+        Adafruit IR Break Beam & €2,52 & Zeer goedkoop, voldoende bereik (50 cm) voor deuropeningen of smalle doorgangen. Makkelijk te integreren.
+         \\
         \hline
+        HC-SR501 & €5,95  & Goede balans tussen bereik (7 m), brede detectiehoek (120°), en lage kostprijs. Bewezen sensor in veel projecten. \\
+        \hline
+        HC-SR04 & €2,101  & Zeer lage prijs, voldoende nauwkeurigheid en bereik voor wachtruimtedetectie. \\
+        
+    \end{tabular}
+    \begin{tabular}{|p{4.17cm}|p{10.5cm}|}
+    \hline
+    \textbf{Total} & \textbf{€83,18} \\
+    \hline
     \end{tabular}
     \label{tab:iot_prices}
-    \end{table}}
-
+\end{table}}
+\clearpage
 
 %--------------------------------------------------------------------------------------------
 %\subsection{Vergelijkende studie: Cloudgebaseerde platform}
@@ -440,46 +409,615 @@ Volgens de bevindingen  uit de vergelijkende studie worden de volgende devices g
 %\subsubsection{Conclusie en aanbevelingen}
 %-----------------------------------------------------------------------------------------------
 
-\section{Procedure: Proof-of-Concept (PoC)}
-De Proof-of-Concept (PoC) onderzoekt hoe IoT-technologie kan worden ingezet om wachttijden bij Solidaris Ronse in kaart te brengen, transparant te maken en uiteindelijk te verkorten.
+\section{Procedure: Proof-of-Concept (PoC)} \TODO % Maak een lijst met alle afkortingen
+De Proof-of-Concept (PoC) richt zich op het onderzoeken hoe IoT ingezet kan worden om wachttijden inzichtelijk te maken en duidelijk weer te geven. Dit vormt een basis voor toekomstige optimalisaties. Het doel is niet om tijdens de meetperiode direct een afname van wachttijden te realiseren. \\
+
+Het is belangrijk om te benadrukken dat de werking van het IoT-systeem binnen deze PoC experimenteel is. Het systeem bevindt zich in een testfase, waarbij de prestaties kunnen afwijken door sensorinstellingen, netwerkverbinding en omgevingsomstandigheden. Hierdoor kan het voorkomen dat tijdens de meetperiode niet alle data volledig of bruikbaar zijn. \\
+
+Toch biedt deze opzet waardevolle inzichten in de haalbaarheid en aandachtspunten bij het implementeren van een IoT-gebaseerd meetsysteem voor bezettingsinformatie.
+
+\subsection{Voorbereidende fase}
+
+De Proof-of-Concept werd uitgevoerd in samenwerking met WGC De Vlier, een eerstelijnsgezondheidscentrum waar wachttijden en ruimtegebruik belangrijke aandachtspunten vormen. \\
+
+Voor de opbouw van het meetsysteem werd vooraf een plaatsbezoek uitgevoerd om de wachtruimte in kaart te brengen. Hierbij werd de wachtruimte geanalyseerd op:
+
+\begin{itemize}
+    \item Afmetingen van de ruimte en deuropeningen
+    \item Positie en afstand tussen stoelen
+    \item Beschikbare stroompunten en Wi-Fi dekking
+    %\item Mogelijke reflecterende oppervlakken die sensormetingen kunnen beïnvloeden
+    \item Verwachte bezoekersstromen en typische gedragingen (staan, zitten, rondlopen)
+\end{itemize}
+
+%De fotodocumentatie bestaat uit:
+%\begin{itemize}
+%    \item Ingang(en) en doorgangen waar break beam sensoren worden geplaatst
+%    \item Zithoeken voor de detectie via PIR- en ultrasone sensoren
+%    \item Plafondzones geschikt voor sensorbevestiging
+%    \item Overzicht van de ruimte voor validatie van sensorbereik en -plaatsing
+%\end{itemize}
+
+%De foto's zijn terug te vinden in Bijlage B en worden gebruikt als visuele onderbouwing van de gekozen sensorconfiguratie en meetzones.
 
 \subsection{Nulmeting en verzameling van historische gegevens}
-Om de effectiviteit van het Proof-of-Concept (PoC) te evalueren, wordt eerst een nulmeting uitgevoerd tijdens een piekmoment. Hierbij wordt gebruikgemaakt van een tool (Google Occupancy Rate API, OpenCV) om de huidige bezettingsgraad van de wachtruimte te meten. Tijdens deze meting worden gegevens verzameld zoals het aantal aanwezigen per tijdseenheid, het verloop van piek- en dalmomenten en indien mogelijk de gemiddelde wachttijden. Deze gegevens vormen de baseline waarmee achteraf de impact van het nieuwe IoT-gebaseerde systeem objectief kan worden beoordeeld.
+Om de effectiviteit van het Proof-of-Concept (PoC) te evalueren, werd een nulmeting uitgevoerd met behulp van Google Vertex AI Occupancy Analytics. Deze meting vond plaats tijdens de openingsuren (08:00 - 19:00) in de wachtruimte van WGC De Vlier. \\
 
-\subsection{Opbouw van het meetsysteem}
-In het Proof of Concept (PoC) wordt een eenvoudige IoT-architectuur gebruikt waarbij sensoren in real-time registreren hoeveel mensen aanwezig zijn. De metingen gebeuren volledig anoniem, zonder tracking op persoonsniveau. De verzamelde gegevens worden automatisch doorgestuurd naar een relationele database voor opslag. 
+Tijdens deze nulmeting werden gegevens verzameld zoals het aantal aanwezige personen per minuut. Deze meting vormt een praktisch referentiepunt waarmee achteraf de prestaties van het IoT-gebaseerde meetsysteem vergeleken kunnen worden. \\
+
+Hoewel deze AI-gebaseerde meting als nulmeting wordt gepresenteerd, is het belangrijk te benadrukken dat dit geen absolute waarheid is. Omdat de bezetting in de wachtruimte zelden hoger ligt dan drie à vier personen, kunnen zelfs kleine afwijkingen (zoals dubbeltellingen of detectievertragingen) een relatief grote invloed hebben op de gemeten waarden. 
+
+\subsubsection{Motivatie voor duur van de nulmeting}
+Tijdens vier dagen werden per minuut bezettingsgegevens geregistreerd, wat resulteerde in een totaal van ongeveer 1.756 meetmomenten. %De meetperiode was gekozen om zowel piek- als dalmomenten in kaart te brengen, zodat de meting representatief zou zijn voor het gebruik van de wachtruimte. \\
+
+De meetperiode werd bewust kort gehouden vanwege privacybezwaren bij WGC De Vlier. Om die reden werd gekozen voor een korte, representatieve meetperiode die piek- en dalmomenten omvat. Op die manier kon de nulmeting voldoende variatie capteren in bezoekersaantallen zonder de vertrouwelijkheid of het comfort van patiënten langdurig te schaden.
+
+\subsubsection{Selectie en configuratie van de RTSP-camera voor de nulmeting}
+Voor de uitvoering van de nulmeting met Google Vertex AI Occupancy Analytics wordt een RTSP-compatibele IP-camera geselecteerd om de bezetting van de wachtruimte in realtime te monitoren. De camerabeeld zal vervolgens worden gekoppeld aan de Google Vertex AI Occupancy Analytics via een RTSP-stream. \\
+
+De keuze van een RTSP-camera komt door het feit dat deze instaat is om live te streamen naar een server, applicatie of AI-dienst zoals Google Vertex AI Vision. Hierdoor kan er real-time bezettingsgraad analyseren zonder beelden op te slaan. \\
+
+\textbf{Selectiecriteria voor de camera}
+\begin{itemize}
+    \item Ondersteuning voor RTSP
+    \item Minimale resolutie van 720p
+    \item Groothoeklens voor maximale dekking
+    \item Geen lokale opslag vereist
+    \item Geen montage met schroeven vereist
+\end{itemize}
+
+\textbf{Vergelijking camera's} \\
+Volgens de selectie criteria wordt er een keuze gemaakt uit de volgende camera's, deze werden gekozen op basis van de prijs en voor- en nadelen.
+\begin{table}[h!]
+    \centering
+    \caption{RTSP-camera's}
+    \begin{tabular}{|p{3.5cm}|p{1.8cm}|p{6cm}|p{3cm}|}
+        \hline
+        \textbf{Camera} & \textbf{Prijs (€)} & \textbf{Voordelen} & \textbf{Nadelen} \\
+        \hline
+        Reolink E1 Zoom & ± €60 & Ondersteunt RTSP; 2K resolutie; Draaibaar via app; Staat stabiel op vlak oppervlak; Wi-Fi verbinding & Geen PoE-ondersteuning \\
+        \hline
+        TP-Link Tapo C210 & ± €40 & 2K resolutie; RTSP in te schakelen via instellingen; Compact en vrijstaand; Draaibaar via app & RTSP vereist manuele activatie \\
+        \hline
+        Amcrest IP2M-841 & ± €70 & Native RTSP en ONVIF; Geschikt voor AI-analyse; Tafelmodel, geen montage nodig & Groter formaat \\
+        \hline
+        Wyze Cam v3 & ± €35 & Budgetvriendelijk; Compact en eenvoudig te plaatsen; RTSP beschikbaar via alternatieve firmware & RTSP niet standaard; Vereist aparte firmware-installatie \\
+        \hline
+    \end{tabular}
+    \label{tab:rtsp-cams}
+\end{table}
+
+
+\textbf{Geselecteerde camera voor nulmeting} \\
+Volgens de vergelijking is de \textit{Reolink E1 Zoom} de beste keuze omdat hij RTSP ondersteunt, zonder boorwerk geïnstalleerd kan worden, een hoge beeldkwaliteit biedt en vlot integreert met Google Vertex AI Occupancy Analytics.
+
+\subsubsection{Vision-gebaseerde nulmeting via Vertex AI en Reolink E1 Zoom}
+Zoals eerder besproken was de nulmeting de eerste stap van de proof-of-concept. Deze werd uitgevoerd om een objectieve referentie te verkrijgen van de actuele bezettingsgraad in de wachtruimte. De nulmeting gebeurde via een vision-gebaseerde aanpak, waarbij gebruik werd gemaakt van de Reolink E1 Zoom-camera in combinatie met Google Vertex AI Vision. \\
+
+De camera werd strategisch geplaatst zodat de volledige zicht op de wachtruimte gegarandeerd was, zonder dat een  montage nodig was. Dankzij ondersteuning voor RTSP-streaming kon het videobeeld in real-time doorgestuurd worden naar de cloudomgeving van Google Vertex AI Vision, waar de bezettingsanalyse plaatsvond. \\
+
+Google Vertex AI Vision maakte gebruik van een AI-gebaseerde model om personen te detecteren en te tellen binnen een bepaalde zone. De verwerking gebeurt volledig in de cloud. \\
+
+De Reolink E1 Zoom-camera werd zonder vaste montage geplaatst op een kast in de hoek van de wachtruimte. Dankzij de draaibare lens kon de volledige ruimte in beeld worden gebracht, zoals te zien is in onderstaande foto’s.
+
+\begin{figure}[h!]
+    \centering
+    % Eerste rij met twee afbeeldingen
+    \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{img/bp/vertex/camera-pic2.jpg}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{img/bp/vertex/camera-pic1.jpg}
+    \end{minipage}
+    
+    \vspace{0.5em} % ruimte tussen rijen
+    
+    % Tweede rij met één afbeelding
+    \begin{minipage}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/bp/vertex/camera_image_waitingroom_blurred.png}
+    \end{minipage}
+    
+    \caption{Voorbeeldbeelden van de camera-interface (met blur zelf toegevoegd)}
+    \label{fig:wgc-vertex-camera}
+\end{figure}
+
+
+\subsubsection{Integratie met Google Vertex AI Vision}
+De configuratie van Vertex AI Occupancy Analytics werd uitgevoerd via de webconsole van Google Cloud Platform. Deze dienst analyseert automatisch RTSP-streams van beveiligingscamera’s met behulp van een vooraf getraind AI-model voor bezettingsdetectie.
+
+De officiële setupgids van Google \autocite{Cloud} werd gevolgd om:
+\begin{itemize}
+    \item Een BigQuery-dataset en -tabel aanmaken;
+    \item Een Occupancy Analytics-app opzetten;
+    \item De RTSP-stream van de Reolink E1 Zoom koppelen;
+    \item De output automatisch doorsturen naar BigQuery.
+\end{itemize}
+
+Deze stappen vormden de basis voor een consistente nulmeting. De verdere verfijning van de detectie gebeurde via een eigen aanvulling.
+
+\begin{figure}[H] 
+    \centering
+    \includegraphics[width=\linewidth]{img/bp/vertex/vertex-flowchart.png}
+    \caption{Overzicht van de gegevensstroom tijdens de nulmeting met Vertex AI \autocite{Cloud2025}}
+    \label{fig:flowchart}
+\end{figure}
+
+\begin{figure}[H] 
+    \centering
+    \includegraphics[width=16cm]{img/bp/vertex/combined_images.png}
+    \caption{Configuratie en liveweergave van Google Vertex AI Occupancy Analytics}
+    \label{fig:app}
+\end{figure}
+
+\subsubsection{Problemen en oplossingen tijdens configuratie}
+Tijdens de testfase werd vastgesteld dat dezelfde persoon meerdere keren per seconde werd gedetecteerd. Dit leidde tot dubbeltellingen. De trackId-parameter bleek niet bruikbaar door het feit dat deze constant op 0 stond. Er was bovendien een gebrek aan documentatie over het gebruik van trackId waardoor dit niet bruikbaar was. Om dit te compenseren, werd het volgende toegepast:
+\begin{itemize}
+    \item Een actieve zone afgebakend binnen de interface van Vertex AI;
+    \item In de analyse werd per minuut enkel het maximumaantal personen behouden binnen de zone.
+\end{itemize}    
+
+Deze correcties verminderden de foutmarge en zorgden voor betrouwbaardere en reproduceerbare data.
+
+\begin{figure}[H] 
+    \centering
+    \includegraphics[width=10cm]{img/bp/vertex/active-zone (1).png}
+    \caption{Afgebakende actieve zone in Google Vertex AI Occupancy Analytics (blauw kader)}
+    \label{fig:active-zone}
+\end{figure}
+       
+
+%\begin{figure}[h!]
+    % Bovenste rij met drie foto's
+   % \rotatebox{270}{%
+%        \includegraphics[width=0.5\textwidth]{img/bp/vertex/active-zone.png}
+   % }
+   % \hspace{0.01\textwidth}
+    %\rotatebox{270}{%
+      %\includegraphics[width=0.5\textwidth]{img/bp/vertex/bq-stream.png}
+   % }
+   % \hspace{0.01\textwidth}
+   % \rotatebox{270}{%
+        %\includegraphics[width=0.8\textwidth]{img/bp/vertex/bq-stream.png}
+    %}
+    
+    %\vspace{0.5em} % verticale ruimte tussen bovenste en onderste rij
+    
+    % Onderste foto
+    %\rotatebox{0}{%
+     %   \includegraphics[width=1.2\textwidth]{img/bp/vertex/trackid.png}
+    %}
+    %\rotatebox{0}{%
+    %    \includegraphics[width=0.46\textwidth]{img/bp/wachtruimtes/wachtruimte3.jpg}
+    %}
+    %\caption{Optioneel bijschrift}
+ %   \label{fig:wgc-vertex}
+%\end{figure}
+
+\subsubsection{Verwerking van bezettingsdata via BigQuery}
+De door Vertex AI Vision gegenereerde bezettingsdata werd automatisch opgeslagen in een Google BigQuery-dataset. Elke gedetecteerde persoon binnen de actieve zone (“wgc”) werd geregistreerd met een timestamp op minutenniveau. Het gemiddelde aantal gedetecteerde personen per minuut (avg\_people) wordt berekend om tijdelijke fluctuaties te verzachten en een stabielere bezettingsindicatie te verkrijgen.  Zie \ref{lst:tellingen} \ref{lst:people_hourly} voor het codefragment.
+
+\subsubsection{Validatie van de nulmeting}
+Om de nauwkeurigheid van de metingen te controleren, werd op tien willekeurige tijdstippen manuele tellingen uitgevoerd tijdens één dag. \\
+
+De afwijkingen tussen de AI-metingen en manuele tellingen werden vergeleken op basis van absolute verschillen. Deze benadering is voldoende voor de nulmeting, omdat het doel is om na te gaan of de AI-metingen overeenkomen met de manuele referentie. \\
+
+Op basis van de vergelijking bedraagt de gemiddelde afwijking ongeveer één tot twee personen, wat binnen dit onderzoek aanvaardbaar wordt beschouwd. Omdat de bezetting in de wachtruimte meestal laag is kunnen zelfs grootte afwijkingen groot lijken. Daarom wordt de nulmeting vooral gebruikt als referentiepunt voor de verdere evaluatie van het IoT-systeem en de voorspellende modellen. 
+
+
+\begin{table}[H]
+    \caption{Vergelijking tussen AI-meting en manuele telling tijdens de nulmeting van 16-07}
+    \label{tab:validatie_ai_manueel}
+    \centering
+    \begin{tabular}{@{}lcccc@{}}
+        \toprule
+        \textbf{Tijdstip} & \textbf{Gemiddelde detectie (AI)} & \textbf{Afgerond (AI-meting)} & \textbf{Manueel} & \textbf{Verschil} \\
+        \midrule
+        08:15 & 2.706 & 3 & 2 & +1 \\
+        09:45 & 1.255 & 1 & 2 & -1 \\
+        10:15 & 2.378 & 2 & 4 & -2 \\
+        11:00 & 1.000 & 1 & 1 & 0 \\
+        12:15 & 6.292 & 6 & 3 & +3 \\
+        14:30 & 1.878 & 2 & 2 & 0 \\
+        15:15 & 1.925 & 2 & 3 & -1 \\
+        16:45 & 0.903 & 1 & 1 & 0 \\
+        17:30 & 0.000 & 0 & 0 & 0 \\
+        18:15 & 0.000 & 0 & 0 & 0 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+
+\subsubsection{Voorspellende analyse met ARIMA-PLUS}
+Voor de training van het ARIMA\_PLUS-model in BigQuery is gekozen om \texttt{avg\_people} niet af te ronden, zodat het model de nauwkeurigheid en fluctuaties in de data behoudt. ARIMA\_PLUS is een lineair tijdreeksmodel zonder ondergrens, waardoor voorspellingen soms negatief kunnen zijn. Omdat negatieve aantallen niet realistisch zijn, worden deze voorspelling op nul met gezet:
+
+\begin{verbatim}
+    GREATEST(forecast_value, 0) AS predicted_avg_people
+\end{verbatim}
+
+Dit zorgt voor betrouwbare en praktische voorspellingen van fysieke tellingen. \\ ARIMA\_PLUS werd gekozen door de eenvoud van implementatie, de geschiktheid voor univariate tijdreeksen, en direct in BigQuery geïntegreerd kan worden. Door deze keuze kon het model rechtstreeks op de  data toegepast worden, zonder het gebruik van externe tools of complexe machine learning frameworks. Zie Lijstingen \ref{lst:people_hourly}, \ref{lst:people_forecast_model} en \ref{lst:people_forecast_query} voor de codefragmenten.
+
+\subsubsection{Gebruik van MAPE voor het evalueren van ARIMA-PLUS}
+Voor de evaluatie van het ARIMA\_PLUS model is gekozen voor de Mean Absolute Percentage Error (MAPE). Deze maat drukt de gemiddelde fout uit in procenten, wat de interpretatie eenvoudig en transparant maakt. MAPE wordt ook breed toegepast in tijdreeksvoorspellingen.
+
+\subsubsection{Evaluatie van de nauwkeurigheid van het voorspellingsmodel (t.o.v. WGC-observaties)}
+Om de prestaties van het model te beoordelen werd de Mean Absolute Percentage Error (MAPE) berekend tussen de voorspelde waarden en de WGC-observaties. MAPE is een veelgebruikte foutmaat voor tijdreeksmodellen en kwantificeert de gemiddelde relatieve afwijking in procenten:
+
+\[
+\mathrm{MAPE} = \frac{100\%}{n} \sum_{i=1}^n \left| \frac{\hat{y}_i - y_i}{y_i} \right|
+\]
+
+waarbij $\hat{y}_i$ de voorspelde waarde en $y_i$ de geobserveerde waarde is. Tijdstippen met $y_i = 0$ zijn uitgesloten om deling door nul te vermijden. \\
+
+Voor de testperiode bedraagt de MAPE \textbf{67,81\%}, berekend over \textbf{84 overlappende minuten}. Dit betekent dat de voorspellingen gemiddeld meer dan twee derde afwijken van de werkelijk gemeten waarden maar moet genuanceerd worden: bij lage bezettingsgraden leiden zelfs kleine absolute verschillen al snel tot hoge procentuele fouten. De codefragment voor het berekenen van de MAPE: \ref{lst:people_forecast_mape_query} \\
+
+Daarnaast bevat het ARIMA\_PLUS-model negatieve voorspellingen (zie Tabel~\ref{tab:voorspellingen}), die in de context van een bezettingsgraad geen betekenis hebben. Deze artefacten versterken de foutscore en benadrukken de beperkingen van het model.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|p{5cm}|p{3cm}|p{3cm}|p{3cm}|}
+        \hline
+        \textbf{Datum \& Tijd (UTC)} & \textbf{Voorspelling} & \textbf{Ondergrens} & \textbf{Bovengrens} \\
+        \hline
+        2025-07-22 01:00:00 & -0.0349 & -0.2564 & 0.1865 \\
+        2025-07-22 06:00:00 &  0.1435 & -0.1882 & 0.4752 \\
+        2025-07-22 12:00:00 &  0.0433 & -0.3255 & 0.4121 \\
+        2025-07-22 19:00:00 &  0.0018 & -0.4061 & 0.4096 \\
+        2025-07-23 01:00:00 & -0.0291 & -0.4677 & 0.4095 \\
+        2025-07-23 07:00:00 &  0.2049 & -0.2624 & 0.6722 \\
+        2025-07-23 14:00:00 &  0.0423 & -0.4564 & 0.5410 \\
+        2025-07-24 05:00:00 &  0.0438 & -0.5164 & 0.6039 \\
+        2025-07-24 12:00:00 & -0.0191 & -0.6056 & 0.5675 \\
+        2025-07-24 17:00:00 &  0.0345 & -0.5702 & 0.6393 \\
+        \hline
+    \end{tabular}
+    \caption{Voorspellingen met betrouwbaarheidsintervallen}
+    \label{tab:voorspellingen}
+\end{table}
+
+%Door lineaire interpolatie van de uurbasis-forecast naar minuutniveau kon de voorspelling beter worden afgestemd op de gemeten IoT-data. Ondanks deze verfijning blijft de fout relatief groot, wat erop wijst dat het model de korte-termijnfluctuaties in de bezetting niet volledig kan opvangen.
+
+
+\subsubsection{Interpretatie van de resultaten} \TODO
+De voorspellingen tonen over vier dagen lage bezettingsgraad, zonder duidelijke pieken. De betrouwbaarheidsintervallen zijn vaak breed, vooral op 23 en 24 juli, wat wijst op grotere onzekerheid in het model tijdens die momenten. De hogere onzekerheid kan te maken hebben met de beperkte hoeveelheid historische gegevens en sterk fluctuerende bezoekerspatronen. \\
+
+De MAPE van 67,81\% lijkt hoog, maar wordt beïnvloed door de lage bezettingsgraad: kleine absolute afwijkingen (bv. 1–2 personen) leiden al snel tot hoge procentuele fouten. Bovendien is het model op uurbasis getraind en lineair geïnterpoleerd naar minuten, waardoor kortetermijnschommelingen niet accuraat worden weergegeven. Negatieve voorspellingen onderstrepen de beperkingen van het ARIMA\_PLUS-model. \\
+
+Ondanks deze tekortkomingen voorspelt het model wel een realistisch basispatroon van een rustige wachtruimte, in lijn met de nulmeting. Het model blijkt nuttig voor trendanalyse en capaciteitsplanning, maar minder geschikt voor nauwkeurige kortetermijnvoorspellingen. Voor verbetering is een model op minutendata of alternatieve foutmaten (MAE, RMSE) aan te bevelen.
+
+
+%Voor de volledige dataset wordt verwezen naar Bijlage~\ref{bijlage:wgc-data.csv}.
+
+
+%\subsubsection{Nulmeting als benchmark voor IoT-validatie}
+%De resultaten uit de nulmeting vormen een belangrijk referentiepunt voor de beoordeling van de nauwkeurigheid en betrouwbaarheid van het IoT-systeem. In het volgende onderdeel wordt dit systeem opgebouwd en gevalideerd aan de hand van deze referentiegegevens.
+
+
+%\subsubsection{Meervoudige telling voorkomen}
+%Occupancy Analytics is een model binnen Vertex AI is gericht op het detecteren en tellen van mensen. In de context van dubbeltellingen werd in deze model een extra intelligentie ingebouwd om te voorkomen dat dezelfde persoon meerdere keren geteld wordt wat cruciaal is voor nauwkeurige analyse, toch werd ervoor gekozen om per minuut het maximum aantal personen te behouden, in plaats van het aantal gedetecteerde frames. Zo werd voor de zekerheid vermeden dat dezelfde persoon meerdere keren per seconde zou worden meegeteld. 
+
+
+
+\subsection{Opbouw van het IoT-meetsysteem}
+Opstelling met een ESP32 (sensorcontroller) en een Raspberry~Pi (centrale eenheid) voor lokale opslag/verwerking. Sensorstrategie gericht op anonieme tellingen aan doorgangen, passend bij een kleinschalige wachtruimte:
+
+\begin{itemize}
+    \item Twee Adafruit IR Break Beam-sensoren aan weerszijden van de deur/doorgang (in/uitrichting).
+    \item ESP32 leest GPIO-onderbrekingen, verwerkt lokaal en stuurt data via Wi-Fi naar InfluxDB (Raspberry Pi).
+    \item Privacyvriendelijke opzet: enkel telwaarden, geen camerabeelden opgeslagen.
+\end{itemize}
+
+%In het Proof of Concept (PoC) wordt een eenvoudige IoT-architectuur gebruikt waarbij sensoren in real-time registreren hoeveel mensen aanwezig zijn. De metingen gebeuren volledig anoniem. De verzamelde gegevens worden automatisch doorgestuurd naar een timeseries-database voor opslag. \\
+
+%Het meetsysteem maakt gebruik van twee Adafruit IR Break Beam-sensoren, die aan weerszijden van de toegangsdeur tot de wachtruimte zijn geplaatst met niet-permanente bevestiging, zodat ze eenvoudig verwijderbaar zijn zonder schade aan de infrastructuur. De ene sensor registreert binnenkomende bewegingen, de andere uitgaande. Door het verschil tussen beide tellers wordt het actuele aantal aanwezige personen berekend. \\
+
+%De sensoren zijn verbonden met een ESP32-WROOM microcontroller. Deze leest de onderbrekingen via digitale GPIO-pinnen en verwerkt de gegevens lokaal. De ESP32 verstuurt de data via Wifi in real-time door naar een InfluxDB-database, die op een Raspberry Pi draait in het lokale netwerk. Deze opstelling vermijdt externe cloudafhankelijkheid en garandeert de privacy van de bezoekers, omdat enkel telwaarden worden opgeslagen. \\
+
+%Deze opstelling maakt het mogelijk om op eenvoudige en privacyvriendelijke wijze real-time het aantal aanwezigen in de wachtruimte te meten. Aangezien er geen beelden worden opgeslagen en enkel telgegevens worden verstuurd, blijft de impact op de privacy minimaal. \\
+
+
+%\begin{figure}[H] 
+%    \centering
+%    \includegraphics[width=\linewidth]{img/bp/iot-schema.png}
+%    \caption{Schematische voorstelling van het IoT-meetsysteem met IR-sensoren en lokale dataverwerking via InfluxDB}
+%    \label{fig:iot-flowchart}
+%\end{figure}
+
+
+\subsubsection{Motivering sensorkeuze}
+Bij het ontwerpen van het meetsysteem werd gekeken naar de mogelijkheid om ultrasone (HC-SR04) of passieve infrarood (HC-SR501) sensoren te combineren met de twee Adafruit IR Break Beam-sensoren. \\
+
+Uiteindelijk is ervoor gekozen alleen de break beam-sensoren te gebruiken, omdat de kleine wachtruimte, de aanwezigheid van kinderen en de groot aantal bekabeling het gebruik van extra sensoren minder praktisch en betrouwbaar maken. \\
 
 \subsection{Technische uitwerking}
-Het meetsysteem in deze Proof-of-Concept maakt gebruik van verschillende sensortechnologieën die anoniem de aanwezigheid en beweging van patiënten in de wachtruimte registreren. Sensoren worden ingezet om de bewegingen van personen binnen de ruimte te detecteren. Aan de ingangen en doorgangen worden sensoren geplaatst voor het nauwkeurig detecteren of iemand een ruimte binnenkomt of verlaat en in welke richting, wat essentieel is om dubbele tellingen te voorkomen. Daarnaast wordt een type sensoren gebruikt om afstanden tot personen te meten. Dit laat toe om ook personen te detecteren, ongeacht of ze staan of zitten, zelfs als zij weinig tot geen beweging vertonen. Door deze sensoren te combineren ontstaat een betrouwbaar beeld van de actuele bezetting, zonder gebruik te maken van camera’s of persoonsgegevens. Alle metingen gebeuren dus volledig privacyvriendelijk en in real-time, waardoor het systeem geschikt is voor toepassing zoals een wachtzaal van een mutualiteit zoals Solidaris.
+Het Proof-of-Concept meetsysteem gebruikt de infrarood break beam-sensoren om bewegingen in de wachtruimte te registreren. De sensoren werden aan beide zijden van de doorgang geplaatst om te bepalen of iemand binnenkomt of vertrekt, en in welke richting, wat dubbele of foutieve detecties voorkomt.\\
+
+Het systeem werkt volledig anoniem en real-time en real-time zonder gebruik van camera’s of andere persoonsherkenningstechnieken gebruikt. De volgende secties behandelen hardware, logica en dataverwerking in detail.
+
+\subsubsection{Hardwarecomponenten}
+\begin{itemize}
+    \textbf{ESP32-WROOM}: Wordt ingezet voor het uitlezen van de IR-sensoren en het versturen van bezettingsdata naar InfluxDB via Wi-Fi.   
+    \item \textbf{IR break beam sensoren (2x)}: Bestaan elk uit een infraroodzender en -ontvanger.
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=8cm]{img/bp/wachtruimtes/technische_uitwerking/componenten.png}
+    %\caption{Breadboardopstelling met ESP32 en Adafruit IR Break Beam sensoren (gemaakt in Fritzing)}
+    \label{fig:componenten}
+\end{figure}
+
+\subsubsection{Positionering van de sensoren in de meetomgeving}
+De IR break beam-sensoren zijn tegenover elkaar geplaatst in de deuropening, op ongeveer halve deurhoogte. De bovenste sensor is iets dieper in de doorgang geplaatst dan de onderste. Zo wordt bij binnenkomst eerst de bovenste sensor onderbroken, en bij het verlaten van de ruimte eerst de onderste. Dit laat toe om via volgorde van onderbrekingen de looprichting correct te bepalen. %De sensoren zijn bevestigd met elektrische tape, op een locatie zonder ramen of reflecterende oppervlakken om meetfouten te vermijden.
+
+\subsubsection{Detectielogica en tellingsmethode}
+De ESP32 registreert de onderbrekingen van de infraroodstralen via de digitale inputpinnen. Door de volgorde van de onderbrekingen te analyseren kan worden afgeleid of iemand \textit{binnenkomt} of \textit{buiten gaat}.
+
+\begin{itemize}
+    \item Volgorde \texttt{Sensor In} gevolgd door \texttt{Sensor Out} binnen een tijdsinterval van 3 seconden $\Rightarrow$ \textbf{toename} (\texttt{+1}) van het aantal aanwezigen (\texttt{peopleCount}).
+    \item Volgorde \texttt{Sensor Out} gevolgd door \texttt{Sensor In} binnen 3 seconden $\Rightarrow$ \textbf{afname} (\texttt{-1}) van het aantal aanwezigen (\texttt{peopleCount}).
+\end{itemize}
+
+Om storingen en herhaalde detecties te voorkomen, wordt \textbf{debouncing} toegepast met een minimale stabilisatietijd van 30 milliseconden tussen opeenvolgende detecties. De telling wordt lokaal bijgehouden in de variabele \texttt{peopleCount}, die initieel op nul staat.
+
+
+\subsubsection{Datadoorstroming}
+De sensoren zijn aangesloten op digitale inputpinnen (GPIO 25 en 14), gekozen omdat deze geschikt zijn voor input met interne pull-up weerstanden. Elke sensor wordt meerdere keren per seconde gecontroleerd; een detectie wordt alleen geregistreerd als het signaal minstens 30 ms stabiel LOW blijft (debouncing). \\
+
+Er wordt gebruik gemaakt van een \texttt{finite state machine} met drie toestanden: \texttt{IDLE}, \texttt{SENSOR\_IN\_TRIGGERED} en \texttt{SENSOR\_OUT\_TRIGGERED}. Wanneer beide sensoren binnen een korte tijd na elkaar worden geactiveerd, wordt aan de hand van de volgorde bepaald of een persoon de ruimte betreedt of verlaat.  \\
+
+Elke 60 seconden worden drie waarden doorgestuurd naar de InfluxDB-database:
+\begin{itemize}
+    \item \texttt{count}: het huidige aantal aanwezigen in de ruimte.
+    \item \texttt{entered}: aantal personen dat de ruimte betrad in de afgelopen minuut.
+    \item \texttt{exited}: aantal personen dat de ruimte verliet in de afgelopen minuut.
+\end{itemize}
+
+De gegevens worden verzonden via HTTP naar een lokale InfluxDB v2-server op de Raspberry Pi. Indien de verbinding tijdelijk onderbroken is, wordt de transmissie niet uitgevoerd tot de Wi-Fi-verbinding is hersteld. Dit maakt het systeem robuust en betrouwbaar voor continue monitoring.
+ 
+\subsubsection{Arduino-code: ESP32 met IR-sensoren en InfluxDB-integratie} 
+De code werd geschreven via de Arduino IDE voor de ESP32-microcontroller. Deze implementeert de detectielogica voor het tellen van personen. Elke minuut worden de tellingen verzonden naar de InfluxDB-server, zodat de bezettingsgraad en bezoekersstromen in real-time kunnen worden bijgehouden. Zie \ref{lst:esp32_setup},  \ref{lst:esp32_loop}, \ref{lst:esp32_utils} voor het codefragment.
+
+\subsection{Verbindingen en opstelling van de sensoren op de borden}
+De IR break beam-sensoren zijn aangesloten op de ESP32 via GPIO-pinnen op een MB-102 breadboard. De sensorcontroller verwerkt de signalen en stuurt de gegevens draadloos via Wi-Fi naar de centrale eenheid.
+
+\subsubsection{Voedingsconfiguratie}
+De voedingslijnen van het breadboard werden als volgt aangesloten:
+\begin{itemize}
+    \item Een \texttt{jumpwire} van de \texttt{5V}-pin van de ESP32 naar de rode (\texttt{+}) rail aan de zijkant van het breadboard.
+    \item Een \texttt{jumpwire} van de \texttt{GND}-pin van de ESP32 naar de blauwe (\texttt{-}) rail.
+\end{itemize}
+
+Hierdoor kunnen de IR break beam sensoren eenvoudig gevoed worden via de zijrails van het breadboard, zonder telkens een directe verbinding met de ESP32 te moeten maken.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{img/bp/wachtruimtes/technische_uitwerking/voeding_configuratie.png}
+    %\caption{Breadboardopstelling met ESP32 en Adafruit IR Break Beam sensoren (gemaakt in Fritzing)}
+    \label{fig:voedingconfiguratie}
+\end{figure}
+
+\subsubsection{Sensorverbindingen}
+Beide IR break beam sensoren bestaan uit een zender en een ontvanger. Enkel de \textbf{ontvanger} wordt direct verbonden met de ESP32, aangezien de zender continu IR-licht uitzendt wanneer hij aangesloten is op de voeding. \\
+
+Elke ontvanger heeft drie pinnen: \texttt{VCC}, \texttt{GND} en \texttt{OUT}. De verbindingen verlopen als volgt:
+
+\begin{itemize}
+    \item \texttt{VCC} wordt verbonden met de rode voedingsrail (\texttt{+5V}).
+    \item \texttt{GND} wordt verbonden met de blauwe rail (\texttt{GND}).
+    \item \texttt{OUT} van sensor \textbf{A} wordt verbonden met GPIO \textbf{14} van de ESP32.
+    \item \texttt{OUT} van sensor \textbf{B} wordt verbonden met GPIO \textbf{25} van de ESP32.
+\end{itemize}
+
+De inputpinnen van de ESP32 zijn geconfigureerd als \texttt{INPUT\_PULLUP} in de firmware, zodat de sensorsignalen correct gedetecteerd worden wanneer de infraroodstraal wordt onderbroken.
+
+\subsubsection{Breadboardopstelling}
+Fritzing-weergave van de ESP32-WROOM op een breadboard met aangesloten Adafruit IR Break Beam sensoren. Voedings- en signaallijnen zijn kleurgecodeerd voor duidelijkheid.
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{img/bp/wachtruimtes/technische_uitwerking/fritzing.png}
+    \caption{Breadboardopstelling met ESP32 en Adafruit IR Break Beam sensoren (gemaakt in Fritzing)}
+    \label{fig:breadboard}
+\end{figure}
+
+\subsubsection{Schakelschema}
+Logische weergave van de elektrische verbindingen tussen de ESP32 en de Adafruit IR Break Beam sensoren.
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{img/bp/wachtruimtes/technische_uitwerking/schakelschema.png}
+    \caption{Breadboardopstelling met ESP32 en Adafruit IR Break Beam sensoren (gemaakt in Fritzing)}
+    \label{fig:schakelschema}
+\end{figure}
+
+%\subsubsection{Opstelling in de fysieke ruimte}
+%De breadboardopstelling wordt gevoed via USB. De IR-sensoren zijn op korte afstand van de ESP32 geplaatst, aan weerszijden van een doorgang in de wachtruimte. Sensor A detecteert binnenkomende personen; sensor B detecteert personen die de ruimte verlaten. De hoogte van plaatsing bedraagt ongeveer 110 cm (helft van de deur), zodat onderbrekingen van de IR-stralen door menselijke bewegingen nauwkeurig worden geregistreerd.
+
+\subsubsection{Overzicht}
+Deze opstelling laat toe om op een robuuste en flexibele manier het systeem op te bouwen en te testen. Indien gewenst kan de breadboardconfiguratie later worden overgezet naar een permanente soldeerplaat of printplaat (\textit{PCB}) voor duurzame implementatie.
 
 \subsection{Little's Law-formule}
-Little's Law is één van de meest gebruikte wet bij het bestuderen en optimaliseren van wachttijden.
+
+Little’s Law is een fundamentele formule binnen de wachtrijtheorie en stelt dat:
 
 \[
 L = \lambda W
 \]
 
-Uitleg:
+waarbij:
 \begin{itemize}
-    \item \( L \) Is de gemiddelde aantal personen in het systeem.
-    \item \( \lambda \) is de aankomstsnelheid (het gemiddelde aantal personen dat per tijdseenheid aankomt).
-    \item \( W \) is de gemiddelde tijd die een item in het systeem doorbrengt.
+    \item \( L \): het gemiddelde aantal personen in het systeem (bezettingsgraad),
+    \item \( \lambda \): de gemiddelde aankomstsnelheid (personen per tijdseenheid),
+    \item \( W \): de gemiddelde tijd die een persoon in het systeem doorbrengt.
 \end{itemize}
 
+In dit onderzoek wordt Little’s Law gebruikt als theoretisch kader om het belang van bezettingsdata te onderbouwen. De nadruk ligt op het accuraat meten van \( L \) via IoT-sensoren. Aangezien \( \lambda \) en \( W \) binnen de korte meetperiode niet betrouwbaar kunnen worden vastgesteld, wordt er geen exacte berekening van wachttijd uitgevoerd. In plaats daarvan focust de proof-of-concept zich op de validatie van de bezettingsgraad \( L \), als eerste stap naar datagedreven bezoekersanalyse en eventuele latere voorspellingen.
+
+\subsection{Testomgeving en uitvoering}
+Om de werking van het IoT-gebaseerde meetsysteem te evalueren, werden de testen uitgevoerd in twee verschillende omgevingen: eerst in een gecontroleerde omgeving en vervolgens in de doelomgeving bij WGC De Vlier.
+
+\subsubsection{Gecontroleerde omgeving}
+De tests werden in een gecontroleerde omgeving uitgevoerd om de basisfunctionaliteit van de sensoren te testen, de dataverwerking en de verbinding met InfluxDB te verifiëren. Deze testomgeving bood de mogelijkheid om snel de nodige aanpassingen te brengen aan de code of het herpositioneren van de sensoren. Tijdens deze fase werden ook de logica voor in- en uitgaande detecties getest.
+
+\subsubsection{Test van sensordetectie door onderbreking}
+Om de correcte werking van de sensoren te verifiëren, werd de \textit{IR Break Beam}-sensor op een gecontroleerde manier getest door de lichtstraal meerdere keren te onderbreken.
+
+\paragraph{Testopstelling}
+De zender en ontvanger van de \textit{IR Break Beam}-sensor werden direct tegenover elkaar gemonteerd, op de rand van de deur, overeenkomstig de verwachte positie in de uiteindelijke installatie. De sensor was via een ESP32 verbonden met InfluxDB, zodat elke detectie direct werd geregistreerd.
+
+\paragraph{Testprocedure}
+Een reeks van 20 onderbrekingen werd uitgevoerd met verschillende objecten (hand, boek) en op verschillende snelheden (langzaam, gemiddeld, snel). Tussen de onderbrekingen werd telkens een periode van 10 seconden gewacht om te controleren op eventuele vals-positieve detecties.
+
+\paragraph{Meetcriteria}
+\begin{itemize}
+    \item Detectietijd tussen onderbreking en registratie in InfluxDB.
+    \item Consistentie van detectie bij herhaalde onderbrekingen.
+    \item Afwezigheid van vals-positieve detecties.
+\end{itemize}
+
+\paragraph{Resultaten}
+De \textit{IR Break Beam}-sensor registreerde alle 20 onderbrekingen correct en zonder vertraging. Er werden geen foutieve detecties waargenomen in perioden zonder onderbreking.
+
+\paragraph{Conclusie}
+De test bevestigt dat de \textit{IR Break Beam}-sensor correct functioneert en geschikt is voor nauwkeurige detectie van doorgangen in de context van dit onderzoek.
+
+\subsubsection{Uitvoering bij WGC De Vlier}
+Na de gecontroleerde testen werd het meetsysteem geïnstalleerd in de doelomgeving, namelijk de wachtruimte van WGC De Vlier. De sensoren werden geplaatst aan de inkomdeur van de wachtruimte zodat zowel inkomende als uitgaande bewegingen geregistreerd werden. \\
+
+De werking van het systeem was analoog aan de gecontroleerde omgeving: elke detectie werd in real-time doorgestuurd naar InfluxDB. Het verschil met de testfase lag voornamelijk in de variabele omstandigheden (wisselend bezoekersaantal, lichtinval en bewegingen), die een realistischer beeld boden van de prestaties van het systeem.
+
+
+\subsubsection{Resultaten van de validatie}
+Tijdens de meetperiode bleek slechts één dag meetresultaten op te leveren die overeenkomen met de werkelijkheid. Op deze dag registreerde het systeem realistische tellingen, terwijl de overige dagen hoofdzakelijk nulwaarden of onrealistische sprongen bevatten. \\
+
+Deze afwijkingen zijn waarschijnlijk het gevolg van externe invloeden zoals direct zonlicht op de IR-break beam sensoren, waardoor detecties werden verstoord, of een instabiele wifi-verbinding die datatransmissie naar de database onderbrak. Ook interne factoren, zoals een onjuiste sensorconfiguratie of fouten in de programmatische afhandeling op de ESP32, kunnen hebben bijgedragen. \\
+
+Ondanks deze beperkingen toont de coherente meetdag aan dat het systeem technisch in staat is om veranderingen in de bezetting te detecteren, mits zowel hardware als omgevingscondities optimaal zijn en de netwerkverbinding stabiel is. Voor een robuuste implementatie zouden lichtafscherming van de sensoren, redundante communicatieprotocollen en automatische herkalibratie worden aanbevolen.
+
+\begin{table}[h!]
+    \caption{Momentopnames van bezetting en doorgangen gedurende de dag (09:00–19:00)}
+    \begin{tabular}{p{4cm}p{5cm}p{3cm}p{2cm}}
+        \toprule
+        \textbf{Tijdstip} & \textbf{Binnengelopen} & \textbf{Uitgelopen} & \textbf{Bezetting} \\
+        \midrule
+        09:05:00 & 1 & 0 & 1 \\
+        09:55:00 & 2 & 0 & 3 \\
+        10:45:00 & 1 & 1 & 3 \\
+        11:35:00 & 0 & 2 & 1 \\
+        12:25:00 & 3 & 0 & 4 \\
+        13:15:00 & 1 & 1 & 4 \\
+        14:05:00 & 2 & 0 & 6 \\
+        15:15:00 & 0 & 2 & 4 \\
+        16:45:00 & 1 & 0 & 5 \\
+        18:55:00 & 0 & 1 & 4 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+%Op basis van deze gegevens werd de \textit{Mean Absolute Percentage Error} (MAPE) berekend. De gemiddelde foutmarge kwam uit op \textbf{7{,}2\%}, wat onder de aanvaarde grens van 10\% valt voor bezettingsdetectie in real-time omgevingen.
+
+%Deze resultaten bevestigen dat het IoT-gebaseerde meetsysteem betrouwbare bezettingsdata genereert. Er was geen nood aan herkalibratie tijdens de testperiode.
+
 \subsection{Validatie van bezettingsmetingen}
-Vooraleer de verzamelde gegevens worden gebruikt voor verdere analyse, wordt gecontroleerd of het meetsysteem correcte en consistente resultaten oplevert. Dit gebeurt via steekproeven waarbij het aantal aanwezigen in de wachtruimte handmatig wordt geteld en vergeleken met de waarden die automatisch door het systeem zijn geregistreerd. Indien afwijkingen worden vastgesteld, wordt het systeem aangepast of opnieuw gekalibreerd. Deze validatie garandeert de betrouwbaarheid van de data voor latere vergelijking met de nulmeting.
+Vooraleer de verzamelde gegevens worden gebruikt voor verdere analyse, wordt gecontroleerd of het meetsysteem correcte en consistente resultaten oplevert. Initieel was het de bedoeling om deze validatie uit te voeren aan de hand van steekproeven, waarbij het aantal aanwezigen in de wachtruimte op verschillende tijdstippen handmatig zou worden geteld en vergeleken met de automatisch geregistreerde waarden door het IoT-systeem. Op basis van deze gegevens zou de \textit{Mean Absolute Percentage Error} (MAPE) berekend worden om de nauwkeurigheid van de metingen te kwantificeren. \\
+
+Door praktische beperkingen waaronder onvoorziene storingen tijdens de meetperiode kon deze aanpak slechts gedeeltelijk worden uitgevoerd. In plaats van een volledige week met steekproeven, werd de validatie beperkt tot een analyse van één representatieve dag met realistische sensorregistraties. \\
+
+Op deze dag werd nagegaan of de geregistreerde bezettingsveranderingen logisch en consistent waren in verhouding tot de gedetecteerde in- en uitloopbewegingen. Tijdens de validatie werden enkele potentiële oorzaken van afwijkingen geïdentificeerd, waaronder storingen door direct zonlicht op de infrarood break beam sensoren en zwakke netwerkverbindingen die datatransmissie beïnvloedden. \\
+
+Hoewel een kwantitatieve foutmaat zoals MAPE niet kon worden berekend door het ontbreken van handmatige referentiemetingen, biedt de analyse van deze meetdag wel inzicht in het functionele detectievermogen van het systeem.
 
 \subsection{Verwerking en vergelijking van gegevens}
-De resultaten van het IoT-gebaseerde wachttijdbeheersysteem worden vergeleken met de resultaten uit de nulmeting op basis van de bezettingsgraad. Deze vergelijking maakt het mogelijk om objectief te evalueren of het gebruik van IoT-technologie daadwerkelijk leidt tot een vermindering van wachttijden en een efficiënter bezoekersbeheer.
+Tijdens de proof-of-concept zijn de meetgegevens van het IoT-gebaseerde bezettingsmeetsysteem vergeleken met de nulmeting, uitgevoerd via Google Vertex AI Occupancy Analytics (WGC-data). Omdat de meetdagen in beide datasets niet exact samenvielen, is ervoor gekozen om de vergelijking te baseren op het \textbf{gemiddelde dagprofiel}: het gemiddelde aantal aanwezigen per minuut van de dag (op een dinsdag), onafhankelijk van de datum. \\
 
-%\subsection{Realtime feedback en optimalisatie}
-%Dankzij de real-time gegevens kan het systeem bijdragen aan wachttijdreductie door het bezoekerscomfort te verhogen, doordat bezoekers via een website kunnen zien wanneer het minder druk is en zo hun bezoek beter kunnen plannen. Daarnaast maakt het systeem druktevoorspelling mogelijk: naarmate er meer historische data beschikbaar is, kunnen verwachte drukke momenten steeds nauwkeuriger voorspeld worden.
+Deze aanpak maakt het mogelijk om trends en piekmomenten in beide meetmethoden te vergelijken, ook zonder dat er sprake is van een exacte datumoverlap. Hierdoor kunnen patronen worden herkend, zoals ochtend- of middagpieken, en kan worden vastgesteld waar afwijkingen optreden. \\
+
+Tabel~\ref{tab:dagprofiel} toont een fragment van de verwerkte dataset. Elke rij representeert één minuut van de dag, met het gemiddelde aantal personen volgens beide meetmethoden. Het data werd verkregen met het volgende code: \ref{lst:python-iot-wgc}
+
+\begin{table}[H]
+    \centering
+    \caption{Fragment van het gemiddelde dagprofiel (uurgemiddelden, IoT vs WGC, dinsdag)}
+    \label{tab:dagprofiel}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Tijd} & \textbf{IoT (gemiddeld aantal personen)} & \textbf{WGC (gemiddeld aantal personen)} \\
+        \hline
+        09:00 & 1 & 0.8 \\
+        10:00 & 3 & 2.4 \\
+        11:00 & 4 & 2.5 \\
+        12:00 & 2 & 1.9 \\
+        13:00 & 2 & 1.7 \\
+        14:00 & 3 & 2.2 \\
+        15:00 & 2 & 2.0 \\
+        16:00 & 3 & 2.6 \\
+        17:00 & 2 & 1.8 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Uit Tabel~\ref{tab:dagprofiel} blijkt dat beide meetmethoden gelijkaardige trends weergeven, maar er treden duidelijke verschillen op op specifieke momenten van de dag. Zo registreerde het IoT-systeem rond 11:00 uur gemiddeld 4 personen, terwijl WGC op hetzelfde tijdstip 2,5 personen rapporteerde. In de namiddag (bijvoorbeeld om 16:00 uur) liggen de waarden dichter bij elkaar, met respectievelijk 3 (IoT) en 2,6 (WGC). Deze voorbeelden illustreren dat de afwijkingen zich vooral voordoen tijdens piekmomenten. \\
+
+
+Eventuele verschillen tussen beide meetmethoden kunnen worden verklaard door:
+\begin{itemize}
+    \item \textbf{Technische beperkingen} van sensoren, zoals beperkte detectiehoek of ongevoeligheid voor stilzittende personen;
+    \item \textbf{Omgevingsfactoren}, bijvoorbeeld objecten die het zicht belemmeren of afwijkend gebruik van de wachtruimte.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/bp/Figure_1.png}
+    \caption{Vergelijking van gemiddelde dagprofielen: IoT vs WGC (dinsdag) code \ref{lst:python-iot-wgc-plot}}
+    \label{fig:dagprofiel}
+\end{figure}
+
+Om de mate van overeenkomst tussen beide meetmethoden kwantitatief te beoordelen, werd de correlatiecoëfficiënt berekend. Deze bedraagt 0,82, wat wijst op een sterke positieve samenhang tussen de IoT-metingen en de WGC-data. 
+Dit bevestigt dat de IoT-sensoren betrouwbaar trends detecteren, ondanks kleine afwijkingen in absolute waarden.
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{img/bp/Figure_2.png}
+    \caption{{Aanvullende visualisatie van het gemiddelde dagprofiel: IoT vs WGC (dinsdag) code \ref{lst:python-iot-wgc-plot}}}
+    \label{fig:verschil_metingen}
+\end{figure}
+
+Omdat het systeem zich in een testfase bevindt, ligt de nadruk op het identificeren van \textbf{sterktes en zwaktes} in de meetopzet in plaats van absolute nauwkeurigheid. De verkregen inzichten vormen de basis voor toekomstige optimalisaties van zowel de technologie als de analysemethode. \\
+
 
 \subsection{Voorspellende analyses}
-Op basis van de verzamelde historische gegevens wordt een voorspellend model ontwikkeld. Dit model kan trends en patronen in bezoekersgedrag identificeren, zoals typische piekmomenten per dag of week. Door deze voorspellingen kunnen bezoekers en personeel zich beter voorbereiden op verwachte drukte, wat de wachttijdreductie verder ondersteunt. 
+Het doel van voorspellende analyses binnen dit onderzoek is het identificeren van patronen in de bezetting, zoals piekmomenten per dag, zodat bezoekers en personeel zich beter kunnen voorbereiden op verwachte drukte. \\
+
+In de huidige proof-of-concept is dit echter niet haalbaar: er is slechts \textbf{één dag IoT-data} beschikbaar. Met zo'n beperkte dataset kunnen er geen robuuste modellen worden ontwikkeld, aangezien er geen herhaling van patronen kan worden vastgesteld. Een voorspellend model vereist doorgaans meerdere weken aan consistente data, zodat bijvoorbeeld verschillen tussen weekdagen en weekenddagen zichtbaar worden. \\ 
+
+%Om deze reden wordt in dit stadium geen regressie- of machine learning model toegepast. Wel kan worden geïllustreerd \textit{hoe} voorspellende analyses in een toekomstige opschaling zouden verlopen:
+%\begin{itemize}
+%    \item Bij een meetperiode van meerdere weken kan een \textbf{lineair regressiemodel} op uurgemiddelden een eerste stap zijn, waarmee trends zoals toenemende drukte in de voormiddag worden voorspeld.
+%    \item Bij verdere opschaling, met langere en complexere datasets, kunnen \textbf{tijdreeksmodellen} zoals ARIMA of \textbf{neurale netwerken} zoals LSTM worden ingezet om seizoensgebonden patronen en niet-lineaire relaties te modelleren.
+%    \item De combinatie van IoT-data met bestaande tools zoals Google Occupancy Analytics kan de nauwkeurigheid van de voorspellingen versterken.
+%\end{itemize}
+
+%Hoewel de huidige dataset onvoldoende is voor een voorspellende analyse, biedt dit onderdeel een duidelijk perspectief voor vervolgonderzoek en de potentiële meerwaarde van de voorgestelde aanpak.
 
 \subsection{Hoe IoT concreet bijdraagt aan wachttijdreductie}
-De verzamelde gegevens maken real-time optimalisatie mogelijk doordat het systeem drukke momenten kan voorspellen en zo bijdraagt aan beter personeelsbeheer. Bovendien draagt het systeem bij aan een efficiënter bezoekersbeheer, waardoor de wachttijden beter te voorspellen zijn en bezoekers hun tijd optimaler kunnen benutten.
+De meerwaarde van het systeem wordt groter bij langdurige metingen, zeker in een sector zoals de gezondheidszorg waar seizoenseffecten (bv. griepepidemieën, vakantieperiodes) zorgen voor grote schommelingen in bezetting. Daarom wordt aanbevolen om, na deze eerste PoC-fase, het systeem verder uit te rollen en langere tijdsreeksen te verzamelen. Hierdoor kunnen voorspellende modellen robuuster worden en bijdragen aan o.a. triageplanning, agendabeheer en capaciteitsanalyse.
+
+\subsection{Resultaten}
+De resultaten worden als een succes beschouwd wanneer de juiste apparaten zijn geselecteerd, correct zijn geïntegreerd in het systeem, en de verzamelde gegevens consistent en betrouwbaar zijn. Het succes wordt verder bepaald door hoe goed de gegevens van de IoT-sensoren kunnen worden vergeleken met de resultaten van de bestaande tool (Google Vertex AI Occupancy Analytics). Daarnaast moet het systeem aantoonbaar nauwkeurige metingen bieden, die valide zijn bij het vergelijken van de bezettingsgraad en wachttijden. \\
+
+De proof-of-concept leverde gemengde resultaten op. Enerzijds toonde het IoT-systeem aan dat de geselecteerde componenten (ESP32 in combinatie met IR Break Beam sensoren) technisch geïntegreerd konden worden en in staat waren bezettingsveranderingen in de wachtruimte te registreren. Tijdens de functionele tests werden doorgangen correct gedetecteerd, en op een consistente meetdag kon het IoT-systeem betrouwbare tellingen opleveren die de algemene bezettingstrends van de wachtruimte volgden. Dit bevestigt dat IoT-technologie in principe geschikt is om real-time bezettingsinformatie te verzamelen. \\
+
+Anderzijds bleek de robuustheid van het systeem beperkt. Tijdens meerdere meetdagen leverde de opstelling hoofdzakelijk nulwaarden of inconsistente sprongen op. Waarschijnlijke oorzaken waren storingen door omgevingsfactoren (zoals direct zonlicht op de sensoren), instabiele netwerkverbindingen en de nog beperkte foutafhandeling in de software. Hierdoor kon slechts een beperkte dataset gebruikt worden voor vergelijking met Google Vertex AI Occupancy Analytics. Waar een kwalitatieve vergelijking op basis van dagprofielen wel gelijkaardige trends liet zien, ontbreekt een sluitende kwantitatieve validatie. \\
+
+Op basis van deze bevindingen kan geconcludeerd worden dat het onderzoek slechts gedeeltelijk een succes is. De proof-of-concept toont de technische haalbaarheid en het potentieel van IoT voor bezettingsdetectie in wachtruimtes, maar de betrouwbaarheid van de metingen is nog onvoldoende om van een volwaardig alternatief voor bestaande oplossingen te spreken. Voor een definitieve validatie zijn langere meetcampagnes, verbeterde sensorconfiguraties en aanvullende foutreductiemechanismen noodzakelijk. \\
+
+Samengevat heeft dit onderzoek aangetoond dat IoT een veelbelovende en privacyvriendelijke basis kan bieden voor real-time monitoring van wachtruimtebezetting. Het resultaat is dus positief in termen van haalbaarheid, maar nog beperkt in termen van betrouwbaarheid en praktische inzetbaarheid. \\
+
 
 
 %Iedere patiënt krijgt een triage niveau, dit zorgt ervoor dat patiënten met kritische triage niveau prioriteit krijgen.
@@ -617,13 +1155,77 @@ De verzamelde gegevens maken real-time optimalisatie mogelijk doordat het systee
 
 % Na de PoC wordt er een evaluatie uitgevoerd om de effectiviteit van de PoC vast te stellen. De evaluatie zal beginnen met het vaststellen van een baseline van de huidige gemiddelde wachttijden. Dit wordt gedaan door het raadplegen van het personeel of beschikbare documentatie, indien aanwezig. Als deze gegevens niet beschikbaar zijn, zal er een nulmeting uitgevoerd worden op een dag met een gemiddeld of hoog patiëntenaantal. Tijdens deze nulmeting worden de tijdstippen van binnenkomst en oproep van elke patiënt handmatig of automatisch geregistreerd om de totale wachttijd nauwkeurig te bepalen. Na implementatie van de PoC worden dezelfde meetmethoden toegepast over een vergelijkbare periode om de impact van het systeem te meten. De resultaten van beide metingen worden vergeleken om vast te stellen of de PoC een vermindering van de gemiddelde wachttijden heeft opgeleverd. Hierbij wordt rekening gehouden met eventuele variabelen die de wachttijd kunnen beïnvloeden, zoals piekmomenten en personeelsbezetting.
 
-
-\section{Resultaten}
-De resultaten worden als een succes beschouwd wanneer de juiste apparaten zijn geselecteerd, correct zijn geïntegreerd in het systeem, en de verzamelde gegevens consistent en betrouwbaar zijn. Het succes wordt verder bepaald door hoe goed de gegevens van de IoT-sensoren kunnen worden vergeleken met de resultaten van de bestaande tool (zoals de Google Occupancy Rate API en OpenCV). Daarnaast moet het systeem aantoonbaar nauwkeurige metingen bieden, die valide zijn bij het vergelijken van de bezettingsgraad en wachttijden, zodat de effectiviteit van het systeem in het verminderen van wachttijden kan worden beoordeeld.
-
 %\begin{figure}[h]
 %    \centering
 %    \subsubsection*{Milestone} % Place the subsection above the figure
 %    \includegraphics[width=0.92\linewidth]{img/milestone-4.png}
 %    \label{fig:Figuur8}
 %\end{figure}
+
+
+\appendix
+\section*{Bijlage B: Fotodocumentatie van de meetomgeving}
+\addcontentsline{toc}{section}{Bijlage B: Fotodocumentatie van de meetomgeving}
+
+Hieronder volgt een visueel overzicht van de meetlocatie.
+\begin{figure}[h!]
+    % Bovenste rij met drie foto's
+    \rotatebox{270}{%
+        \includegraphics[width=0.4\textwidth]{img/bp/wachtruimtes/ingang.jpg}
+    }
+    \hspace{0.01\textwidth}
+    \rotatebox{270}{%
+        \includegraphics[width=0.4\textwidth]{img/bp/wachtruimtes/wachtruimte.jpg}
+    }
+    \hspace{0.01\textwidth}
+    \rotatebox{270}{%
+        \includegraphics[width=0.4\textwidth]{img/bp/wachtruimtes/wachtruimte2.jpg}
+    }
+    
+    \vspace{0.5em} % verticale ruimte tussen bovenste en onderste rij
+    
+    % Onderste foto
+    \rotatebox{0}{%
+        \includegraphics[width=0.46\textwidth]{img/bp/wachtruimtes/wachtruimte1.jpg}
+    }
+    \rotatebox{0}{%
+        \includegraphics[width=0.46\textwidth]{img/bp/wachtruimtes/wachtruimte3.jpg}
+    }
+    %\caption{Optioneel bijschrift}
+    \label{fig:vier_fotos}
+\end{figure}
+
+
+\appendix
+\section*{Bijlage C: Fotodocumentatie van de IoT-opstelling}
+\addcontentsline{toc}{section}{Bijlage C: Fotodocumentatie van de IoT-opstelling}
+
+Hieronder volgt een visueel overzicht van de opstelling van het meetsysteem.
+
+\begin{figure}[h!]
+    % Bovenste rij met drie foto's naast elkaar
+    \rotatebox{0}{%
+        \includegraphics[width=0.5\textwidth]{img/bp/wachtruimtes/technische_uitwerking/door.jpg}
+    }
+    \hspace{0.01\textwidth}
+    \rotatebox{0}{%
+        \includegraphics[width=0.5\textwidth]{img/bp/wachtruimtes/technische_uitwerking/emitters.jpg}
+    }
+    \hspace{0.01\textwidth}
+    \rotatebox{0}{%
+        \includegraphics[width=0.5\textwidth]{img/bp/wachtruimtes/technische_uitwerking/receivers.jpg}
+    }
+    
+    % Eventueel extra verticale ruimte:
+    % \vspace{0.5em}
+    
+    % Extra rijen kun je hier toevoegen als er nog meer foto's komen
+    % zelfde structuur met \rotatebox en \includegraphics
+    
+    %\caption{Opstelling van het IoT-meetsysteem}
+    \label{fig:foto_iot}
+\end{figure}
+
+
+
+% Voeg hier andere foto's toe zoals hierboven

@@ -1,0 +1,17 @@
+
+@Article{math9172146,
+AUTHOR = {Zymbler, Mikhail and Ivanova, Elena},
+TITLE = {Matrix Profile-Based Approach to Industrial Sensor Data Analysis Inside RDBMS},
+JOURNAL = {Mathematics},
+VOLUME = {9},
+YEAR = {2021},
+NUMBER = {17},
+ARTICLE-NUMBER = {2146},
+URL = {https://www.mdpi.com/2227-7390/9/17/2146},
+ISSN = {2227-7390},
+ABSTRACT = {Currently, big sensor data arise in a wide spectrum of Industry 4.0, Internet of Things, and Smart City applications. In such subject domains, sensors tend to have a high frequency and produce massive time series in a relatively short time interval. The data collected from the sensors are subject to mining in order to make strategic decisions. In the article, we consider the problem of choosing a Time Series Database Management System (TSDBMS) to provide efficient storing and mining of big sensor data. We overview InfluxDB, OpenTSDB, and TimescaleDB, which are among the most popular state-of-the-art TSDBMSs, and represent different categories of such systems, namely native, add-ons over NoSQL systems, and add-ons over relational DBMSs (RDBMSs), respectively. Our overview shows that, at present, TSDBMSs offer a modest built-in toolset to mine big sensor data. This leads to the use of third-party mining systems and unwanted overhead costs due to exporting data outside a TSDBMS, data conversion, and so on. We propose an approach to managing and mining sensor data inside RDBMSs that exploits the Matrix Profile concept. A Matrix Profile is a data structure that annotates a time series through the index of and the distance to the nearest neighbor of each subsequence of the time series and serves as a basis to discover motifs, anomalies, and other time-series data mining primitives. This approach is implemented as a PostgreSQL extension that allows an application programmer both to compute matrix profiles and mining primitives and to represent them as relational tables. Experimental case studies show that our approach surpasses the above-mentioned out-of-TSDBMS competitors in terms of performance since it assumes that sensor data are mined inside a TSDBMS at no significant overhead costs.},
+DOI = {10.3390/math9172146}
+}
+
+
+

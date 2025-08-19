@@ -53,7 +53,7 @@
 \supervisor{Dhr. S. De Gheselle}
 \cosupervisor{Dhr. L. Anciaux}
 \title[]%
-    {Het implementeren van Internet of Things (IoT) om de wachttijden voor patiënten in de afdeling Accident and Emergency (A\&E) van de National Health Service (NHS) te verkorten.}
+    {Validatie van een IoT-systeem voor realtime monitoring van wachtruimtebezetting: Een vergelijking met Google Occupancy Analytics}
 \academicyear{\advance\year by -1 \the\year--\advance\year by 1 \the\year}
 \examperiod{1}
 \degreesought{\IfLanguageName{dutch}{Professionele bachelor in de toegepaste informatica}{Bachelor of applied computer science}}
@@ -110,11 +110,425 @@
 
 \listoffigures
 
+
 % If you included tables and/or source code listings, uncomment the appropriate
 % lines.
 \listoftables
 
+
 \listoflistings
+\begin{listing}[H]
+    \caption{SQL-query om de relevante tellingen per minuut te extraheren}
+    \label{lst:tellingen}
+    \begin{minted}{sql}
+        SELECT
+        TIMESTAMP_TRUNC(
+        TIMESTAMP(SUBSTR(JSON_VALUE(annotation, "$.currentTime"), 1, 26)), MINUTE
+        ) AS currentTimeUTC,
+        MAX(CAST(JSON_VALUE(count_obj, "$.count") AS INT64)) AS people_in_zone
+        FROM
+        `reolink-occupancy-project.occupancy_dataset.occupancy_dataset_table`,
+        UNNEST(JSON_EXTRACT_ARRAY(annotation, "$.stats.activeZoneCounts")) AS zone,
+        UNNEST(JSON_EXTRACT_ARRAY(zone, "$.counts")) AS count_obj
+        WHERE
+        JSON_VALUE(zone, "$.annotation.displayName") = "wgc"
+        AND JSON_VALUE(count_obj, "$.entity.labelString") = "Person"
+        GROUP BY
+        currentTimeUTC
+        ORDER BY
+        currentTimeUTC;
+    \end{minted}
+\end{listing}
+
+\begin{listing}[H]
+    \caption{Uurlijkse gemiddelden van personen in 'wgc'-zone met vanaf 15 juli 2025}
+    \label{lst:people_hourly}
+    \begin{minted}[fontsize=\small, breaklines=true]{sql}
+        CREATE OR REPLACE TABLE `reolink-occupancy-project.occupancy_dataset.people_hourly` AS
+        WITH per_second_counts AS (
+        SELECT
+        TIMESTAMP_TRUNC(
+        TIMESTAMP(SUBSTR(JSON_VALUE(annotation, "$.currentTime"), 1, 26)), SECOND
+        ) AS ts,
+        CAST(JSON_VALUE(count_obj, "$.count") AS INT64) AS people_in_zone
+        FROM
+        `reolink-occupancy-project.occupancy_dataset.occupancy_dataset_table`,
+        UNNEST(JSON_EXTRACT_ARRAY(annotation, "$.stats.activeZoneCounts")) AS zone,
+        UNNEST(JSON_EXTRACT_ARRAY(zone, "$.counts")) AS count_obj
+        WHERE
+        JSON_VALUE(zone, "$.annotation.displayName") = "wgc"
+        AND JSON_VALUE(count_obj, "$.entity.labelString") = "Person"
+        AND TIMESTAMP(SUBSTR(JSON_VALUE(annotation, "$.currentTime"), 1, 26)) >= TIMESTAMP("2025-07-15")
+        ),
+        grouped AS (
+        SELECT
+        TIMESTAMP_TRUNC(ts, HOUR) AS ts_hour,
+        AVG(people_in_zone) AS avg_people
+        FROM per_second_counts
+        GROUP BY ts_hour
+        ),
+        -- gap-filling
+        all_hours AS (
+        SELECT TIMESTAMP '2025-07-15' + INTERVAL n HOUR AS ts_hour
+        FROM UNNEST(GENERATE_ARRAY(0, 24*7)) AS n  -- 1 week data
+        )
+        SELECT
+        a.ts_hour,
+        IFNULL(g.avg_people, 0) AS avg_people
+        FROM all_hours a
+        LEFT JOIN grouped g USING(ts_hour)
+        ORDER BY ts_hour;
+    \end{minted}
+\end{listing}
+
+\begin{listing}[H]
+    \caption{Voorspellingsmodel op basis van ARIMA\_PLUS met uurlijkse data}
+    \label{lst:people_forecast_model}
+    \begin{minted}[fontsize=\small, breaklines=true]{sql}
+        CREATE OR REPLACE MODEL `reolink-occupancy-project.occupancy_dataset.people_forecast_model`
+        OPTIONS (
+        model_type = 'ARIMA_PLUS',
+        time_series_timestamp_col = 'ts_hour',
+        time_series_data_col = 'avg_people',
+        horizon = 168,  -- aantal voorspelde tijdstippen (bv. 168 = 1 week aan uurlijkse data)
+        auto_arima = TRUE
+        ) AS
+        SELECT
+        ts_hour,
+        avg_people
+        FROM
+        `reolink-occupancy-project.occupancy_dataset.people_hourly`;
+    \end{minted}
+\end{listing}
+
+\begin{listing}[H]
+    \caption{Forecast ophalen uit het ARIMA\_PLUS model}
+    \label{lst:people_forecast_query}
+    \begin{minted}[fontsize=\small, breaklines=true]{sql}
+        SELECT
+        forecast_timestamp,
+        forecast_value,
+        prediction_interval_lower_bound,
+        prediction_interval_upper_bound
+        FROM
+        ML.FORECAST(
+        MODEL `reolink-occupancy-project.occupancy_dataset.people_forecast_model`,
+        STRUCT(80 AS horizon)
+        );
+    \end{minted}
+\end{listing}
+
+
+\begin{listing}[H]
+    \caption{MAPE berekenen door forecast en observaties te vergelijken}
+    \label{lst:people_forecast_mape_query}
+    \begin{minted}[fontsize=\small, breaklines=true]{sql}
+        WITH per_second_counts AS (
+        SELECT
+        TIMESTAMP_TRUNC(
+        TIMESTAMP(SUBSTR(JSON_VALUE(annotation, "$.currentTime"), 1, 26)), SECOND
+        ) AS ts,
+        CAST(JSON_VALUE(count_obj, "$.count") AS INT64) AS people_in_zone
+        FROM
+        `reolink-occupancy-project.occupancy_dataset.occupancy_dataset_table`,
+        UNNEST(JSON_EXTRACT_ARRAY(annotation, "$.stats.activeZoneCounts")) AS zone,
+        UNNEST(JSON_EXTRACT_ARRAY(zone, "$.counts")) AS count_obj
+        WHERE
+        JSON_VALUE(zone, "$.annotation.displayName") = "wgc"
+        AND JSON_VALUE(count_obj, "$.entity.labelString") = "Person"
+        AND TIMESTAMP(SUBSTR(JSON_VALUE(annotation, "$.currentTime"), 1, 26)) >= TIMESTAMP("2025-07-15")
+        ),
+        with_flags AS (
+        SELECT
+        TIMESTAMP_TRUNC(ts, MINUTE) AS minute,
+        people_in_zone,
+        IF(people_in_zone > 0, 1, 0) AS is_present
+        FROM per_second_counts
+        ),
+        grouped_stats AS (
+        SELECT
+        minute,
+        COUNTIF(is_present = 1) AS seconds_present,
+        AVG(people_in_zone) AS avg_people
+        FROM with_flags
+        GROUP BY minute
+        HAVING COUNTIF(is_present = 1) >= 10
+        ),
+        forecast_hourly AS (
+        SELECT
+        forecast_timestamp AS ts_hour,
+        GREATEST(forecast_value, 0) AS yhat
+        FROM ML.FORECAST(
+        MODEL `reolink-occupancy-project.occupancy_dataset.people_forecast_model`,
+        STRUCT(80 AS horizon)
+        )
+        ),
+        forecast_minute AS (
+        -- Lineaire interpolatie per minuut tussen forecast-uren
+        SELECT
+        TIMESTAMP_ADD(f1.ts_hour, INTERVAL m MINUTE) AS ts,
+        f1.yhat + (f2.yhat - f1.yhat) * m / 60.0 AS yhat
+        FROM forecast_hourly f1
+        JOIN forecast_hourly f2
+        ON f2.ts_hour = TIMESTAMP_ADD(f1.ts_hour, INTERVAL 1 HOUR)
+        CROSS JOIN UNNEST(GENERATE_ARRAY(0, 59)) AS m
+        )
+        SELECT
+        ROUND(AVG(ABS(SAFE_DIVIDE(f.yhat - o.avg_people, o.avg_people))) * 100, 2) AS MAPE_percent,
+        COUNT(*) AS matched_rows
+        FROM forecast_minute f
+        JOIN grouped_stats o
+        ON f.ts = o.minute
+        WHERE o.avg_people > 0;
+    \end{minted}
+\end{listing}
+
+
+
+
+
+   
+\begin{listing}[H]
+    \caption{Deel 1 – Setup en Configuratie van de ESP32}
+    \label{lst:esp32_setup}
+    \begin{minted}[fontsize=\footnotesize, breaklines=true]{cpp}
+        #include <WiFi.h>
+        #include <InfluxDbClient.h>
+        
+        // WiFi-configuratie
+        const char* ssid = "YOUR_SSID";
+        const char* password = "YOUR_PASSWORD";
+        
+        // InfluxDB-configuratie
+        #define INFLUXDB_URL "http://YOUR_URL:8086"
+        #define INFLUXDB_TOKEN "YOUR_TOKEN"
+        #define INFLUXDB_ORG "YOUR_ORG"
+        #define INFLUXDB_BUCKET "sensor_data"
+        
+        InfluxDBClient client(INFLUXDB_URL, INFLUXDB_ORG, INFLUXDB_BUCKET, INFLUXDB_TOKEN);
+        Point people("people_counter");
+        
+        // IR sensoren
+        const int sensorIn = 14;
+        const int sensorOut = 25;
+        
+        // Bezettingslogica
+        enum State { IDLE, SENSOR_IN_TRIGGERED, SENSOR_OUT_TRIGGERED };
+        State state = IDLE;
+        
+        int peopleCount = 0;
+        int enteredLastMinute = 0;
+        int exitedLastMinute = 0;
+        unsigned long lastSendTime = 0;
+        unsigned long stateStartTime = 0;
+        
+        void setup() {
+            Serial.begin(115200);
+            pinMode(sensorIn, INPUT_PULLUP);
+            pinMode(sensorOut, INPUT_PULLUP);
+            
+            WiFi.begin(ssid, password);
+            while (WiFi.status() != WL_CONNECTED) {
+                delay(500);
+                Serial.print(".");
+            }
+            Serial.println("\nWiFi connected");
+            
+            if (client.validateConnection()) {
+                Serial.println("Connected to InfluxDB!");
+            } else {
+                Serial.print("InfluxDB connection failed: ");
+                Serial.println(client.getLastErrorMessage());
+            }
+            
+            people.addTag("location", "wachtzaal");
+            people.addTag("device", "esp32_deur_sensor");
+        }
+    \end{minted}
+\end{listing}
+
+
+\begin{listing}[H]
+    \caption{Deel 2 – Sensorlogica en hoofdloop}
+    \label{lst:esp32_loop}
+    \begin{minted}[fontsize=\footnotesize, breaklines=true]{cpp}
+        void loop() {
+            if (WiFi.status() != WL_CONNECTED) {
+                WiFi.reconnect();
+                delay(5000);
+            }
+            
+            bool inBroken = isStableLow(sensorIn);
+            bool outBroken = isStableLow(sensorOut);
+            
+            switch (state) {
+                case IDLE:
+                if (inBroken) {
+                    state = SENSOR_IN_TRIGGERED;
+                    stateStartTime = millis();
+                } else if (outBroken) {
+                    state = SENSOR_OUT_TRIGGERED;
+                    stateStartTime = millis();
+                }
+                break;
+                case SENSOR_IN_TRIGGERED:
+                if (outBroken) {
+                    peopleCount++;
+                    enteredLastMinute++;
+                    while (digitalRead(sensorOut) == LOW) delay(10);
+                    state = IDLE;
+                } else if (millis() - stateStartTime > 3000) {
+                    state = IDLE;
+                }
+                break;
+                case SENSOR_OUT_TRIGGERED:
+                if (inBroken) {
+                    if (peopleCount > 0) peopleCount--;
+                    exitedLastMinute++;
+                    while (digitalRead(sensorIn) == LOW) delay(10);
+                    state = IDLE;
+                } else if (millis() - stateStartTime > 3000) {
+                    state = IDLE;
+                }
+                break;
+            }
+            
+            if (millis() - lastSendTime > 60000) {
+                sendToInfluxDB();
+                enteredLastMinute = 0;
+                exitedLastMinute = 0;
+                lastSendTime = millis();
+            }
+            
+            delay(5);
+        }
+    \end{minted}
+\end{listing}
+
+\begin{listing}[H]
+    \caption{Deel 3 – Hulpfuncties voor sensorstabiliteit en data-upload}
+    \label{lst:esp32_utils}
+    \begin{minted}[fontsize=\footnotesize, breaklines=true]{cpp}
+        bool isStableLow(int pin, unsigned long duration = 30) {
+            unsigned long start = millis();
+            while (millis() - start < duration) {
+                if (digitalRead(pin) != LOW) return false;
+                delay(5);
+            }
+            return true;
+        }
+        
+        void sendToInfluxDB() {
+            if (WiFi.status() != WL_CONNECTED) {
+                Serial.println("⚠️ Wi-Fi niet verbonden. Kan niet verzenden.");
+                return;
+            }
+            
+            people.clearFields();
+            people.addField("count", peopleCount);
+            people.addField("entered", enteredLastMinute);
+            people.addField("exited", exitedLastMinute);
+            
+            if (!client.writePoint(people)) {
+                Serial.print("❌ Fout bij verzenden naar InfluxDB: ");
+                Serial.println(client.getLastErrorMessage());
+            } else {
+                Serial.println("✅ Gegevens succesvol verzonden naar InfluxDB.");
+            }
+        }
+    \end{minted}
+\end{listing}
+
+\begin{listing}[H]
+    \caption{Vergelijking van IoT- en WGC-data per minuut-van-de-dag in Python}
+    \label{lst:python-iot-wgc}
+    \begin{minted}[linenos,fontsize=\small,breaklines]{python}
+        import pandas as pd
+        
+        # Data inladen
+        iot = pd.read_excel("iot_data.xlsx")
+        wgc = pd.read_excel("wgc-data-dinsdag.xlsx")
+        
+        # Naar lokale tijd zetten en afronden op minuut
+        iot["minute"] = pd.to_datetime(iot["minute"]).dt.tz_localize("Europe/Brussels").dt.floor("min")
+        wgc["minute"] = pd.to_datetime(wgc["minute"]).dt.tz_localize("Europe/Brussels").dt.floor("min")
+        
+        # Minute-of-day berekenen
+        iot["minute_of_day"] = iot["minute"].dt.hour * 60 + iot["minute"].dt.minute
+        wgc["minute_of_day"] = wgc["minute"].dt.hour * 60 + wgc["minute"].dt.minute
+        
+        # Gemiddelde per minuut-of-day
+        iot_avg = iot.groupby("minute_of_day")["count"].mean()
+        wgc_avg = wgc.groupby("minute_of_day")["avg_people"].mean()
+        
+        # Samenvoegen en tijd in HH:MM-formaat
+        comp = pd.concat([iot_avg, wgc_avg], axis=1).dropna().reset_index()
+        comp["hhmm"] = comp["minute_of_day"].apply(lambda m: f"{m//60:02d}:{m%60:02d}")
+        
+        # Opslaan
+        comp.to_excel("vergelijking_dinsdag_op_tijdvandag.xlsx", index=False)
+    \end{minted}
+\end{listing}
+
+\begin{listing}[H]
+    \caption{Visualisatie en vergelijking van IoT- en WGC-data met Python}
+    \label{lst:python-iot-wgc-plot}
+    \begin{minted}[linenos,fontsize=\small,breaklines]{python}
+        import matplotlib.pyplot as plt
+        import matplotlib.ticker as ticker
+        import pandas as pd
+        
+        df = pd.read_excel("vergelijking_dinsdag_op_tijdvandag.xlsx")
+        
+        df["difference"] = df["iot_avg_people"] - df["wgc_avg_people"]
+        
+        mean_iot = df["iot_avg_people"].mean()
+        mean_wgc = df["wgc_avg_people"].mean()
+        mean_diff = df["difference"].mean()
+        corr = df["iot_avg_people"].corr(df["wgc_avg_people"])
+        
+        def plot_with_reduced_xticks(x, y_list, labels, colors, xlabel, ylabel, title, figsize=(12,6)):
+        plt.figure(figsize=figsize)
+        for y, label, color in zip(y_list, labels, colors):
+        plt.plot(x, y, label=label, color=color)
+        
+        ax = plt.gca()
+        ax.xaxis.set_major_locator(ticker.MaxNLocator(nbins=10))  # maximaal 10 labels
+        plt.xticks(rotation=45)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.title(title)
+        plt.legend()
+        plt.tight_layout()
+        plt.show()
+        
+        plot_with_reduced_xticks(
+        x=df["hhmm"],
+        y_list=[df["iot_avg_people"], df["wgc_avg_people"]],
+        labels=["IoT-systeem", "Google Vertex AI (WGC)"],
+        colors=["blue", "orange"],
+        xlabel="Tijd (HH:MM)",
+        ylabel="Gemiddeld aantal personen",
+        title="Vergelijking bezettingsgraad IoT-systeem vs Google Vertex AI"
+        )
+        
+        plot_with_reduced_xticks(
+        x=df["hhmm"],
+        y_list=[df["difference"]],
+        labels=["Verschil (IoT - WGC)"],
+        colors=["red"],
+        xlabel="Tijd (HH:MM)",
+        ylabel="Verschil in personen",
+        title="Verschil in metingen per minuut",
+        figsize=(12,4)
+        )
+        
+        mean_iot, mean_wgc, mean_diff, corr
+    \end{minted}
+\end{listing}
+
+
+
 
 % Als je een lijst van afkortingen of termen wil toevoegen, dan hoort die
 % hier thuis. Gebruik bijvoorbeeld de ``glossaries'' package.
