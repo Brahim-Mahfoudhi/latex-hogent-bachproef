@@ -1,0 +1,84 @@
+\glsdefs@newdocentry{iot}%
+{%
+name={\acronymfont {\glsentryshort {iot}}},%
+sort={IoT},%
+type={acronym},%
+first={IoT},%
+firstplural={IoTs},%
+text={IoT},%
+plural={IoTs},%
+description={Internet-of-Things},%
+descriptionplural={Internet-of-Things},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Internet-of-Things},%
+longplural={Internet-of-Thingss},%
+short={IoT},%
+shortplural={IoTs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{poc}%
+{%
+name={\acronymfont {\glsentryshort {poc}}},%
+sort={PoC},%
+type={acronym},%
+first={PoC},%
+firstplural={PoCs},%
+text={PoC},%
+plural={PoCs},%
+description={Proof-of-Concept},%
+descriptionplural={Proof-of-Concept},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Proof-of-Concept},%
+longplural={Proof-of-Concepts},%
+short={PoC},%
+shortplural={PoCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{wgc}%
+{%
+name={\acronymfont {\glsentryshort {wgc}}},%
+sort={WGC},%
+type={acronym},%
+first={WGC},%
+firstplural={WGCs},%
+text={WGC},%
+plural={WGCs},%
+description={Wijkgezondheidscentrum},%
+descriptionplural={Wijkgezondheidscentrum},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Wijkgezondheidscentrum},%
+longplural={Wijkgezondheidscentrums},%
+short={WGC},%
+shortplural={WGCs},%
+counter={page},%
+parent={},%
+%
+}%
+

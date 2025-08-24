@@ -5,6 +5,19 @@
 
 \documentclass[dutch,dit,thesis]{hogentreport}
 
+
+\usepackage[acronym]{glossaries}
+
+\makeglossaries
+
+\newacronym{iot}{IoT}{Internet-of-Things}
+\newacronym{poc}{PoC}{Proof-of-Concept}
+\newacronym{wgc}{WGC}{Wijkgezondheidscentrum}
+\newacronym{pir}{PIR}{Passive Infrared}
+\newacronym{ir}{IR}{Infrared}
+\newacronym{rtsp}{RTSP}{Real-Time Streaming Protoco}
+
+
 % TODO:
 % - If necessary, replace the option `dit`' with your own department!
 %   Valid entries are dbo, dbt, dgz, dit, dlo, dog, dsa, soa
@@ -53,7 +66,7 @@
 \supervisor{Dhr. S. De Gheselle}
 \cosupervisor{Dhr. L. Anciaux}
 \title[]%
-    {Validatie van een IoT-systeem voor realtime monitoring van wachtruimtebezetting: Een vergelijking met Google Occupancy Analytics}
+    {Validatie van een IoT-systeem voor realtime monitoring en voorspelling van wachtruimtebezetting: vergelijking met Google Occupancy Analytics}
 \academicyear{\advance\year by -1 \the\year--\advance\year by 1 \the\year}
 \examperiod{1}
 \degreesought{\IfLanguageName{dutch}{Professionele bachelor in de toegepaste informatica}{Bachelor of applied computer science}}
@@ -120,109 +133,7 @@
 \begin{listing}[H]
     \caption{SQL-query om de relevante tellingen per minuut te extraheren}
     \label{lst:tellingen}
-    \begin{minted}{sql}
-        SELECT
-        TIMESTAMP_TRUNC(
-        TIMESTAMP(SUBSTR(JSON_VALUE(annotation, "$.currentTime"), 1, 26)), MINUTE
-        ) AS currentTimeUTC,
-        MAX(CAST(JSON_VALUE(count_obj, "$.count") AS INT64)) AS people_in_zone
-        FROM
-        `reolink-occupancy-project.occupancy_dataset.occupancy_dataset_table`,
-        UNNEST(JSON_EXTRACT_ARRAY(annotation, "$.stats.activeZoneCounts")) AS zone,
-        UNNEST(JSON_EXTRACT_ARRAY(zone, "$.counts")) AS count_obj
-        WHERE
-        JSON_VALUE(zone, "$.annotation.displayName") = "wgc"
-        AND JSON_VALUE(count_obj, "$.entity.labelString") = "Person"
-        GROUP BY
-        currentTimeUTC
-        ORDER BY
-        currentTimeUTC;
-    \end{minted}
-\end{listing}
-
-\begin{listing}[H]
-    \caption{Uurlijkse gemiddelden van personen in 'wgc'-zone met vanaf 15 juli 2025}
-    \label{lst:people_hourly}
-    \begin{minted}[fontsize=\small, breaklines=true]{sql}
-        CREATE OR REPLACE TABLE `reolink-occupancy-project.occupancy_dataset.people_hourly` AS
-        WITH per_second_counts AS (
-        SELECT
-        TIMESTAMP_TRUNC(
-        TIMESTAMP(SUBSTR(JSON_VALUE(annotation, "$.currentTime"), 1, 26)), SECOND
-        ) AS ts,
-        CAST(JSON_VALUE(count_obj, "$.count") AS INT64) AS people_in_zone
-        FROM
-        `reolink-occupancy-project.occupancy_dataset.occupancy_dataset_table`,
-        UNNEST(JSON_EXTRACT_ARRAY(annotation, "$.stats.activeZoneCounts")) AS zone,
-        UNNEST(JSON_EXTRACT_ARRAY(zone, "$.counts")) AS count_obj
-        WHERE
-        JSON_VALUE(zone, "$.annotation.displayName") = "wgc"
-        AND JSON_VALUE(count_obj, "$.entity.labelString") = "Person"
-        AND TIMESTAMP(SUBSTR(JSON_VALUE(annotation, "$.currentTime"), 1, 26)) >= TIMESTAMP("2025-07-15")
-        ),
-        grouped AS (
-        SELECT
-        TIMESTAMP_TRUNC(ts, HOUR) AS ts_hour,
-        AVG(people_in_zone) AS avg_people
-        FROM per_second_counts
-        GROUP BY ts_hour
-        ),
-        -- gap-filling
-        all_hours AS (
-        SELECT TIMESTAMP '2025-07-15' + INTERVAL n HOUR AS ts_hour
-        FROM UNNEST(GENERATE_ARRAY(0, 24*7)) AS n  -- 1 week data
-        )
-        SELECT
-        a.ts_hour,
-        IFNULL(g.avg_people, 0) AS avg_people
-        FROM all_hours a
-        LEFT JOIN grouped g USING(ts_hour)
-        ORDER BY ts_hour;
-    \end{minted}
-\end{listing}
-
-\begin{listing}[H]
-    \caption{Voorspellingsmodel op basis van ARIMA\_PLUS met uurlijkse data}
-    \label{lst:people_forecast_model}
-    \begin{minted}[fontsize=\small, breaklines=true]{sql}
-        CREATE OR REPLACE MODEL `reolink-occupancy-project.occupancy_dataset.people_forecast_model`
-        OPTIONS (
-        model_type = 'ARIMA_PLUS',
-        time_series_timestamp_col = 'ts_hour',
-        time_series_data_col = 'avg_people',
-        horizon = 168,  -- aantal voorspelde tijdstippen (bv. 168 = 1 week aan uurlijkse data)
-        auto_arima = TRUE
-        ) AS
-        SELECT
-        ts_hour,
-        avg_people
-        FROM
-        `reolink-occupancy-project.occupancy_dataset.people_hourly`;
-    \end{minted}
-\end{listing}
-
-\begin{listing}[H]
-    \caption{Forecast ophalen uit het ARIMA\_PLUS model}
-    \label{lst:people_forecast_query}
-    \begin{minted}[fontsize=\small, breaklines=true]{sql}
-        SELECT
-        forecast_timestamp,
-        forecast_value,
-        prediction_interval_lower_bound,
-        prediction_interval_upper_bound
-        FROM
-        ML.FORECAST(
-        MODEL `reolink-occupancy-project.occupancy_dataset.people_forecast_model`,
-        STRUCT(80 AS horizon)
-        );
-    \end{minted}
-\end{listing}
-
-
-\begin{listing}[H]
-    \caption{MAPE berekenen door forecast en observaties te vergelijken}
-    \label{lst:people_forecast_mape_query}
-    \begin{minted}[fontsize=\small, breaklines=true]{sql}
+    \begin{minted}[fontsize=\footnotesize, breaklines=true]{sql}
         WITH per_second_counts AS (
         SELECT
         TIMESTAMP_TRUNC(
@@ -249,11 +160,137 @@
         SELECT
         minute,
         COUNTIF(is_present = 1) AS seconds_present,
+        AVG(people_in_zone) AS avg_people,
+        MAX(people_in_zone) AS max_people
+        FROM with_flags
+        GROUP BY minute
+        )
+        SELECT
+        minute,
+        seconds_present,
+        avg_people,
+        max_people,
+        CASE 
+        WHEN seconds_present >= 10 THEN 'Geldig (>=10s aanwezig)'
+        ELSE 'Kort (<10s aanwezig)'
+        END AS status
+        FROM grouped_stats
+        WHERE seconds_present >= 10
+        ORDER BY minute;
+    \end{minted}
+\end{listing}
+
+\begin{listing}[H]
+    \caption{Voorspellingsmodel op basis van ARIMA\_PLUS}
+    \label{lst:people_forecast_model}
+    \begin{minted}[fontsize=\footnotesize, breaklines=true]{sql}
+        CREATE OR REPLACE MODEL `reolink-occupancy-project.occupancy_dataset.occupancy_arima`
+        OPTIONS(
+        model_type='ARIMA_PLUS',
+        time_series_timestamp_col='minute',
+        time_series_data_col='avg_people',
+        horizon=1440,  -- aantal minuten vooruit (24h * 60min)
+        time_series_id_col=NULL
+        ) AS
+        SELECT
+        minute,
+        avg_people
+        FROM (
+        WITH per_second_counts AS (
+        SELECT
+        TIMESTAMP_TRUNC(
+        TIMESTAMP(SUBSTR(JSON_VALUE(annotation, "$.currentTime"), 1, 26)), SECOND
+        ) AS ts,
+        CAST(JSON_VALUE(count_obj, "$.count") AS INT64) AS people_in_zone
+        FROM
+        `reolink-occupancy-project.occupancy_dataset.occupancy_dataset_table`,
+        UNNEST(JSON_EXTRACT_ARRAY(annotation, "$.stats.activeZoneCounts")) AS zone,
+        UNNEST(JSON_EXTRACT_ARRAY(zone, "$.counts")) AS count_obj
+        WHERE
+        JSON_VALUE(zone, "$.annotation.displayName") = "wgc"
+        AND JSON_VALUE(count_obj, "$.entity.labelString") = "Person"
+        AND TIMESTAMP(SUBSTR(JSON_VALUE(annotation, "$.currentTime"), 1, 26)) >= TIMESTAMP("2025-07-15")
+        ),
+        with_flags AS (
+        SELECT
+        TIMESTAMP_TRUNC(ts, MINUTE) AS minute,
+        people_in_zone,
+        IF(people_in_zone > 0, 1, 0) AS is_present
+        FROM per_second_counts
+        ),
+        grouped_stats AS (
+        SELECT
+        minute,
+        COUNTIF(is_present = 1) AS seconds_present,
+        AVG(people_in_zone) AS avg_people,
+        MAX(people_in_zone) AS max_people
+        FROM with_flags
+        GROUP BY minute
+        )
+        SELECT
+        minute,
+        avg_people
+        FROM grouped_stats
+        WHERE seconds_present >= 10
+        );
+    \end{minted}
+\end{listing}
+
+\begin{listing}[H]
+    \caption{Forecast ophalen uit het ARIMA\_PLUS model}
+    \label{lst:people_forecast_query}
+    \begin{minted}[fontsize=\small, breaklines=true]{sql}
+        SELECT
+        *
+        FROM
+        ML.FORECAST(MODEL `reolink-occupancy-project.occupancy_dataset.occupancy_arima`,
+        STRUCT(1440 AS horizon));
+    \end{minted}
+\end{listing}
+
+
+\begin{listing}[H]
+    \caption{Berekening van per-minute statistieken van aanwezige personen}
+    \label{lst:people_per_minute}
+    \small
+    \begin{minted}[breaklines=true]{sql}
+        WITH per_second_counts AS (
+        SELECT
+        TIMESTAMP_TRUNC(
+        TIMESTAMP(SUBSTR(JSON_VALUE(annotation, "$.currentTime"), 1, 26)), SECOND
+        ) AS ts,
+        CAST(JSON_VALUE(count_obj, "$.count") AS INT64) AS people_in_zone
+        FROM `reolink-occupancy-project.occupancy_dataset.occupancy_dataset_table`,
+        UNNEST(JSON_EXTRACT_ARRAY(annotation, "$.stats.activeZoneCounts")) AS zone,
+        UNNEST(JSON_EXTRACT_ARRAY(zone, "$.counts")) AS count_obj
+        WHERE JSON_VALUE(zone, "$.annotation.displayName") = "wgc"
+        AND JSON_VALUE(count_obj, "$.entity.labelString") = "Person"
+        AND TIMESTAMP(SUBSTR(JSON_VALUE(annotation, "$.currentTime"), 1, 26)) >= TIMESTAMP("2025-07-15")
+        ),
+        with_flags AS (
+        SELECT
+        TIMESTAMP_TRUNC(ts, MINUTE) AS minute,
+        people_in_zone,
+        IF(people_in_zone > 0, 1, 0) AS is_present
+        FROM per_second_counts
+        ),
+        grouped_stats AS (
+        SELECT
+        minute,
+        COUNTIF(is_present = 1) AS seconds_present,
         AVG(people_in_zone) AS avg_people
         FROM with_flags
         GROUP BY minute
         HAVING COUNTIF(is_present = 1) >= 10
-        ),
+        )
+    \end{minted}
+\end{listing}
+
+\begin{listing}[H]
+    \caption{Forecast en MAPE berekening}
+    \label{lst:people_forecast_mape}
+    \small
+    \begin{minted}[breaklines=true]{sql}
         forecast_hourly AS (
         SELECT
         forecast_timestamp AS ts_hour,
@@ -264,7 +301,6 @@
         )
         ),
         forecast_minute AS (
-        -- Lineaire interpolatie per minuut tussen forecast-uren
         SELECT
         TIMESTAMP_ADD(f1.ts_hour, INTERVAL m MINUTE) AS ts,
         f1.yhat + (f2.yhat - f1.yhat) * m / 60.0 AS yhat
@@ -283,10 +319,6 @@
     \end{minted}
 \end{listing}
 
-
-
-
-
    
 \begin{listing}[H]
     \caption{Deel 1 – Setup en Configuratie van de ESP32}
@@ -295,11 +327,9 @@
         #include <WiFi.h>
         #include <InfluxDbClient.h>
         
-        // WiFi-configuratie
         const char* ssid = "YOUR_SSID";
         const char* password = "YOUR_PASSWORD";
         
-        // InfluxDB-configuratie
         #define INFLUXDB_URL "http://YOUR_URL:8086"
         #define INFLUXDB_TOKEN "YOUR_TOKEN"
         #define INFLUXDB_ORG "YOUR_ORG"
@@ -308,11 +338,9 @@
         InfluxDBClient client(INFLUXDB_URL, INFLUXDB_ORG, INFLUXDB_BUCKET, INFLUXDB_TOKEN);
         Point people("people_counter");
         
-        // IR sensoren
         const int sensorIn = 14;
-        const int sensorOut = 25;
-        
-        // Bezettingslogica
+        const int sensorOut = 25; 
+       
         enum State { IDLE, SENSOR_IN_TRIGGERED, SENSOR_OUT_TRIGGERED };
         State state = IDLE;
         
@@ -420,7 +448,7 @@
         
         void sendToInfluxDB() {
             if (WiFi.status() != WL_CONNECTED) {
-                Serial.println("⚠️ Wi-Fi niet verbonden. Kan niet verzenden.");
+                Serial.println("Wi-Fi niet verbonden. Kan niet verzenden.");
                 return;
             }
             
@@ -430,10 +458,10 @@
             people.addField("exited", exitedLastMinute);
             
             if (!client.writePoint(people)) {
-                Serial.print("❌ Fout bij verzenden naar InfluxDB: ");
+                Serial.print("Fout bij verzenden naar InfluxDB: ");
                 Serial.println(client.getLastErrorMessage());
             } else {
-                Serial.println("✅ Gegevens succesvol verzonden naar InfluxDB.");
+                Serial.println("Gegevens succesvol verzonden naar InfluxDB.");
             }
         }
     \end{minted}
@@ -445,27 +473,23 @@
     \begin{minted}[linenos,fontsize=\small,breaklines]{python}
         import pandas as pd
         
-        # Data inladen
         iot = pd.read_excel("iot_data.xlsx")
         wgc = pd.read_excel("wgc-data-dinsdag.xlsx")
         
-        # Naar lokale tijd zetten en afronden op minuut
-        iot["minute"] = pd.to_datetime(iot["minute"]).dt.tz_localize("Europe/Brussels").dt.floor("min")
-        wgc["minute"] = pd.to_datetime(wgc["minute"]).dt.tz_localize("Europe/Brussels").dt.floor("min")
+        iot["minute"] = pd.to_datetime(iot["minute"]).dt.tz_localize("Europe/Brussels")
+        .dt.floor("min")
+        wgc["minute"] = pd.to_datetime(wgc["minute"]).dt.tz_localize("Europe/Brussels")
+        .dt.floor("min")
         
-        # Minute-of-day berekenen
         iot["minute_of_day"] = iot["minute"].dt.hour * 60 + iot["minute"].dt.minute
         wgc["minute_of_day"] = wgc["minute"].dt.hour * 60 + wgc["minute"].dt.minute
         
-        # Gemiddelde per minuut-of-day
         iot_avg = iot.groupby("minute_of_day")["count"].mean()
         wgc_avg = wgc.groupby("minute_of_day")["avg_people"].mean()
         
-        # Samenvoegen en tijd in HH:MM-formaat
         comp = pd.concat([iot_avg, wgc_avg], axis=1).dropna().reset_index()
         comp["hhmm"] = comp["minute_of_day"].apply(lambda m: f"{m//60:02d}:{m%60:02d}")
         
-        # Opslaan
         comp.to_excel("vergelijking_dinsdag_op_tijdvandag.xlsx", index=False)
     \end{minted}
 \end{listing}
@@ -473,7 +497,7 @@
 \begin{listing}[H]
     \caption{Visualisatie en vergelijking van IoT- en WGC-data met Python}
     \label{lst:python-iot-wgc-plot}
-    \begin{minted}[linenos,fontsize=\small,breaklines]{python}
+    \begin{minted}[linenos,fontsize=\scriptsize,breaklines]{python}
         import matplotlib.pyplot as plt
         import matplotlib.ticker as ticker
         import pandas as pd
@@ -528,11 +552,10 @@
 \end{listing}
 
 
-
-
 % Als je een lijst van afkortingen of termen wil toevoegen, dan hoort die
 % hier thuis. Gebruik bijvoorbeeld de ``glossaries'' package.
 % https://www.overleaf.com/learn/latex/Glossaries
+
 
 %---------- Kern ---------------------------------------------------------------
 
